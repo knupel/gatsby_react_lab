@@ -23,7 +23,7 @@ export default ({ data }) => {
 
 export const query = graphql`
   query {
-    allFile(filter: { sourceInstanceName: { eq: "media" } }) {
+    allFile(filter: { sourceInstanceName: { eq: "media_art" } }) {
       edges {
         node {
           extension
