@@ -7,11 +7,24 @@ export default function Home() {
   return (
     <div style={{ color: `red`, fontSize: `18px` }}>
       <Header str="KNUPEL ART" />
-      <Link to="/about/"> about</Link>
-      <Link to="/image_direct/"> image direct</Link>
-      <Link to="/image_query/"> image query</Link>
-      <Link to="/image_fluid/"> image fluid</Link>
-      <Link to="/image_multi_0/"> image multi 0</Link>
+      <div>
+        <Link to="/about/"> about</Link>
+      </div>
+      <div>
+        <Link to="/image_direct/"> images direct</Link>
+      </div>
+      <div>
+        <Link to="/image_query/"> images query</Link>
+      </div>
+      <div>
+        <Link to="/image_fluid/"> images fluid</Link>
+      </div>
+      <div>
+        <Link to="/image_multi/"> images multi</Link>
+      </div>
+      <div>
+        <Link to="/image_grid/"> images grid</Link>
+      </div>
     </div>
   )
 }

@@ -1,5 +1,6 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
+import Layout from "../components/layout"
 import Img from "gatsby-image"
 
 const Image = ({ fileName, alt, style }) => {
@@ -29,6 +30,7 @@ const Image = ({ fileName, alt, style }) => {
 export default function image_multi_0() {
   return (
     <div>
+      <Layout title="IMAGE MULTI"></Layout>
       <Image
         fileName="Lame_1_0_2015_11_450x300_72_dpi_Stan_le_Punk.jpg"
         style={{ width: "100%" }}
