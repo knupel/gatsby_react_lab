@@ -16,16 +16,16 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `media`,
-        path: `${__dirname}/media`,
+        name: `media_art`,
+        path: `${__dirname}/media/media_art`,
         ignore: [`**/\.*`], // ignore files starting with a dot
       },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `media_art`,
-        path: `${__dirname}/media/media_art`,
+        name: `media`,
+        path: `${__dirname}/media`,
         ignore: [`**/\.*`], // ignore files starting with a dot
       },
     },
