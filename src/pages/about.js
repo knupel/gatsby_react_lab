@@ -29,11 +29,6 @@ export default function About() {
       <Header str="About Knupel artist" />
 
       <p>Knupel is Lepunk tootoo</p>
-
-      <img
-        src="https://raw.githubusercontent.com/StanLepunK/git_media_src/main/profil/knupel_2020_11.jpg?token=AAZNRLLSYTF3U5KV7A3K5OS7W6HAU"
-        alt=""
-      />
     </div>
   )
 }
