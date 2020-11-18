@@ -7,7 +7,7 @@
 <h1 align="center">
   My Gatsby's Lab to understand the framework
 </h1>
-See it in action [Stanby lab](https://stanby.netlify.app)
+See it in action [Stan lab](https://stanlab.netlify.app)
 
 _Have another more specific idea? You may want to check out our vibrant collection of [official and community-created starters](https://www.gatsbyjs.com/docs/gatsby-starters/)._
 
