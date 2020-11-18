@@ -8,16 +8,16 @@ const img_grid_style = {
   gridTemplateColumns: `repeat(auto-fill, 200px)`,
 }
 
-export default ({ data }) => (
-  <div>
+export default ({ data }) => {
+  return <div>
     <Layout title="IMAGE GRID FROM SPECIFIC FOLDER"></Layout>
     <div style={img_grid_style}>
-      {data.allFile.edges.map(edge => (
-        <Img fluid={edge.node.fluid} />
+      {data.allFile.edges.map(({ node }) => (
+        <Img fluid={node.childImageSharp.fluid} />
       ))}
     </div>
   </div>
-)
+}
 
 export const query = graphql`
   query {
@@ -78,38 +78,38 @@ export const query = graphql`
 // }
 
 /*
-{
-      allFile(filter: { sourceInstanceName: { eq: "champImages" } }) {
-        edges {
-          node {
-            extension
-            relativePath
-            childImageSharp {
-              fluid {
-                ...GatsbyImageSharpFluid
-              }
-            }
-          }
-        }
-      }
-    }
-    */
+ {
+ allFile(filter: { sourceInstanceName: { eq: "champImages" } }) {
+ edges {
+ node {
+ extension
+ relativePath
+ childImageSharp {
+ fluid {
+ ...GatsbyImageSharpFluid
+ }
+ }
+ }
+ }
+ }
+ }
+ */
 /*
-export const query = graphql`
-  query {
-    allImageSharp(filter: { id: { regex: "/media/" } }) {
-      edges {
-        node {
-          id
-          fluid(maxWidth: 200, maxHeight: 200) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-    }
-  }
-`
-*/
+ export const query = graphql`
+ query {
+ allImageSharp(filter: { id: { regex: "/media/" } }) {
+ edges {
+ node {
+ id
+ fluid(maxWidth: 200, maxHeight: 200) {
+ ...GatsbyImageSharpFluid
+ }
+ }
+ }
+ }
+ }
+ `
+ */
 
 // query HeaderQuery {
 //   exampleImage: file(
