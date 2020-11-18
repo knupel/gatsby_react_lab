@@ -18,6 +18,7 @@ module.exports = {
       options: {
         name: `media`,
         path: `${__dirname}/media/`,
+        ignore: [`**/\.*`], // ignore files starting with a dot
       },
     },
   ],
