@@ -6,9 +6,7 @@ import { graphql } from "gatsby"
 export const query = graphql`
   query {
     mobileImage: file(
-      relativePath: {
-        eq: "knupel_72dpi/Boxon_1_0_2015_11_450x300_72_dpi_Stan_le_Punk.jpg"
-      }
+      relativePath: { eq: "Boxon_1_0_2015_11_450x300_72_dpi_Stan_le_Punk.jpg" }
     ) {
       childImageSharp {
         fluid(maxWidth: 1000, quality: 100) {
@@ -17,9 +15,7 @@ export const query = graphql`
       }
     }
     desktopImage: file(
-      relativePath: {
-        eq: "knupel_72dpi/Boxon_1_0_2015_11_450x300_72_dpi_Stan_le_Punk.jpg"
-      }
+      relativePath: { eq: "Boxon_1_0_2015_11_450x300_72_dpi_Stan_le_Punk.jpg" }
     ) {
       childImageSharp {
         fluid(maxWidth: 2000, quality: 100) {
