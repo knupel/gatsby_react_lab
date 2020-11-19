@@ -4,7 +4,7 @@ import Video from "../components/video"
 
 const VideoShow = () => (
   <div>
-    <Layout title="VIDEO direct from Vimeo iframe"></Layout>
+    <Layout title="VIDEO basic from Vimeo iframe"></Layout>
     <iframe
       src="https://player.vimeo.com/video/346529123"
       width="640"
@@ -24,7 +24,7 @@ const VideoShow = () => (
       videoSrcURL="https://player.vimeo.com/video/346529123"
       videoTitle="Stress City"
       width="320"
-      height="240"
+      // height="240"
     ></Video>
   </div>
 )
