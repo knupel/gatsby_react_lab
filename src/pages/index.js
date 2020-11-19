@@ -8,6 +8,7 @@ export default function Home() {
     <div style={{ color: `red`, fontSize: `18px` }}>
       <Header str="STAN LE PUNK LABO" />
       <Homelink link="/about/" name={"about"}></Homelink>
+      <Homelink link="/react_info/" name={"react info"}></Homelink>
       <Homelink link="/image_direct/" name={"images direct"}></Homelink>
       <Homelink link="/image_query/" name={"images query"}></Homelink>
       <Homelink link="/image_fluid/" name={"images fluid"}></Homelink>
