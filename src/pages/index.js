@@ -17,6 +17,7 @@ export default function Home() {
         link="/image_grid_specific_folder/"
         name={"images grid from specific folder"}
       ></Homelink>
+      <Homelink link="/video_display/" name={"video"}></Homelink>
     </div>
   )
 }
