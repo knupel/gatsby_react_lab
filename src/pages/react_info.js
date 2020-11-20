@@ -1,4 +1,8 @@
 import React, { useState, useLayoutEffect, useRef } from "react"
+import Layout from "../components/layout"
+
+// in the same mood
+// https://reedbarger.com/how-to-create-a-usewindowsize-react-hook/
 function set_canvas(canvas) {
   // need that to pass gatsby build
   if (typeof window !== `undefined`) {
@@ -11,41 +15,33 @@ function WindowInfo() {
   let canvas = [0, 0]
   set_canvas(canvas)
 
-  const [windowSize, _setWindowSize] = useState(canvas)
-
-  const windowSizeRef = useRef(windowSize)
-  const setWindowSize = value => {
-    windowSizeRef.current = value
-    _setWindowSize(value)
-  }
-
-  // Here we can normally use setWindowSize([x,y]) and windowSize
+  const [window_size, set_size] = useState(canvas)
+  useRef(window_size)
 
   useLayoutEffect(() => {
     function onWindowResize(event) {
-      // You can access the state value like this
-      let windowSizeValue = windowSizeRef.current
       set_canvas(canvas)
-      // And set the state value like this
-      setWindowSize([canvas[0], canvas[1]])
+      set_size(canvas[0], canvas[1])
     }
-
     window.addEventListener("resize", onWindowResize)
-
     return () => {
       window.removeEventListener("resize", onWindowResize)
     }
   }, [])
-  // }
 
+  return canvas
+}
+
+function ReactInfo() {
+  let res = WindowInfo()
   return (
     <div>
-      Hi There, screen is {windowSize[0]} x {windowSize[1]}
+      <Layout title="REACT INFO"></Layout>
+      <div>
+        window is {res[0]} x {res[1]}
+      </div>
     </div>
   )
 }
 
-function ReactInfo() {
-  return WindowInfo()
-}
 export default ReactInfo
