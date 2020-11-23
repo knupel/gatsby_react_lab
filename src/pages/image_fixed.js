@@ -18,7 +18,7 @@ export const query = graphql`
 export default function Image({ data }) {
   return (
     <div>
-      <Layout title="IMAGE QUERY"></Layout>
+      <Layout title="IMAGE FIXED"></Layout>
       <Img
         className="my_image"
         fixed={data.file.childImageSharp.fixed}

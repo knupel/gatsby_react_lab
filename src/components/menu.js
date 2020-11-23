@@ -7,7 +7,7 @@ export default function Menu() {
       <Homelink link="/about/" name={"about"}></Homelink>
       <Homelink link="/react_info/" name={"react info"}></Homelink>
       <Homelink link="/image_direct/" name={"images direct"}></Homelink>
-      <Homelink link="/image_query/" name={"images query"}></Homelink>
+      <Homelink link="/image_fixed/" name={"images fixed"}></Homelink>
       <Homelink link="/image_fluid/" name={"images fluid"}></Homelink>
       <Homelink link="/image_multi/" name={"images multi"}></Homelink>
       <Homelink link="/image_grid/" name={"images grid"}></Homelink>

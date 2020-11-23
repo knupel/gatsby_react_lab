@@ -22,7 +22,7 @@ export default function About() {
       <Container>
         <User
           username="Stanislas Marçais"
-          avatar="https://raw.githubusercontent.com/StanLepunK/gatsby_react_lab/main/media/profil/06_stauron.jpg"
+          avatar="https://raw.githubusercontent.com/StanLepunK/gatsby_react_lab/main/media/profil/06_stauron_detail.jpg"
           excerpt="Stanislas Marçais alias Knupel aka Stan le Punk"
         />
       </Container>
