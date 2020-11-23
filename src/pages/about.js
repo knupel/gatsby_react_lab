@@ -20,11 +20,11 @@ export default function About() {
     <div style={{ color: `red` }}>
       <Layout title="ABOUT"></Layout>
       <Container>
-        <User
+        {/* <User
           username="Stanislas Marçais"
-          avatar="https://raw.githubusercontent.com/StanLepunK/git_media_src/main/profil/knupel_2020_11_13_200x200px.jpg?token=AAZNRLICDB5JNOGGFSNXLWK7W7W5O"
+          avatar="../../media/profil/04_pirate_ID_400x400.jpg"
           excerpt="Stanislas Marçais alias Knupel aka Stan le Punk"
-        />
+        /> */}
       </Container>
       <Header str="About Knupel artist" />
 
