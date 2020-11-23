@@ -24,6 +24,15 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
+        name: `tdm`,
+        path: `${__dirname}/media/photo/tdm`,
+        ignore: [`**/\.*`], // ignore files starting with a dot
+      },
+    },
+    // call all media for an unknow reason
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
         name: `media`,
         path: `${__dirname}/media`,
         ignore: [`**/\.*`], // ignore files starting with a dot

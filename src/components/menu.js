@@ -15,6 +15,10 @@ export default function Menu() {
         link="/image_grid_specific_folder/"
         name={"images grid from specific folder"}
       ></Homelink>
+      <Homelink
+        link="/image_grid_open/"
+        name={"images grid from specific folder who can be open"}
+      ></Homelink>
       <Homelink link="/video_basic/" name={"video basic"}></Homelink>
       <Homelink link="/video_fullscreen/" name={"video fullscreen"}></Homelink>
       <Homelink link="/side_bar/" name={"side bar"}></Homelink>

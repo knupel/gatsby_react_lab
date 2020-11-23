@@ -21,6 +21,13 @@ export default function Galery() {
         // src="./media/media_art/AttGen_7_60_32p5_ATAC_AA_72.jpg"
         alt="ATAC_AA from public repositerie"
       />
+      <img
+        src="https://raw.githubusercontent.com/StanLepunK/gatsby_react_lab/main/media/photo/tdm/TDM 199568.JPG"
+        // src="https://github.com/StanLepunK/gatsby_react_lab/blob/main/media/media_art/AttGen_7_60_32p5_ATAC_AA_72.jpg"
+        // src="../../media/media_art/AttGen_7_60_32p5_ATAC_AA_72.jpg"
+        // src="./media/media_art/AttGen_7_60_32p5_ATAC_AA_72.jpg"
+        alt="ATAC_AA from public repositerie"
+      />
     </div>
   )
 }
