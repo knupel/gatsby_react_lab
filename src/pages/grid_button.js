@@ -15,14 +15,18 @@ import Layout from "../components/layout"
 /**
  * vscode ->preference -> typeScript -> Javascript > Enable
  * */
-const set_button_style = (props, is) => {
+const set_button_style = (props, select_is, mouse_is) => {
   let alpha = 0
-  is ? (alpha = 1) : (alpha = 0.5)
+  select_is ? (alpha = 1) : (alpha = 0.5)
+  let border_is
+
+  mouse_is ? (border_is = `4px double #cccccc`) : (border_is = `0`)
   return {
     opacity: alpha,
     width: `${props.w}px`,
     height: `${props.h}px`,
-    border: `4px double #cccccc`,
+    border: border_is,
+    // border: `4px double #cccccc`,
   }
 }
 
@@ -46,32 +50,33 @@ function PropsBase(props) {
 }
 function Cell({ children, ...props }) {
   const [is, set_is] = useState(false)
-  // const [alpha, set_alpha] = useState(0.5)
-  // const [h, set_h] = useState(props.h)
+  const [mouse_is, set_mouse_is] = useState(false)
 
   useEffect(() => {
     set_is(is)
-    // set_alpha(alpha)
+    set_mouse_is(mouse_is)
   })
 
   const toggle_cell = () => {
     if (is) {
       set_is(false)
-      // set_alpha(0.5)
     } else {
       set_is(true)
-      // set_alpha(1)
     }
+  }
+
+  const mouse_state = () => {
+    mouse_is ? set_mouse_is(false) : set_mouse_is(true)
   }
 
   return (
     <div>
       <button
         onClick={toggle_cell}
-        // onMouseEnter={mouse_in}
-        // onMouseLeave={mouse_out}
+        onMouseEnter={mouse_state}
+        onMouseLeave={mouse_state}
         className="cell"
-        style={set_button_style(props, is)}
+        style={set_button_style(props, is, mouse_is)}
         // style={set_button_style(props.w, props.h, alpha)}
       >
         {<Img fluid={children.childImageSharp.fluid} />}
