@@ -3,11 +3,26 @@ import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import Layout from "../components/layout"
 
-const set_button_style = (w, h, alpha) => {
+// const set_button_style = (w, h, alpha) => {
+//   return {
+//     opacity: alpha,
+//     width: `${w}px`,
+//     height: `${h}px`,
+//     border: `4px double #cccccc`,
+//   }
+// }
+
+/**
+ * vscode ->preference -> typeScript -> Javascript > Enable
+ * */
+const set_button_style = (props, is) => {
+  let alpha = 0
+  is ? (alpha = 1) : (alpha = 0.5)
   return {
     opacity: alpha,
-    width: `${w}px`,
-    height: `${h}px`,
+    width: `${props.w}px`,
+    height: `${props.h}px`,
+    border: `4px double #cccccc`,
   }
 }
 
@@ -20,42 +35,6 @@ const img_grid_style = {
   // gridTemplateRows: `repeat(auto-fill, 100px)`,
 }
 
-// function Cell({ children }, props) {
-//   const [w, set_w] = useState(100)
-//   const [h, set_h] = useState(100)
-//   const toggle_cell = () => {
-//     console.log("toggle")
-//     if (w == 100) {
-//       set_w(200)
-//       set_h(200)
-//     } else {
-//       set_w(100)
-//       set_h(100)
-//     }
-//   }
-
-//   const [alpha, set_alpha] = useState(0.5)
-//   const mouse_in = () => {
-//     set_alpha(1)
-//   }
-//   const mouse_out = () => {
-//     set_alpha(0.5)
-//   }
-
-//   return (
-//     <div>
-//       <button
-//         onClick={toggle_cell}
-//         onMouseEnter={mouse_in}
-//         onMouseLeave={mouse_out}
-//         className="cell"
-//         style={set_button_style(w, h, alpha)}
-//       >
-//         {<Img fluid={children.childImageSharp.fluid} />}
-//       </button>
-//     </div>
-//   )
-// }
 function PropsBase(props) {
   console.log("info", props.name, props.age)
   return (
@@ -66,41 +45,34 @@ function PropsBase(props) {
   )
 }
 function Cell({ children, ...props }) {
-  const [w, set_w] = useState(props.w)
-  const [h, set_h] = useState(props.h)
+  const [is, set_is] = useState(false)
+  // const [alpha, set_alpha] = useState(0.5)
+  // const [h, set_h] = useState(props.h)
 
-  // useEffect(() => {
-  //   set_w(props)
-  //   set_h(props)
-  // }, [props])
+  useEffect(() => {
+    set_is(is)
+    // set_alpha(alpha)
+  })
 
   const toggle_cell = () => {
-    console.log("toggle")
-    if (w == 100) {
-      set_w(200)
-      set_h(200)
+    if (is) {
+      set_is(false)
+      // set_alpha(0.5)
     } else {
-      set_w(100)
-      set_h(100)
+      set_is(true)
+      // set_alpha(1)
     }
-  }
-
-  const [alpha, set_alpha] = useState(0.5)
-  const mouse_in = () => {
-    set_alpha(1)
-  }
-  const mouse_out = () => {
-    set_alpha(0.5)
   }
 
   return (
     <div>
       <button
         onClick={toggle_cell}
-        onMouseEnter={mouse_in}
-        onMouseLeave={mouse_out}
+        // onMouseEnter={mouse_in}
+        // onMouseLeave={mouse_out}
         className="cell"
-        style={set_button_style(w, h, alpha)}
+        style={set_button_style(props, is)}
+        // style={set_button_style(props.w, props.h, alpha)}
       >
         {<Img fluid={children.childImageSharp.fluid} />}
       </button>
