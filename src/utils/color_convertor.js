@@ -1,24 +1,11 @@
 // https://stackoverflow.com/questions/36721830/convert-hsl-to-rgb-and-hex
 // https://stackoverflow.com/questions/17242144/javascript-convert-hsb-hsv-color-to-rgb-accurately
-
-// console.log("convert color hsl_to_rgb(0, 1, 1):", hsl_to_rgb(0, 1, 1))
-// console.log("convert color hsl_to_hex(0, 1, 1):", hsl_to_hex(0, 1, 1))
-
-// console.log("convert color hsb_to_rgb(0, 1, 1):", hsb_to_rgb(0, 1, 1))
-// console.log("convert color hsb_to_hex(0, 1, 1):", hsb_to_hex(0, 1, 1))
-
-// export function hsl_to_hex(h, s, l, cmx, cmy, cmz) {
-//   return hsl_to_hex(h / cmx, s / cmy, l / cmz)
-// }
+// https://github.com/GMchris/CoffeeColors
 
 /**
  * Assumes all value in the set [0,1]
  * value is return in the range [0,1]
  */
-
-// export function hsb_to_hex() {
-//   return `truc`
-// }
 
 export function hsl_to_hex(x, y, z) {
   let ret = hsl_to_rgb(x, y, z)

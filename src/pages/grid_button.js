@@ -14,7 +14,6 @@ const set_button_style = (props, select_is, mouse_is) => {
   let border_is
 
   let hex_color = hsb_to_hex(0.5, 1, 1)
-  console.log("hex_color: ", hex_color)
 
   mouse_is ? (border_is = `10px solid ${hex_color}`) : (border_is = `0`)
   return {
@@ -22,19 +21,20 @@ const set_button_style = (props, select_is, mouse_is) => {
     width: `${props.w}px`,
     height: `${props.h}px`,
     border: border_is,
-    marge: 3,
     padding: 0,
-    // border: `4px double #cccccc`,
   }
 }
 
-const img_grid_style = {
-  display: "grid",
-  gridColumnGap: `2px`,
-  gridRowGap: `2px`,
-  // gridTemplateColumns: `repeat(auto-fill)`,
-  gridTemplateColumns: `repeat(auto-fill, 100px)`,
-  // gridTemplateRows: `repeat(auto-fill, 100px)`,
+const img_grid_style = size => {
+  return {
+    display: "grid",
+    gridColumnGap: `2px`,
+    gridRowGap: `2px`,
+    gridTemplateColumns: `repeat(auto-fill, ${size}px)`,
+    // gridTemplateColumns: `repeat(auto-fill, 100px)`,
+    // gridTemplateColumns: `repeat(auto-fill)`,
+    // gridTemplateRows: `repeat(auto-fill, 100px)`,
+  }
 }
 
 function Cell({ children, ...props }) {
@@ -77,16 +77,15 @@ function Cell({ children, ...props }) {
 }
 
 export default ({ data }) => {
-  // const [w, set_w] = useState(100)
-  // const [h, set_h] = useState(100)
+  const [cell_width, set_cell_width] = useState(150)
+  const [cell_height, set_cell_height] = useState(150)
+
   return (
     <div>
       <Layout title="GRID BUTTON"></Layout>
-      {/* <PropsBase name="Knupel" age={46}></PropsBase> */}
-
-      <div style={img_grid_style}>
+      <div style={img_grid_style(cell_width)}>
         {data.allFile.edges.map(({ node }) => (
-          <Cell w={100} h={100}>
+          <Cell w={cell_width} h={cell_height}>
             {node}
           </Cell>
         ))}
