@@ -2,17 +2,10 @@ import React, { useState, useEffect } from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import Layout from "../components/layout"
-
-// const set_button_style = (w, h, alpha) => {
-//   return {
-//     opacity: alpha,
-//     width: `${w}px`,
-//     height: `${h}px`,
-//     border: `4px double #cccccc`,
-//   }
-// }
+import { hsb_to_hex } from "../utils/color_convertor"
 
 /**
+ * remove the problem of problem syntax unknew in this case, with the binary statement else-if
  * vscode ->preference -> typeScript -> Javascript > Enable
  * */
 const set_button_style = (props, select_is, mouse_is) => {
@@ -20,12 +13,17 @@ const set_button_style = (props, select_is, mouse_is) => {
   select_is ? (alpha = 1) : (alpha = 0.5)
   let border_is
 
-  mouse_is ? (border_is = `4px double #cccccc`) : (border_is = `0`)
+  let hex_color = hsb_to_hex(0.5, 1, 1)
+  console.log("hex_color: ", hex_color)
+
+  mouse_is ? (border_is = `10px solid ${hex_color}`) : (border_is = `0`)
   return {
     opacity: alpha,
     width: `${props.w}px`,
     height: `${props.h}px`,
     border: border_is,
+    marge: 3,
+    padding: 0,
     // border: `4px double #cccccc`,
   }
 }
@@ -39,21 +37,14 @@ const img_grid_style = {
   // gridTemplateRows: `repeat(auto-fill, 100px)`,
 }
 
-function PropsBase(props) {
-  console.log("info", props.name, props.age)
-  return (
-    <div>
-      <p>Your props name is {props.name}</p>
-      <p>Your props age is {props.age}</p>
-    </div>
-  )
-}
 function Cell({ children, ...props }) {
   const [is, set_is] = useState(false)
+  useEffect(() => {
+    set_is(is)
+  })
   const [mouse_is, set_mouse_is] = useState(false)
 
   useEffect(() => {
-    set_is(is)
     set_mouse_is(mouse_is)
   })
 

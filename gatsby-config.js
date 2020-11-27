@@ -1,4 +1,9 @@
 module.exports = {
+  siteMetadata: {
+    title: `Stan le Punk Labo Gatsby React `,
+    description: `Here you find my work around the gatsby and React concept to understand the messy web jungle`,
+    author: `Stan le Punk`,
+  },
   plugins: [
     `gatsby-transformer-sharp`,
     {

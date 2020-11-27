@@ -2,8 +2,7 @@ import React from "react"
 import Layout from "../components/layout"
 
 export default ({ location }) => {
-  // console.log("ICI PARIS")
-  // console.log("location.state.info", location.state.info)
+  // need to test for step `gatsby build`
   if (!location.state) {
     return null
   } else {
