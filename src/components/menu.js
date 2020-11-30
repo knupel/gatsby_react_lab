@@ -17,6 +17,7 @@ export default function Menu() {
       <Homelink link="/image_fixed/" name={"images fixed"}></Homelink>
       <Homelink link="/image_fluid/" name={"images fluid"}></Homelink>
       <Homelink link="/image_multi/" name={"images multi"}></Homelink>
+      <Homelink link="/fullscreen/" name={"fullscreen"}></Homelink>
       <Homelink link="/grid_image/" name={"grid images"}></Homelink>
       <Homelink
         link="/grid_image_specific_folder/"
