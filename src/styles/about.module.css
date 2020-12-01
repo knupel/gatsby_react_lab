@@ -3,6 +3,9 @@
   align-items: center;
   margin: 0 auto 12px auto;
 }
+/**
+ * add .module  like file.module.css at the end of file make something interesting but why ????
+ */
 .user:last-child {
   margin-bottom: 0;
 }

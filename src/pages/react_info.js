@@ -11,21 +11,21 @@ function set_canvas(canvas) {
   }
 }
 
-function WindowInfo() {
+function Window_info() {
   let canvas = [0, 0]
   set_canvas(canvas)
 
-  const [window_size, set_size] = useState(canvas)
-  useRef(window_size)
+  const [size, set_size] = useState(canvas)
+  useRef(size)
 
   useLayoutEffect(() => {
-    function onWindowResize(event) {
+    function window_resize(event) {
       set_canvas(canvas)
       set_size(canvas[0], canvas[1])
     }
-    window.addEventListener("resize", onWindowResize)
+    window.addEventListener("resize", window_resize)
     return () => {
-      window.removeEventListener("resize", onWindowResize)
+      window.removeEventListener("resize", window_resize)
     }
   }, [])
 
@@ -33,7 +33,7 @@ function WindowInfo() {
 }
 
 function ReactInfo() {
-  let res = WindowInfo()
+  let res = Window_info()
   return (
     <div>
       <Layout title="REACT INFO"></Layout>

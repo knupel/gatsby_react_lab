@@ -6,6 +6,7 @@ function Fullscreen() {
 
   const switch_onoff = () => {
     switch_is ? get_switch_is(false) : get_switch_is(true)
+
     if (switch_is) {
       fullscreen_open(document.documentElement)
     } else {
@@ -49,10 +50,18 @@ function fullscreen_open(elem) {
   }
 }
 
-/* Close fullscreen */
+/* 
+Close fullscreen
+Don't work with chrome for the moment
+https://stackoverflow.com/questions/2863351/checking-if-browser-is-in-fullscreen
+*/
 function fullscreen_close() {
   if (document.exitFullscreen) {
-    document.exitFullscreen()
+    if (window.fullScreen) {
+      document.exitFullscreen()
+    }
+
+    // if (!window.screenTop && !window.screenY) document.exitFullscreen()
   } else if (document.webkitExitFullscreen) {
     /* Safari */
     document.webkitExitFullscreen()
