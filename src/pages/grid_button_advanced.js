@@ -68,7 +68,7 @@ const img_grid_style = (size, marge) => {
 }
 
 function Cell({ children, ...props }) {
-  const [is, set_is] = useState(false)
+  const [is, set_is] = useState(true)
   useEffect(() => {
     set_is(is)
   })
@@ -79,11 +79,12 @@ function Cell({ children, ...props }) {
   })
 
   const toggle_cell = () => {
-    if (is) {
-      set_is(false)
-    } else {
-      set_is(true)
-    }
+    is ? set_is(false) : set_is(true)
+    // if (is) {
+    //   set_is(false)
+    // } else {
+    //   set_is(true)
+    // }
   }
 
   const mouse_state = () => {
@@ -100,7 +101,13 @@ function Cell({ children, ...props }) {
         style={set_button_style(props, is, mouse_is)}
         // style={set_button_style(props.w, props.h, alpha)}
       >
-        {<Img fluid={children.childImageSharp.fluid} />}
+        {
+          <Img
+            fluid={children.childImageSharp.fluid}
+            Tag="div"
+            backgroundColor="true"
+          />
+        }
       </button>
     </div>
   )
