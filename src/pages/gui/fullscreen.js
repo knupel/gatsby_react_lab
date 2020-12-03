@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import Layout from "../components/layout"
+import Layout from "../../components/layout"
 
 function Fullscreen() {
   const [switch_is, get_switch_is] = useState(false)

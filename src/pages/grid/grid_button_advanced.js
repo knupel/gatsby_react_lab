@@ -3,37 +3,8 @@ import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import Layout from "../../components/layout"
 import { hsb_to_hex } from "../../utils/color_convertor"
+import { Get_window } from "../../utils/canvas"
 import container from "../../styles/container.module.css"
-
-// WINDOW PART
-function set_canvas(canvas) {
-  // need that to pass gatsby build
-  if (typeof window !== `undefined`) {
-    canvas[0] = window.innerWidth
-    canvas[1] = window.innerHeight
-  }
-}
-
-function Window_info() {
-  let canvas = [0, 0]
-  set_canvas(canvas)
-
-  const [size, set_size] = useState(canvas)
-  useRef(size)
-
-  useLayoutEffect(() => {
-    function window_resize(event) {
-      set_canvas(canvas)
-      set_size(canvas[0], canvas[1])
-    }
-    window.addEventListener("resize", window_resize)
-    return () => {
-      window.removeEventListener("resize", window_resize)
-    }
-  }, [])
-
-  return canvas
-}
 
 // GRID PART
 const set_button_style = (props, select_is, mouse_is) => {
@@ -116,7 +87,7 @@ function Cell({ children, ...props }) {
 function GridButtonAdvanced({ data }) {
   let num_pic_by_col = 3
   let marge = 0
-  let res = Window_info()
+  let res = Get_window()
 
   let val = res[0] - marge * (num_pic_by_col + 1)
   let size_cell = Math.floor(val / num_pic_by_col)

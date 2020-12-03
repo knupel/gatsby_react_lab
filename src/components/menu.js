@@ -14,30 +14,41 @@ export default function Menu() {
       ></Homelink>
       <Homelink link="/react_info/" name={"react info"}></Homelink>
 
-      <Homelink link="/fullscreen/" name={"fullscreen"}></Homelink>
-
-      <Homelink link="/grid/grid_image/" name={"grid images"}></Homelink>
+      <Homelink link="/grid/grid_image/" name={"GRID: images"}></Homelink>
       <Homelink
         link="/grid/grid_image_specific_folder/"
-        name={"grid image from specific folder"}
+        name={"GRID: image from specific folder"}
       ></Homelink>
-      <Homelink link="/grid/grid_button/" name={"grid button"}></Homelink>
+      <Homelink link="/grid/grid_button/" name={"GRID: button"}></Homelink>
       <Homelink
         link="/grid/grid_button_advanced/"
-        name={"grid button advanced"}
+        name={"GRID: button advanced"}
       ></Homelink>
 
-      <Homelink link="/image/image_direct/" name={"images direct"}></Homelink>
-      <Homelink link="/image/image_fixed/" name={"images fixed"}></Homelink>
-      <Homelink link="/image/image_fluid/" name={"images fluid"}></Homelink>
-      <Homelink link="/image/image_multi/" name={"images multi"}></Homelink>
+      <Homelink
+        link="/image/image_direct/"
+        name={"IMG: images direct"}
+      ></Homelink>
+      <Homelink
+        link="/image/image_fixed/"
+        name={"IMG: images fixed"}
+      ></Homelink>
+      <Homelink
+        link="/image/image_fluid/"
+        name={"IMG: images fluid"}
+      ></Homelink>
+      <Homelink
+        link="/image/image_multi/"
+        name={"IMG: images multi"}
+      ></Homelink>
 
-      <Homelink link="/video/video_basic/" name={"video basic"}></Homelink>
+      <Homelink link="/video/video_basic/" name={"VIDEO: basic"}></Homelink>
       <Homelink
         link="/video/video_fullscreen/"
-        name={"video fullscreen"}
+        name={"VIDEO: fullscreen"}
       ></Homelink>
-      <Homelink link="/gui/side_bar/" name={"side bar"}></Homelink>
+      <Homelink link="/gui/side_bar/" name={"GUI: side bar"}></Homelink>
+      <Homelink link="gui/fullscreen/" name={"GUI: fullscreen"}></Homelink>
     </div>
   )
 }
