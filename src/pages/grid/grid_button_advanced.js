@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
-import Layout from "../components/layout"
-import { hsb_to_hex } from "../utils/color_convertor"
+import Layout from "../../components/layout"
+import { hsb_to_hex } from "../../utils/color_convertor"
+import container from "../../styles/container.module.css"
 
 // WINDOW PART
 function set_canvas(canvas) {
@@ -42,28 +43,28 @@ const set_button_style = (props, select_is, mouse_is) => {
 
   let hex_color = hsb_to_hex(0.5, 1, 0)
 
-  mouse_is ? (border_is = `10px solid ${hex_color}`) : (border_is = `0`)
+  mouse_is ? (border_is = `10px solid ${hex_color}`) : (border_is = `0px`)
   return {
     background: `${hsb_to_hex(0, 0, 0)}`,
     opacity: alpha,
-    width: `${props.w}px`,
-    height: `${props.h}px`,
+    // This solution show the background of page
+    // width: `${props.w}px`,
+    // height: `${props.h}px`,
+
+    // This solution show the background of button
+    width: `100%`,
+    height: `100%`,
     border: border_is,
-    padding: 0,
+    padding: `0px`,
+    margin: `0px`,
   }
 }
 
 const img_grid_style = (size, marge) => {
   return {
     display: "grid",
-    // gridTemplateColumns: `auto auto`,
-    gridTemplateColumns: `repeat(auto-fill, ${size}px)`,
-    justifyContent: "center",
-    // gridColumnGap: `${marge}px`,
-    // gridRowGap: `${marge}px`,
-    // gridRowGap: `${marge / 2}px`,
-    // gridTemplateColumns: `repeat(auto-fill, ${size}px)`,
-    // gridTemplateRow: `${size}px)`,
+    //gridTemplateColumns: `repeat(auto-fill, ${size}px)`,
+    gridTemplateColumns: `repeat(auto-fill, minmax(${size}px, 1fr))`,
   }
 }
 
@@ -80,11 +81,6 @@ function Cell({ children, ...props }) {
 
   const toggle_cell = () => {
     is ? set_is(false) : set_is(true)
-    // if (is) {
-    //   set_is(false)
-    // } else {
-    //   set_is(true)
-    // }
   }
 
   const mouse_state = () => {
@@ -92,7 +88,7 @@ function Cell({ children, ...props }) {
   }
   console.log("Cell() cell props", props.w, props.h)
   return (
-    <div>
+    <div className={container.gatsbyImageWrapper}>
       <button
         onClick={toggle_cell}
         onMouseEnter={mouse_state}
@@ -103,9 +99,12 @@ function Cell({ children, ...props }) {
       >
         {
           <Img
+            // className="gatsby-image-wrapper"
+            // style={{ height: "100%", width: "100%" }}
+            // className={container.gatsbyImageWrapper}
+            height="100%"
             fluid={children.childImageSharp.fluid}
-            Tag="div"
-            backgroundColor="true"
+            // Tag="div"
           />
         }
       </button>
@@ -134,6 +133,9 @@ function GridButtonAdvanced({ data }) {
   return (
     <div>
       <Layout title="GRID BUTTON ADVANCED"></Layout>
+      <div>
+        There is a bug. I dont find a solution to remove the horizontal line.
+      </div>
       <div style={img_grid_style(cell_width, marge)}>
         {data.allFile.edges.map(({ node }) => (
           <Cell w={cell_width} h={cell_height}>

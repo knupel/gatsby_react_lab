@@ -1,8 +1,8 @@
-import "../styles/side_bar.css"
+import "../../styles/side_bar.css"
 import React, { useState, useEffect, Fragment } from "react"
-import Layout from "../components/layout"
-import { Homelink } from "../components/menu_link"
-import Menu from "../components/menu"
+import Layout from "../../components/layout"
+import { Homelink } from "../../components/menu_link"
+import Menu from "../../components/menu"
 /* inspired from
 https://medium.com/javascript-in-plain-english/create-a-reusable-sidebar-component-with-react-d75cf48a053a 
 https://www.youtube.com/watch?v=17g0QZXRfQk

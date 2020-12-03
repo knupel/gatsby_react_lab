@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
-import Layout from "../components/layout"
-import { hsb_to_hex } from "../utils/color_convertor"
+import Layout from "../../components/layout"
+import { hsb_to_hex } from "../../utils/color_convertor"
 
 /**
  * remove the problem of problem syntax unknew in this case, with the binary statement else-if

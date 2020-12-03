@@ -16,25 +16,28 @@ export default function Menu() {
 
       <Homelink link="/fullscreen/" name={"fullscreen"}></Homelink>
 
-      <Homelink link="/grid_image/" name={"grid images"}></Homelink>
+      <Homelink link="/grid/grid_image/" name={"grid images"}></Homelink>
       <Homelink
-        link="/grid_image_specific_folder/"
+        link="/grid/grid_image_specific_folder/"
         name={"grid image from specific folder"}
       ></Homelink>
-      <Homelink link="/grid_button/" name={"grid button"}></Homelink>
+      <Homelink link="/grid/grid_button/" name={"grid button"}></Homelink>
       <Homelink
-        link="/grid_button_advanced/"
+        link="/grid/grid_button_advanced/"
         name={"grid button advanced"}
       ></Homelink>
 
-      <Homelink link="/image_direct/" name={"images direct"}></Homelink>
-      <Homelink link="/image_fixed/" name={"images fixed"}></Homelink>
-      <Homelink link="/image_fluid/" name={"images fluid"}></Homelink>
-      <Homelink link="/image_multi/" name={"images multi"}></Homelink>
+      <Homelink link="/image/image_direct/" name={"images direct"}></Homelink>
+      <Homelink link="/image/image_fixed/" name={"images fixed"}></Homelink>
+      <Homelink link="/image/image_fluid/" name={"images fluid"}></Homelink>
+      <Homelink link="/image/image_multi/" name={"images multi"}></Homelink>
 
-      <Homelink link="/video_basic/" name={"video basic"}></Homelink>
-      <Homelink link="/video_fullscreen/" name={"video fullscreen"}></Homelink>
-      <Homelink link="/side_bar/" name={"side bar"}></Homelink>
+      <Homelink link="/video/video_basic/" name={"video basic"}></Homelink>
+      <Homelink
+        link="/video/video_fullscreen/"
+        name={"video fullscreen"}
+      ></Homelink>
+      <Homelink link="/gui/side_bar/" name={"side bar"}></Homelink>
     </div>
   )
 }

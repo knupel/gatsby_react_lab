@@ -1,11 +1,12 @@
 import React from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
-import Layout from "../components/layout"
+import Layout from "../../components/layout"
 
 const img_grid_style = {
   display: "grid",
-  gridTemplateColumns: `repeat(auto-fill, 200px)`,
+  // gridTemplateColumns: `repeat(auto-fill, 250px)`,
+  gridTemplateColumns: `repeat(auto-fill, minmax(250px, 1fr))`,
 }
 
 export default function image_grid({ data }) {
@@ -14,22 +15,12 @@ export default function image_grid({ data }) {
       <Layout title="IMAGE GRID"></Layout>
       <div style={img_grid_style}>
         {data.allImageSharp.edges.map(edge => (
-          <Img fluid={edge.node.fluid} />
+          <Img height="100%" fluid={edge.node.fluid} />
         ))}
       </div>
     </div>
   )
 }
-// export default ({ data }) => (
-//   <div>
-//     <Layout title="IMAGE GRID"></Layout>
-//     <div style={img_grid_style}>
-//       {data.allImageSharp.edges.map(edge => (
-//         <Img fluid={edge.node.fluid} />
-//       ))}
-//     </div>
-//   </div>
-// )
 
 export const query = graphql`
   query {
