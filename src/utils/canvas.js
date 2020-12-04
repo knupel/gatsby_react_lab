@@ -1,4 +1,4 @@
-import React, { useState, useRef, useLayoutEffect } from "react"
+import { useState, useRef, useLayoutEffect } from "react"
 
 export function set_canvas(canvas) {
   // need that to pass gatsby build

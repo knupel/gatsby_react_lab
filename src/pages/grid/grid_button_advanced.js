@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useLayoutEffect } from "react"
+import React, { useState, useEffect } from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import Layout from "../../components/layout"

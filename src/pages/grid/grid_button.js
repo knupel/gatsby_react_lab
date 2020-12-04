@@ -77,15 +77,15 @@ function Cell({ children, ...props }) {
 }
 
 export default ({ data }) => {
-  const [cell_width, set_cell_width] = useState(150)
-  const [cell_height, set_cell_height] = useState(150)
+  let w = 150
+  let h = 150
 
   return (
     <div>
       <Layout title="GRID BUTTON"></Layout>
-      <div style={img_grid_style(cell_width)}>
+      <div style={img_grid_style(w)}>
         {data.allFile.edges.map(({ node }) => (
-          <Cell w={cell_width} h={cell_height}>
+          <Cell w={w} h={h}>
             {node}
           </Cell>
         ))}

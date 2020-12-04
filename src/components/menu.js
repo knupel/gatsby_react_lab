@@ -47,8 +47,15 @@ export default function Menu() {
         link="/video/video_fullscreen/"
         name={"VIDEO: fullscreen"}
       ></Homelink>
+
       <Homelink link="/gui/side_bar/" name={"GUI: side bar"}></Homelink>
       <Homelink link="gui/fullscreen/" name={"GUI: fullscreen"}></Homelink>
+      <Homelink link="gui/form_class/" name={"GUI: form Class"}></Homelink>
+      <Homelink link="gui/form_hook/" name={"GUI: form Hook"}></Homelink>
+      <Homelink
+        link="gui/form_signup_hook/"
+        name={"GUI: form signup Hook"}
+      ></Homelink>
     </div>
   )
 }

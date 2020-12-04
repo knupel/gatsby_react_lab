@@ -95,6 +95,7 @@ export function hsb_to_rgb(h, s, v) {
       g = p
       b = q
       break
+    default:
   }
 
   return [r, g, b]
