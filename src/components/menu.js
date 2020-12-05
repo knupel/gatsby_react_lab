@@ -3,7 +3,7 @@ import { Homelink } from "../components/menu_link"
 
 export default function Menu() {
   let blabla =
-    "Something from the Head Quarter Menu.js : use state={{ info: props.str }} in the Gatsby component Link and ctach it with location.state.xxx!"
+    "Something from the Head Quarter Menu.js : use state={{ info: props.str }} in the Gatsby component Link and catch it with location.state.xxx!"
   return (
     <div>
       <Homelink link="/container_test/" name={"container test"}></Homelink>
@@ -55,6 +55,11 @@ export default function Menu() {
       <Homelink
         link="gui/form_signup_hook/"
         name={"GUI: form signup Hook"}
+      ></Homelink>
+
+      <Homelink
+        link="database/mongodb/"
+        name={"DATA BASE: mongo db"}
       ></Homelink>
     </div>
   )

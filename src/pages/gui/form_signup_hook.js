@@ -4,30 +4,6 @@ import React, { useState } from "react"
 import Layout from "../../components/layout"
 import { useForm } from "../../components/custom_hook"
 
-// the hook made by hand
-// const useForm = callback => {
-//   const [input, set_input] = useState({})
-
-//   const handle_submit = event => {
-//     if (event) {
-//       event.preventDefault()
-//     }
-//     callback()
-//   }
-
-//   const handle_input = event => {
-//     event.persist()
-//     set_input(input => ({ ...input, [event.target.name]: event.target.value }))
-//   }
-//   return {
-//     handle_submit,
-//     handle_input,
-//     input,
-//   }
-// }
-
-// export default useSignUpForm
-
 export default function PageForm() {
   return (
     <div>

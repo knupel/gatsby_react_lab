@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import Layout from "../../components/layout"
+import { useForm } from "../../components/custom_hook"
 
-// https://medium.com/@geeky_writer_/using-react-hooks-to-create-awesome-forms-6f846a4ce57
 export default function PageForm() {
   return (
     <div>
@@ -12,31 +12,21 @@ export default function PageForm() {
 }
 
 function FormHook() {
-  const [first_name, set_first_name] = useState("")
-  const [last_name, set_last_name] = useState("")
-
-  const change_last_name = value => {
-    set_last_name(value)
+  const info = () => {
+    alert(`User Created! Name: ${input.firstName} ${input.lastName}`)
   }
 
-  const change_first_name = value => {
-    set_first_name(value)
-  }
-
-  const handleSubmit = () => {
-    // event.preventDefault()
-    alert(`Welcome ${first_name} ${last_name}!`)
-  }
+  const { handle_submit, handle_input, input } = useForm(info)
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handle_submit}>
       <label>
         First name
         <input
           type="text"
           name="firstName"
-          value={first_name}
-          onChange={change_first_name}
+          value={input.firstName}
+          onChange={handle_input}
         />
       </label>
       <label>
@@ -44,8 +34,8 @@ function FormHook() {
         <input
           type="text"
           name="lastName"
-          value={last_name}
-          onChange={change_last_name}
+          value={input.lastName}
+          onChange={handle_input}
         />
       </label>
       <button type="submit">Submit</button>
