@@ -1,5 +1,11 @@
 // https://developer.mongodb.com/how-to/gatsby-modern-blog
 
+/**
+ * When you build with netlify or other site
+ * You need to allow an IP address from anywhere on your Mongo DB Atlas in the tab
+ * Your can set tht in the tab Network Access, and next add IP address from anywhere.
+ */
+
 import React from "react"
 import Layout from "../../components/layout"
 import { graphql } from "gatsby"
