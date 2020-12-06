@@ -10,12 +10,11 @@ import { hsb_to_hex } from "../../utils/color_convertor"
  * */
 const set_button_style = (props, select_is, mouse_is) => {
   let alpha = 0
-  select_is ? (alpha = 1) : (alpha = 0.5)
-  let border_is
+  alpha = select_is ? 1 : 0.5
 
   let hex_color = hsb_to_hex(0.5, 1, 1)
-
-  mouse_is ? (border_is = `10px solid ${hex_color}`) : (border_is = `0`)
+  let border_is
+  border_is = mouse_is ? `10px solid ${hex_color}` : `0`
   return {
     opacity: alpha,
     width: `${props.w}px`,
