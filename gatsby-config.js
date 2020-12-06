@@ -5,6 +5,13 @@ module.exports = {
     author: `Stan le Punk`,
   },
   plugins: [
+    {
+      resolve: `gatsby-source-mongodb`,
+      options: {
+        connectionString: `mongodb+srv://<stan>:<cyber>@cluster0.nu5bx.mongodb.net/<Stan>?retryWrites=true&w=majority`,
+        collection: `Artwork`,
+      },
+    },
     `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-plugin-sharp`,
