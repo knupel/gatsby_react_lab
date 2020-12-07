@@ -1,6 +1,6 @@
 // https://medium.com/@geeky_writer_/using-react-hooks-to-create-awesome-forms-6f846a4ce57
 
-import React, { useState } from "react"
+import React from "react"
 import Layout from "../../components/layout"
 import { useForm } from "../../components/custom_hook"
 

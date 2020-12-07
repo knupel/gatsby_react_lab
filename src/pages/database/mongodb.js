@@ -19,6 +19,12 @@ export default function Mongodb(props) {
         {list_artwork.map(art => (
           <div>
             <h2>{art.node.title}</h2>
+            <p>
+              taille: {art.node.width}x{art.node.height} cm
+            </p>
+            <p>
+              size: {art.node.size[0]}x{art.node.size[1]} cm
+            </p>
           </div>
           // <div>
           //   <Link to={"/art/" + art.node.title}>
@@ -42,6 +48,9 @@ export const pageQuery = graphql`
           title
           width
           height
+          size
+          artist
+          year
         }
       }
     }
