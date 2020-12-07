@@ -6,33 +6,39 @@
  * Your can set tht in the tab Network Access, and next add IP address from anywhere.
  */
 
-import React from "react"
+import React, { Children } from "react"
 import Layout from "../../components/layout"
 import { graphql } from "gatsby"
+import Img from "gatsby-image"
+
+const Show = ({ children, ...props }) => {
+  if (children.node.relativePath.includes(props.file_name)) {
+    return (
+      <div>
+        <h2>{props.title}</h2>
+        <p>
+          size: {props.size[0]}x{props.size[1]} cm
+        </p>
+        <Img fluid={children.node.childImageSharp.fluid} />
+      </div>
+    )
+  }
+  return null
+}
 
 export default function Mongodb(props) {
-  const list_artwork = props.data.allMongodbStanArtwork.edges
+  const art_info = props.data.allMongodbStanArtwork.edges
+  const art_visual = props.data.allFile.edges
   return (
     <div>
       <Layout title="Mongo DB"></Layout>
       <div>
-        {list_artwork.map(art => (
+        {art_info.map(art => (
           <div>
-            <h2>{art.node.title}</h2>
-            <p>
-              taille: {art.node.width}x{art.node.height} cm
-            </p>
-            <p>
-              size: {art.node.size[0]}x{art.node.size[1]} cm
-            </p>
+            {art_visual.map(img => (
+              <Show {...art.node}>{img}</Show>
+            ))}
           </div>
-          // <div>
-          //   <Link to={"/art/" + art.node.title}>
-          //     {/* <img src={art.node.thumbnailUrl} /> */}
-          //     <h2>{art.node.title}</h2>
-          //     {/* <p>{art.node.shortDescription}</p> */}
-          //   </Link>
-          // </div>
         ))}
       </div>
     </div>
@@ -46,11 +52,25 @@ export const pageQuery = graphql`
         node {
           id
           title
-          width
-          height
           size
           artist
           year
+          url_path
+          file_name
+        }
+      }
+    }
+    allFile(filter: { sourceInstanceName: { eq: "media_art" } }) {
+      edges {
+        node {
+          extension
+          relativePath
+          sourceInstanceName
+          childImageSharp {
+            fluid(maxHeight: 200) {
+              ...GatsbyImageSharpFluid
+            }
+          }
         }
       }
     }
