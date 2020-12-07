@@ -32,6 +32,10 @@ export default function Mongodb(props) {
   return (
     <div>
       <Layout title="Mongo DB"></Layout>
+      <p>
+        Search in Mongo data base if any image in the folder media match with it
+        and display if yes.
+      </p>
       <div>
         {art_info.map(art => (
           <div>
