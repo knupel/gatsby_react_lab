@@ -5,6 +5,15 @@ module.exports = {
     author: `Stan le Punk`,
   },
   plugins: [
+    // FONT
+    {
+      resolve: "gatsby-plugin-web-font-loader",
+      options: {
+        google: {
+          families: ["Droid Sans", "Droid Serif"],
+        },
+      },
+    },
     // UI / UX
     `gatsby-plugin-material-ui`,
 

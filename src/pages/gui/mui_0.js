@@ -23,6 +23,7 @@ const juanita_itc = {
 const theme = createMuiTheme({
   typography: {
     fontFamily: "Juanita ITC, Arial",
+    fontSize: 60,
   },
   overrides: {
     MuiCssBaseline: {
