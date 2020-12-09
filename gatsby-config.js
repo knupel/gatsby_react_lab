@@ -5,6 +5,10 @@ module.exports = {
     author: `Stan le Punk`,
   },
   plugins: [
+    // UI / UX
+    `gatsby-plugin-material-ui`,
+
+    // DATABASE
     {
       resolve: `gatsby-source-mongodb`,
       options: {
@@ -26,6 +30,8 @@ module.exports = {
         },
       },
     },
+
+    // IMAGE
     `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-plugin-sharp`,
@@ -39,6 +45,8 @@ module.exports = {
         failOnError: true,
       },
     },
+
+    // FILE SYSTEME
     {
       resolve: `gatsby-source-filesystem`,
       options: {
