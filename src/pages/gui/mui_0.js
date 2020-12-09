@@ -5,21 +5,7 @@ import Button from "@material-ui/core/Button"
 import { createMuiTheme } from "@material-ui/core/styles"
 import { ThemeProvider } from "@material-ui/core/styles"
 
-import TokyoOneSolidOTF from "../../../fonts/Tokyo-OneSolid.otf"
-import JuanitaITCTTF from "../../../fonts/Juanita ITC.ttf"
-
-const tokyo_one_solid = {
-  fontFamily: "TokyoOneSolid",
-  fontStyle: "normal",
-  fontDisplay: "swap",
-  fontWeight: 400,
-  src: `
-    local('Tokyo-OneSolid'),
-    url(${TokyoOneSolidOTF}) format('opentype')
-  `,
-  unicodeRange:
-    "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF",
-}
+import JuanitaTTF from "../../../fonts/Juanita ITC.ttf"
 
 const juanita_itc = {
   fontFamily: "Juanita ITC",
@@ -28,7 +14,7 @@ const juanita_itc = {
   fontWeight: 400,
   src: `
     local('Juanita ITC'),
-    url(${JuanitaITCTTF}) format('ttf')
+    url(${JuanitaTTF}) format('ttf')
   `,
   unicodeRange:
     "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF",
@@ -36,13 +22,12 @@ const juanita_itc = {
 
 const theme = createMuiTheme({
   typography: {
-    // fontFamily: "TokyoOneSolid, Arial",
     fontFamily: "Juanita ITC, Arial",
   },
   overrides: {
     MuiCssBaseline: {
       "@global": {
-        "@font-face": [tokyo_one_solid],
+        "@font-face": [juanita_itc],
       },
     },
   },
