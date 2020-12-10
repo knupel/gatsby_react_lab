@@ -69,6 +69,11 @@ export default function Menu() {
         link="database/mongodb/"
         name={"DATA BASE: mongo db"}
       ></Homelink>
+
+      <Homelink
+        link="design/design_typo/"
+        name={"DESIGN: choice typo typekit"}
+      ></Homelink>
     </div>
   )
 }
