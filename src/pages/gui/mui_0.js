@@ -7,6 +7,32 @@ import { ThemeProvider } from "@material-ui/core/styles"
 
 import JuanitaTTF from "../../../fonts/Juanita ITC.ttf"
 
+// https://www.gatsbyjs.com/docs/using-web-fonts/
+
+// if id is define in .env look https://www.gatsbyjs.com/docs/environment-variables/  for the deployment and build part
+
+// <link rel="stylesheet" href="https://use.typekit.net/yyx3osh.css"></link>
+// id : yyx3osh
+
+// if (typeof WebFontConfig === "undefined") {
+//   WebFontConfig = new Object()
+// }
+
+// WebFontConfig = {
+//   typekit: {
+//     id: "yyx3osh",
+//   },
+// }
+
+const abode_font = {
+  fontFamily: "metalista-web",
+  fontWeight: 400,
+  fontDisplay: "auto",
+  src: `
+  `,
+}
+
+// https://blog.logrocket.com/3-ways-to-add-custom-fonts-to-your-material-ui-project/
 const juanita_itc = {
   fontFamily: "Juanita ITC",
   fontStyle: "normal",
@@ -22,16 +48,27 @@ const juanita_itc = {
 
 const theme = createMuiTheme({
   typography: {
-    fontFamily: "Juanita ITC, Arial",
+    fontFamily: "metalista-web, serif",
     fontSize: 60,
   },
   overrides: {
     MuiCssBaseline: {
       "@global": {
-        "@font-face": [juanita_itc],
+        "@font-face": [abode_font],
       },
     },
   },
+  // typography: {
+  //   fontFamily: "Juanita ITC, Arial",
+  //   fontSize: 60,
+  // },
+  // overrides: {
+  //   MuiCssBaseline: {
+  //     "@global": {
+  //       "@font-face": [juanita_itc],
+  //     },
+  //   },
+  // },
 })
 
 export default function MUISimple() {
