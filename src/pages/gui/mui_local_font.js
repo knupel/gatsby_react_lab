@@ -1,5 +1,6 @@
 import React from "react"
 import Layout from "../../components/layout"
+import { Link } from "gatsby"
 
 import Button from "@material-ui/core/Button"
 import { createMuiTheme } from "@material-ui/core/styles"
@@ -44,9 +45,11 @@ export default function MUISimple() {
     <div>
       <Layout title="MATERIAL UI local font" link="false"></Layout>
       <ThemeProvider theme={theme}>
-        <Button variant="contained" color="primary" fullWidth="true">
-          Back home
-        </Button>
+        <Link to="/">
+          <Button variant="contained" color="primary" fullWidth="true">
+            Back home
+          </Button>
+        </Link>
       </ThemeProvider>
     </div>
   )

@@ -1,7 +1,7 @@
 import React from "react"
 import Layout from "../../components/layout"
 // GATSBY
-import { Link as GatsbyLink } from "gatsby"
+import { Link } from "gatsby"
 
 // MATERIAL UI
 // function Mui
@@ -9,16 +9,12 @@ import { createMuiTheme, withStyles } from "@material-ui/core/styles"
 // Component Mui
 import Button from "@material-ui/core/Button"
 import { ThemeProvider } from "@material-ui/core/styles"
-import MuiLink from "@material-ui/core/Link"
 
 // https://www.gatsbyjs.com/docs/using-web-fonts/
 // if id is define in .env look https://www.gatsbyjs.com/docs/environment-variables/  for the deployment and build part
 // set the secret on netlify or in your github project setting
 
 // https://www.gatsbyjs.com/docs/gatsby-link/
-const Link = React.forwardRef(function Link(props, ref) {
-  return <MuiLink component={GatsbyLink} ref={ref} {...props} />
-})
 
 const theme = createMuiTheme({
   typography: {
@@ -76,18 +72,22 @@ export default function MUISimple() {
         link="false"
       ></Layout>
       <ThemeProvider theme={theme}>
-        <Button
-          variant="contained"
-          color="primary"
-          fullWidth="true"
-          textTransform="none"
-        >
-          Quick Button alltime in upper case
-        </Button>
+        <Link to="/">
+          <Button
+            variant="contained"
+            color="primary"
+            fullWidth="true"
+            textTransform="none"
+          >
+            Quick Button alltime in upper case to back home
+          </Button>
+        </Link>
       </ThemeProvider>
-      <SuperButton variant="contained" color="primary" fullWidth="true">
-        Button make with passion
-      </SuperButton>
+      <Link to="/">
+        <SuperButton variant="contained" color="primary" fullWidth="true">
+          Button make with passion to back home
+        </SuperButton>
+      </Link>
     </div>
   )
 }
