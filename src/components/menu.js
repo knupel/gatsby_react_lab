@@ -53,12 +53,12 @@ export default function Menu() {
       <Homelink link="gui/form_class/" name={"GUI: form Class"}></Homelink>
       <Homelink link="gui/form_hook/" name={"GUI: form Hook"}></Homelink>
       <Homelink
-        link="gui/mui_typekit_font/"
-        name={"GUI: Material UI typekit font"}
+        link="gui/mui_button_typekit_font/"
+        name={"GUI: Mui button typekit font"}
       ></Homelink>
       <Homelink
         link="gui/mui_local_font/"
-        name={"GUI: Material UI local font"}
+        name={"GUI: Mui local font"}
       ></Homelink>
       <Homelink
         link="gui/form_signup_hook/"
