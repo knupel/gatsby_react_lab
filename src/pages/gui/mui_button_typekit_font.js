@@ -29,12 +29,14 @@ const SuperButton = withStyles({
   root: {
     boxShadow: "none",
     textTransform: "none",
-    fontSize: 20,
+    fontSize: 30,
     padding: "6px 12px",
     border: "10px solid",
     lineHeight: 1.5,
     backgroundColor: "rgba(255,0,0,1)",
     borderColor: "rgba(0,0,0,1)",
+    fontWeight: "800",
+    fontStyle: "italic",
     fontFamily: [
       "Malaga",
       "-apple-system",
