@@ -74,6 +74,8 @@ export default function Menu() {
         link="design/design_typo/"
         name={"DESIGN: choice typo typekit"}
       ></Homelink>
+
+      <Homelink link="framework/p5/" name={"FRAMEWORK: P5js info"}></Homelink>
     </div>
   )
 }
