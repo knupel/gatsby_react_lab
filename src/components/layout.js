@@ -13,15 +13,22 @@ const Layout = (props, { children }) => {
       </div>
     )
   } else {
-    return (
-      <div>
-        <Link to="/">home</Link>
-        <Header str={props.title} />
+    if (typeof props.to !== "undefined") {
+      // let buf = props.to
+      let arr = props.to.split("/")
+      let len = arr.length
+      return <Link to={props.to}>{arr[len - 1]}</Link>
+    } else {
+      return (
+        <div>
+          <Link to="/">home</Link>
+          <Header str={props.title} />
 
-        {/* <footer></footer> */}
-        <main>{children}</main>
-      </div>
-    )
+          {/* <footer></footer> */}
+          <main>{children}</main>
+        </div>
+      )
+    }
   }
 }
 

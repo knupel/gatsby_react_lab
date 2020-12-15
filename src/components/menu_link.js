@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 
-export function Homelink(props) {
+export function Menu_link(props) {
   return (
     <div>
       <Link to={props.link} state={{ info: props.str }}>
