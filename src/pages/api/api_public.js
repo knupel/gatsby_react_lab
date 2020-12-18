@@ -1,14 +1,35 @@
 // https://github.com/Rob--W/cors-anywhere
 // https://medium.com/@dtkatz/3-ways-to-fix-the-cors-error-and-how-access-control-allow-origin-works-d97d55946d9
 
-import React, { useState, useEffect } from "react"
+import React, { Fragment, useState, useEffect } from "react"
 import { Link } from "gatsby"
+
+import axios from "axios"
 
 import SearchIcon from "@material-ui/icons/Search"
 import { Paper, TextField, IconButton } from "@material-ui/core"
 import { makeStyles } from "@material-ui/core/styles"
 
 import Layout from "../../components/layout"
+const search_style = makeStyles(theme => ({
+  root: {
+    padding: "2px 4px",
+    display: "flex",
+    alignItems: "center",
+    width: 400,
+  },
+  input: {
+    marginLeft: theme.spacing(1),
+    flex: 1,
+  },
+  iconButton: {
+    padding: 10,
+  },
+  divider: {
+    height: 28,
+    margin: 4,
+  },
+}))
 
 function Show_item(props) {
   let alt_name = "url img: " + props.url
@@ -40,109 +61,79 @@ function Get_list({ children }) {
   }
 }
 
-function Research(props) {
-  const [error, set_error] = useState(null)
-  const [is_loaded, set_is_loaded] = useState(false)
-  const [show, set_show] = useState([])
-
-  let root =
-    "https://cors-anywhere.herokuapp.com/https://api.tvmaze.com/search/shows?q="
-
-  const [what, set_what] = useState(root + props.search)
-
-  // there is probleme beacause the research don't stop n the console...very weaird
-  useEffect(() => {
-    set_what(root + "france")
-    // set_what(root + props.search);
-    console.log("Research() what: ", what)
-    fetch(what)
-      .then(res => res.json())
-      .then(
-        result => {
-          set_is_loaded(true)
-          console.log(result)
-          set_show(result)
-        },
-        error => {
-          set_is_loaded(true)
-          set_error(error)
-        }
-      )
-    //});
-  }, []) // normally we need that, but if I use that's work so bad :(
-
-  // computing
-  if (error) {
+function Render_hits({ children }) {
+  console.log("children hits", children)
+  if (typeof children.hits !== "undefined") {
     return (
       <div>
-        <div>tu cherchais: {props.search}</div>
-        <div>Essaye encore mec : {error.message}</div>
-      </div>
-    )
-  } else if (!is_loaded) {
-    return <div>Chargement...</div>
-  } else {
-    return (
-      <div>
-        {show.map(item => (
-          <Get_list>{item}</Get_list>
+        {children.hits.map(item => (
+          <li key={item.objectID}>
+            <a href={item.url}>{item.title}</a>
+          </li>
         ))}
       </div>
     )
+  } else {
+    return <></>
   }
 }
 
-const search_style = makeStyles(theme => ({
-  root: {
-    padding: "2px 4px",
-    display: "flex",
-    alignItems: "center",
-    width: 400,
-  },
-  input: {
-    marginLeft: theme.spacing(1),
-    flex: 1,
-  },
-  iconButton: {
-    padding: 10,
-  },
-  divider: {
-    height: 28,
-    margin: 4,
-  },
-}))
+function Render_show({ children }) {
+  console.log("children shows", children)
+  if (typeof children !== null && Array.isArray(children)) {
+    return (
+      <div>
+        {children.map(item => (
+          <li key={item.show.id}>
+            <a href={item.show.url}>{item.show.name}</a>
+            <Get_list>{item}</Get_list>
+          </li>
+        ))}
+      </div>
+    )
+  } else {
+    return <></>
+  }
+}
 
 export default function Api_public() {
   const style = search_style()
+  const [data, setData] = useState({ hits: [] })
+  const [query, setQuery] = useState("england")
 
-  const [what, set_what] = useState(null)
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios(
+        `https://api.tvmaze.com/search/shows?q=${query}`
+        // `https://cors-anywhere.herokuapp.com/https://api.tvmaze.com/search/shows?q=${query}`
+        // `https://hn.algolia.com/api/v1/search?query=${query}`
+      )
+      setData(result.data)
+    }
 
-  const get_input = event => set_what(event.target.value)
+    fetchData()
+  }, [query])
 
-  // console.log("Search() input", what);
-
+  console.log("query:", query)
   return (
     <div>
-      <Layout title="API PUBLIC RESEARCH" link="true"></Layout>
-      <Paper component="form" className={style.root}>
-        <TextField
-          className={style.input}
-          id="filled-search"
-          label="Search field"
-          type="search"
-          variant="filled"
-          onChange={get_input}
-        />
-        {/* <IconButton
-          type="submit"
-          className={style.iconButton}
-          aria-label="search"
-        >
-          <SearchIcon />
-        </IconButton> */}
-      </Paper>
-      <br />
-      <Research search={what}></Research>
+      <Layout title="API PUBLIC RESEARCH with AXIOS" link="true"></Layout>
+      <Fragment>
+        <Paper component="form" className={style.root}>
+          <TextField
+            className={style.input}
+            id="filled-search"
+            label="Search field"
+            type="search"
+            variant="filled"
+            onChange={event => setQuery(event.target.value)}
+          />
+        </Paper>
+        <ul>
+          {/* <Render_hits>{data}</Render_hits> */}
+          <Render_show>{data}</Render_show>
+        </ul>
+      </Fragment>
     </div>
   )
 }
