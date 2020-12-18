@@ -1,6 +1,8 @@
 // https://github.com/Rob--W/cors-anywhere
 // https://medium.com/@dtkatz/3-ways-to-fix-the-cors-error-and-how-access-control-allow-origin-works-d97d55946d9
 
+// https://www.robinwieruch.de/react-hooks-fetch-data
+
 import React, { Fragment, useState, useEffect } from "react"
 import { Link } from "gatsby"
 
@@ -32,14 +34,16 @@ const search_style = makeStyles(theme => ({
 }))
 
 function Show_item(props) {
-  let alt_name = "url img: " + props.url
+  let alt_name = "url img: " + props.url_img_medium
   return (
     <div>
       <div>{props.name}</div>
+      <div>
+        <a href={props.url_site}>see the web site</a>
+      </div>
+
       <Link to="/api/api_public_result/" state={{ info: "et voilà" }}>
-        {/* React-Router-dom style
-      <Link to={{ pathname: "/result", state: { name: "et voilà" } }}> */}
-        <img alt={alt_name} src={props.url} />
+        <img alt={alt_name} src={props.url_img_medium} />
       </Link>
     </div>
   )
@@ -51,27 +55,11 @@ function Get_list({ children }) {
       <li key={children.show.id}>
         <Show_item
           name={children.show.name}
-          url={children.show.image.medium}
+          url_site={children.show.url}
+          url_img_medium={children.show.image.medium}
           resume={children.show.summary}
         />
       </li>
-    )
-  } else {
-    return <></>
-  }
-}
-
-function Render_hits({ children }) {
-  console.log("children hits", children)
-  if (typeof children.hits !== "undefined") {
-    return (
-      <div>
-        {children.hits.map(item => (
-          <li key={item.objectID}>
-            <a href={item.url}>{item.title}</a>
-          </li>
-        ))}
-      </div>
     )
   } else {
     return <></>
@@ -85,7 +73,7 @@ function Render_show({ children }) {
       <div>
         {children.map(item => (
           <li key={item.show.id}>
-            <a href={item.show.url}>{item.show.name}</a>
+            {/* <a href={item.show.url}>{item.show.name}</a> */}
             <Get_list>{item}</Get_list>
           </li>
         ))}
@@ -137,3 +125,20 @@ export default function Api_public() {
     </div>
   )
 }
+
+// function Render_hits({ children }) {
+//   console.log("children hits", children)
+//   if (typeof children.hits !== "undefined") {
+//     return (
+//       <div>
+//         {children.hits.map(item => (
+//           <li key={item.objectID}>
+//             <a href={item.url}>{item.title}</a>
+//           </li>
+//         ))}
+//       </div>
+//     )
+//   } else {
+//     return <></>
+//   }
+// }
