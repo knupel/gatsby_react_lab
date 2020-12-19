@@ -7,7 +7,7 @@ function Menu_api() {
       <Menu_link link="api/mongodb/" name={"API: mongo db"}></Menu_link>
       <Menu_link
         link="api/api_public/"
-        name={"API: acces to public api to request something to look at home"}
+        name={"API: acces to public api with Axios"}
       ></Menu_link>
     </div>
   )
@@ -41,6 +41,7 @@ function Menu_gui() {
         link="gui/form_signup_hook/"
         name={"GUI: form signup Hook"}
       ></Menu_link>
+      <Menu_link link="gui/contact/" name={"GUI: send me an email"}></Menu_link>
     </div>
   )
 }
