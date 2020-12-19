@@ -6,6 +6,7 @@ const VideoShow = () => (
   <div>
     <Layout title="VIDEO basic from Vimeo iframe"></Layout>
     <iframe
+      title="STRESS CITY"
       src="https://player.vimeo.com/video/346529123"
       width="640"
       height="360"
