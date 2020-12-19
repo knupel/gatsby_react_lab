@@ -43,12 +43,12 @@ function Cell({ children, ...props }) {
   const [is, set_is] = useState(true)
   useEffect(() => {
     set_is(is)
-  })
+  }, [is])
   const [mouse_is, set_mouse_is] = useState(false)
 
   useEffect(() => {
     set_mouse_is(mouse_is)
-  })
+  }, [mouse_is])
 
   const toggle_cell = () => {
     is ? set_is(false) : set_is(true)

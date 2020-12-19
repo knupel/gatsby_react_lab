@@ -8,8 +8,7 @@ import { Link } from "gatsby"
 
 import axios from "axios"
 
-import SearchIcon from "@material-ui/icons/Search"
-import { Paper, TextField, IconButton } from "@material-ui/core"
+import { Paper, TextField } from "@material-ui/core"
 import { makeStyles } from "@material-ui/core/styles"
 
 import Layout from "../../components/layout"
@@ -52,14 +51,14 @@ function Show_item(props) {
 function Get_list({ children }) {
   if (children.show.image !== null) {
     return (
-      <li key={children.show.id}>
+      <div key={children.show.id}>
         <Show_item
           name={children.show.name}
           url_site={children.show.url}
           url_img_medium={children.show.image.medium}
           resume={children.show.summary}
         />
-      </li>
+      </div>
     )
   } else {
     return <></>
@@ -68,14 +67,13 @@ function Get_list({ children }) {
 
 function Render_show({ children }) {
   console.log("children shows", children)
-  if (typeof children !== null && Array.isArray(children)) {
+  if (children !== null && Array.isArray(children)) {
     return (
       <div>
         {children.map(item => (
-          <li key={item.show.id}>
-            {/* <a href={item.show.url}>{item.show.name}</a> */}
+          <div key={item.show.id}>
             <Get_list>{item}</Get_list>
-          </li>
+          </div>
         ))}
       </div>
     )
@@ -94,7 +92,6 @@ export default function Api_public() {
       const result = await axios(
         `https://api.tvmaze.com/search/shows?q=${query}`
         // `https://cors-anywhere.herokuapp.com/https://api.tvmaze.com/search/shows?q=${query}`
-        // `https://hn.algolia.com/api/v1/search?query=${query}`
       )
       setData(result.data)
     }
@@ -117,28 +114,10 @@ export default function Api_public() {
             onChange={event => setQuery(event.target.value)}
           />
         </Paper>
-        <ul>
-          {/* <Render_hits>{data}</Render_hits> */}
+        <div>
           <Render_show>{data}</Render_show>
-        </ul>
+        </div>
       </Fragment>
     </div>
   )
 }
-
-// function Render_hits({ children }) {
-//   console.log("children hits", children)
-//   if (typeof children.hits !== "undefined") {
-//     return (
-//       <div>
-//         {children.hits.map(item => (
-//           <li key={item.objectID}>
-//             <a href={item.url}>{item.title}</a>
-//           </li>
-//         ))}
-//       </div>
-//     )
-//   } else {
-//     return <></>
-//   }
-// }

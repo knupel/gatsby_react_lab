@@ -24,7 +24,6 @@ export function Get_window() {
     return () => {
       window.removeEventListener("resize", window_resize)
     }
-  }, [])
-
+  }, [canvas])
   return canvas
 }

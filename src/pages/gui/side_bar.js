@@ -36,8 +36,19 @@ export const Sidebar = ({ width, height, children }) => {
           style={{
             transform: `translate(${width}px, 20vh)`,
           }}
-        ></button>
+        >
+          <></>
+        </button>
         <div className="content">{children}</div>
+
+        {/* <button
+          onClick={() => toggleMenu()}
+          className="toggle_menu"
+          style={{
+            transform: `translate(${width}px, 20vh)`,
+          }}
+        ></button>
+        <div className="content">{children}</div> */}
       </div>
     </Fragment>
   )

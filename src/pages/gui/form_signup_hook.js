@@ -25,50 +25,61 @@ function FormHook() {
   return (
     <form onSubmit={handle_submit}>
       <div>
-        <label>First Name</label>
-        <input
-          type="text"
-          name="firstName"
-          onChange={handle_input}
-          value={input.firstName}
-          required
-        />
-        <label>Last Name</label>
-        <input
-          type="text"
-          name="lastName"
-          onChange={handle_input}
-          value={input.lastName}
-          required
-        />
+        <label>
+          First Name
+          <input
+            type="text"
+            name="firstName"
+            onChange={handle_input}
+            value={input.firstName}
+            required
+          />
+        </label>
+
+        <label>
+          Last Name
+          <input
+            type="text"
+            name="lastName"
+            onChange={handle_input}
+            value={input.lastName}
+            required
+          />
+        </label>
       </div>
       <div>
-        <label>Email Address</label>
-        <input
-          type="email"
-          name="email"
-          onChange={handle_input}
-          value={input.email}
-          required
-        />
+        <label>
+          Email Address
+          <input
+            type="email"
+            name="email"
+            onChange={handle_input}
+            value={input.email}
+            required
+          />
+        </label>
       </div>
       <div>
-        <label>Password</label>
-        <input
-          type="password"
-          name="password1"
-          onChange={handle_input}
-          value={input.password1}
-        />
+        <label>
+          Password
+          <input
+            type="password"
+            name="password1"
+            onChange={handle_input}
+            value={input.password1}
+          />
+        </label>
       </div>
       <div>
-        <label>Re-enter Password</label>
-        <input
-          type="password"
-          name="password2"
-          onChange={handle_input}
-          value={input.password2}
-        />
+        <label>
+          Re-enter Password{" "}
+          <input
+            type="password"
+            name="password2"
+            onChange={handle_input}
+            value={input.password2}
+          />
+        </label>
       </div>
       <button type="submit">Sign Up</button>
     </form>

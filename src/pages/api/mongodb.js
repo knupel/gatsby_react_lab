@@ -6,7 +6,7 @@
  * Your can set tht in the tab Network Access, and next add IP address from anywhere.
  */
 
-import React, { Children } from "react"
+import React from "react"
 import Layout from "../../components/layout"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
