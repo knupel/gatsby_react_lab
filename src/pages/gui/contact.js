@@ -1,6 +1,18 @@
 import React from "react"
 import Layout from "../../components/layout"
 
+// function check_address_email(email) {
+//   // let email = document.formulaire.EMAIL.value
+//   let verif = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$/
+//   if (verif.exec(email) === null) {
+//     alert("Votre email est incorrecte")
+//     return false
+//   } else {
+//     alert("Votre email est correcte")
+//     return true
+//   }
+// }
+
 export default () => {
   return (
     <div>
@@ -20,7 +32,12 @@ export default () => {
         </label>
         <label>
           Email
-          <input type="email" name="email" id="email" />
+          <input
+            type="email"
+            name="email"
+            id="email"
+            pattern="^[a-zA-Z0-9_-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,6}"
+          />
         </label>
         <label>
           Subject
