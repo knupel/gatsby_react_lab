@@ -22,6 +22,36 @@ function Menu_design() {
   )
 }
 
+function Menu_framework() {
+  return (
+    <div>
+      <Menu_link link="framework/p5/" name={"FRAMEWORK: P5js info"}></Menu_link>
+    </div>
+  )
+}
+
+function Menu_grid() {
+  return (
+    <div>
+      {" "}
+      <Menu_link link="/grid/grid_image/" name={"GRID: images"}></Menu_link>
+      <Menu_link
+        link="/grid/grid_image_diaporama/"
+        name={"GRID: images selected to display in diaporama mode"}
+      ></Menu_link>
+      <Menu_link
+        link="/grid/grid_image_specific_folder/"
+        name={"GRID: image from specific folder"}
+      ></Menu_link>
+      <Menu_link link="/grid/grid_button/" name={"GRID: button"}></Menu_link>
+      <Menu_link
+        link="/grid/grid_button_advanced/"
+        name={"GRID: button advanced"}
+      ></Menu_link>
+    </div>
+  )
+}
+
 function Menu_gui() {
   return (
     <div>
@@ -42,18 +72,6 @@ function Menu_gui() {
         name={"GUI: form signup Hook"}
       ></Menu_link>
       <Menu_link link="gui/contact/" name={"GUI: send me an email"}></Menu_link>
-    </div>
-  )
-}
-
-function Menu_video() {
-  return (
-    <div>
-      <Menu_link link="/video/video_basic/" name={"VIDEO: basic"}></Menu_link>
-      <Menu_link
-        link="/video/video_fullscreen/"
-        name={"VIDEO: fullscreen"}
-      ></Menu_link>
     </div>
   )
 }
@@ -81,27 +99,13 @@ function Menu_image() {
   )
 }
 
-function Menu_framework() {
+function Menu_video() {
   return (
     <div>
-      <Menu_link link="framework/p5/" name={"FRAMEWORK: P5js info"}></Menu_link>
-    </div>
-  )
-}
-
-function Menu_grid() {
-  return (
-    <div>
-      {" "}
-      <Menu_link link="/grid/grid_image/" name={"GRID: images"}></Menu_link>
+      <Menu_link link="/video/video_basic/" name={"VIDEO: basic"}></Menu_link>
       <Menu_link
-        link="/grid/grid_image_specific_folder/"
-        name={"GRID: image from specific folder"}
-      ></Menu_link>
-      <Menu_link link="/grid/grid_button/" name={"GRID: button"}></Menu_link>
-      <Menu_link
-        link="/grid/grid_button_advanced/"
-        name={"GRID: button advanced"}
+        link="/video/video_fullscreen/"
+        name={"VIDEO: fullscreen"}
       ></Menu_link>
     </div>
   )
