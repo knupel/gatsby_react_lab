@@ -1,6 +1,6 @@
 import React from "react"
-import Layout from "../components/layout"
-import { Get_window } from "../utils/canvas"
+import Layout from "../../components/layout"
+import { Get_window } from "../../utils/canvas"
 
 function ReactInfo() {
   let res = Get_window()

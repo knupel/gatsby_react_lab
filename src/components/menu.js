@@ -1,6 +1,29 @@
 import React from "react"
 import { Menu_link } from "../components/menu_link"
 
+function Menu_misc() {
+  let blabla =
+    "Something from the Head Quarter Menu.js : use state={{ info: props.str }} in the Gatsby component Link and catch it with location.state.xxx!"
+  return (
+    <div>
+      <Menu_link
+        link="/misc/link_utils/"
+        name={"MISC: fews interesting externals links"}
+      ></Menu_link>
+      <Menu_link
+        link="/misc/container_test/"
+        name={"MISC: container test"}
+      ></Menu_link>
+      <Menu_link
+        link="/misc/link_location_state/"
+        name={"MISC: pass data from menu link with component Gatsby Link"}
+        str={blabla}
+      ></Menu_link>
+      <Menu_link link="/misc/react_info/" name={"MISC: react info"}></Menu_link>
+    </div>
+  )
+}
+
 function Menu_api() {
   return (
     <div>
@@ -36,8 +59,8 @@ function Menu_grid() {
       {" "}
       <Menu_link link="/grid/grid_image/" name={"GRID: images"}></Menu_link>
       <Menu_link
-        link="/grid/grid_image_diaporama/"
-        name={"GRID: images selected to display in diaporama mode"}
+        link="/grid/grid_image_radio/"
+        name={"GRID: slected like a radio system"}
       ></Menu_link>
       <Menu_link
         link="/grid/grid_image_specific_folder/"
@@ -112,18 +135,9 @@ function Menu_video() {
 }
 
 export default function Menu() {
-  let blabla =
-    "Something from the Head Quarter Menu.js : use state={{ info: props.str }} in the Gatsby component Link and catch it with location.state.xxx!"
   return (
     <div>
-      <Menu_link link="/container_test/" name={"container test"}></Menu_link>
-      <Menu_link
-        link="/link_location_state/"
-        name={"pass data from menu link with component Gatsby Link"}
-        str={blabla}
-      ></Menu_link>
-      <Menu_link link="/react_info/" name={"react info"}></Menu_link>
-
+      <Menu_misc />
       <Menu_grid />
       <Menu_image />
       <Menu_video />
