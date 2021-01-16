@@ -60,7 +60,7 @@ function Menu_grid() {
       <Menu_link link="/grid/grid_image/" name={"GRID: images"}></Menu_link>
       <Menu_link
         link="/grid/grid_image_radio/"
-        name={"GRID: slected like a radio system"}
+        name={"GRID: selected like a radio system"}
       ></Menu_link>
       <Menu_link
         link="/grid/grid_image_specific_folder/"

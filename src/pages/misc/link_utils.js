@@ -27,6 +27,10 @@ export default function () {
       <a target="_blank" rel="noreferrer" href="https://atlasrn.fr/">
         Atlas vernaculaire
       </a>
+      <br />
+      <a target="_blank" rel="noreferrer" href="http://getemoji.com/">
+        Emoji
+      </a>
     </div>
   )
 }
