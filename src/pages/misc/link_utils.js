@@ -1,36 +1,68 @@
 import React from "react"
 import Layout from "../../components/layout"
 // add this external link in the future
-// https://archive.org/
-// https://www.archive-arn.fr/
-// https://overreacted.io/
+
+function ExLink(props) {
+  return (
+    <>
+      <a target="_blank" rel="noreferrer" href={props.href}>
+        {props.title}
+      </a>
+      <br />
+    </>
+  )
+}
+
+function SectionCode() {
+  return (
+    <div>
+      <h3>About code</h3>
+      <ExLink
+        href="https://thecodingtrain.com/"
+        title="Tchoutchou avec le chef de train Danial Shiffmann"
+      />
+      <ExLink
+        href="https://overreacted.io/"
+        title="Dan Abramov un blog de codeur sérieux, oui sérieux"
+      />
+      <ExLink
+        href="https://unsplash.com/developers"
+        title="Api pour d'images libres de droit"
+      />
+      <ExLink
+        href="https://www.cssfontstack.com/"
+        title="font stack need to good use of font in the internet world"
+      />
+    </div>
+  )
+}
+
+function SectionFun() {
+  return (
+    <div>
+      <h3>About fun</h3>
+      <ExLink href="https://archive.org/" title="Internet archive" />
+      <ExLink
+        href="https://www.archive-arn.fr/"
+        title="Architecture vernaculaire"
+      />
+      <ExLink href="https://atlasrn.fr/" title="Atlas vernaculaire" />
+      <ExLink href="http://getemoji.com/" title="dictionnaire d'emoji" />
+      <ExLink
+        href="http://designexplainsscience.com/"
+        title="Science et design"
+      />
+    </div>
+  )
+}
 
 export default function () {
   return (
     <div>
       <Layout title="EXTERNAL UTILS LINK"></Layout>
-      <p>About code</p>
-      <a target="_blank" rel="noreferrer" href="https://overreacted.io/">
-        Dan Abramov Blog
-      </a>
+      <SectionCode />
       <br />
-      <br />
-      <p>About fun</p>
-      <a target="_blank" rel="noreferrer" href="https://archive.org/">
-        Internet archive
-      </a>
-      <br />
-      <a target="_blank" rel="noreferrer" href="https://www.archive-arn.fr/">
-        Architecture vernaculaire
-      </a>
-      <br />
-      <a target="_blank" rel="noreferrer" href="https://atlasrn.fr/">
-        Atlas vernaculaire
-      </a>
-      <br />
-      <a target="_blank" rel="noreferrer" href="http://getemoji.com/">
-        Emoji
-      </a>
+      <SectionFun />
     </div>
   )
 }
