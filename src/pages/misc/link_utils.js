@@ -33,6 +33,18 @@ function SectionCode() {
         href="https://www.cssfontstack.com/"
         title="font stack need to good use of font in the internet world"
       />
+      <ExLink
+        href="https://remixicon.com/"
+        title="free icon to design your web site or anything what you want"
+      />
+      <ExLink
+        href="https://lodev.org/cgtutor/"
+        title="very cool code to computer Graphics by Lode Vandevenne"
+      />
+      <ExLink
+        href="https://stanflix.netlify.app/"
+        title="the Meilleur Netflix of the Monde... HAHAHAHA"
+      />
     </div>
   )
 }
