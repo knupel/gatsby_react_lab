@@ -42,6 +42,18 @@ function SectionCode() {
         title="very cool code to computer Graphics by Lode Vandevenne"
       />
       <ExLink
+        href="https://www.werockyourweb.com/html-escape-characters/"
+        title="escape char in html"
+      />
+    </div>
+  )
+}
+
+function SectionExercise() {
+  return (
+    <div>
+      <h3>Exercise web project</h3>
+      <ExLink
         href="https://stanflix.netlify.app/"
         title="the Meilleur Netflix of the Monde... HAHAHAHA"
       />
@@ -72,6 +84,9 @@ export default function () {
   return (
     <div>
       <Layout title="EXTERNAL UTILS LINK"></Layout>
+
+      <SectionExercise />
+      <br />
       <SectionCode />
       <br />
       <SectionFun />
