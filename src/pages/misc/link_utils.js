@@ -45,6 +45,10 @@ function SectionCode() {
         href="https://www.werockyourweb.com/html-escape-characters/"
         title="escape char in html"
       />
+      <ExLink
+        href="http://keycode.info/"
+        title="find the id of each key on your keybord: keycode.info"
+      />
     </div>
   )
 }
@@ -75,6 +79,10 @@ function SectionFun() {
       <ExLink
         href="http://designexplainsscience.com/"
         title="Science et design"
+      />
+      <ExLink
+        href="https://cryptoart.io/artists"
+        title="List of Crypto artists"
       />
     </div>
   )
