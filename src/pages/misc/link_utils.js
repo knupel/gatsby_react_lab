@@ -1,51 +1,41 @@
 import React from "react"
 import Layout from "../../components/layout"
+import NewTabLink from "../../components/new_tab_link"
 // add this external link in the future
-
-function ExLink(props) {
-  return (
-    <>
-      <a target="_blank" rel="noreferrer" href={props.href}>
-        {props.title}
-      </a>
-      <br />
-    </>
-  )
-}
 
 function SectionCode() {
   return (
     <div>
       <h3>About code</h3>
-      <ExLink
+      <NewTabLink
         href="https://thecodingtrain.com/"
         title="Tchoutchou avec le chef de train Danial Shiffmann"
       />
-      <ExLink
+      <NewTabLink
         href="https://overreacted.io/"
         title="Dan Abramov un blog de codeur sérieux, oui sérieux"
       />
-      <ExLink
+      <NewTabLink
         href="https://unsplash.com/developers"
         title="Api pour d'images libres de droit"
       />
-      <ExLink
+      <NewTabLink
         href="https://www.cssfontstack.com/"
         title="font stack need to good use of font in the internet world"
       />
-      <ExLink
+      <NewTabLink
         href="https://remixicon.com/"
         title="free icon to design your web site or anything what you want"
       />
-      <ExLink
+      <NewTabLink
         href="https://lodev.org/cgtutor/"
         title="very cool code to computer Graphics by Lode Vandevenne"
       />
-      <ExLink
+      <NewTabLink
         href="https://www.werockyourweb.com/html-escape-characters/"
         title="escape char in html"
       />
-      <ExLink
+      <NewTabLink
         href="http://keycode.info/"
         title="find the id of each key on your keybord: keycode.info"
       />
@@ -57,7 +47,7 @@ function SectionExercise() {
   return (
     <div>
       <h3>Exercise web project</h3>
-      <ExLink
+      <NewTabLink
         href="https://stanflix.netlify.app/"
         title="the Meilleur Netflix of the Monde... HAHAHAHA"
       />
@@ -69,18 +59,18 @@ function SectionFun() {
   return (
     <div>
       <h3>About fun</h3>
-      <ExLink href="https://archive.org/" title="Internet archive" />
-      <ExLink
+      <NewTabLink href="https://archive.org/" title="Internet archive" />
+      <NewTabLink
         href="https://www.archive-arn.fr/"
         title="Architecture vernaculaire"
       />
-      <ExLink href="https://atlasrn.fr/" title="Atlas vernaculaire" />
-      <ExLink href="http://getemoji.com/" title="dictionnaire d'emoji" />
-      <ExLink
+      <NewTabLink href="https://atlasrn.fr/" title="Atlas vernaculaire" />
+      <NewTabLink href="http://getemoji.com/" title="dictionnaire d'emoji" />
+      <NewTabLink
         href="http://designexplainsscience.com/"
         title="Science et design"
       />
-      <ExLink
+      <NewTabLink
         href="https://cryptoart.io/artists"
         title="List of Crypto artists"
       />

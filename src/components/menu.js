@@ -1,28 +1,5 @@
-import React from "react"
-import { Menu_link } from "../components/menu_link"
-
-function Menu_misc() {
-  let blabla =
-    "Something from the Head Quarter Menu.js : use state={{ info: props.str }} in the Gatsby component Link and catch it with location.state.xxx!"
-  return (
-    <div>
-      <Menu_link
-        link="/misc/link_utils/"
-        name={"MISC: fews interesting externals links"}
-      ></Menu_link>
-      <Menu_link
-        link="/misc/container_test/"
-        name={"MISC: container test"}
-      ></Menu_link>
-      <Menu_link
-        link="/misc/link_location_state/"
-        name={"MISC: pass data from menu link with component Gatsby Link"}
-        str={blabla}
-      ></Menu_link>
-      <Menu_link link="/misc/react_info/" name={"MISC: react info"}></Menu_link>
-    </div>
-  )
-}
+import React from "react";
+import { Menu_link } from "../components/menu_link";
 
 function Menu_api() {
   return (
@@ -33,7 +10,7 @@ function Menu_api() {
         name={"API: acces to public api with Axios"}
       ></Menu_link>
     </div>
-  )
+  );
 }
 
 function Menu_design() {
@@ -42,15 +19,7 @@ function Menu_design() {
       link="design/design_typo/"
       name={"DESIGN: choice typo typekit"}
     ></Menu_link>
-  )
-}
-
-function Menu_framework() {
-  return (
-    <div>
-      <Menu_link link="framework/p5/" name={"FRAMEWORK: P5js info"}></Menu_link>
-    </div>
-  )
+  );
 }
 
 function Menu_grid() {
@@ -72,7 +41,7 @@ function Menu_grid() {
         name={"GRID: button advanced"}
       ></Menu_link>
     </div>
-  )
+  );
 }
 
 function Menu_gui() {
@@ -96,7 +65,7 @@ function Menu_gui() {
       ></Menu_link>
       <Menu_link link="gui/contact/" name={"GUI: send me an email"}></Menu_link>
     </div>
-  )
+  );
 }
 
 function Menu_image() {
@@ -119,7 +88,50 @@ function Menu_image() {
         name={"IMG: images multi"}
       ></Menu_link>
     </div>
-  )
+  );
+}
+
+function Menu_misc() {
+  let blabla =
+    "Something from the Head Quarter Menu.js : use state={{ info: props.str }} in the Gatsby component Link and catch it with location.state.xxx!";
+  return (
+    <div>
+      <Menu_link
+        link="/misc/link_utils/"
+        name={"MISC: fews interesting externals links"}
+      ></Menu_link>
+      <Menu_link
+        link="/misc/container_test/"
+        name={"MISC: container test"}
+      ></Menu_link>
+      <Menu_link
+        link="/misc/link_location_state/"
+        name={"MISC: pass data from menu link with component Gatsby Link"}
+        str={blabla}
+      ></Menu_link>
+      <Menu_link link="/misc/react_info/" name={"MISC: react info"}></Menu_link>
+    </div>
+  );
+}
+
+function Menu_p5() {
+  return (
+    <div>
+      <Menu_link
+        link="/p5/background/"
+        name={"P5: basic background"}
+      ></Menu_link>
+      <Menu_link
+        link="p5/dial_p5_react/"
+        name={"P5: dialogue between React and P5"}
+      ></Menu_link>
+      <Menu_link
+        link="p5/multi_sketches/"
+        name={"P5: Mange few sketches in same time"}
+      ></Menu_link>
+      <Menu_link link="p5/link_p5/" name={"P5: link about p5"}></Menu_link>
+    </div>
+  );
 }
 
 function Menu_video() {
@@ -131,20 +143,20 @@ function Menu_video() {
         name={"VIDEO: fullscreen"}
       ></Menu_link>
     </div>
-  )
+  );
 }
 
 export default function Menu() {
   return (
     <div>
-      <Menu_misc />
-      <Menu_grid />
-      <Menu_image />
-      <Menu_video />
-      <Menu_gui />
       <Menu_api />
       <Menu_design />
-      <Menu_framework />
+      <Menu_grid />
+      <Menu_gui />
+      <Menu_image />
+      <Menu_misc />
+      <Menu_p5 />
+      <Menu_video />
     </div>
-  )
+  );
 }
