@@ -22,7 +22,14 @@ export default function P5Wrapper(props) {
   let index = 0;
   if (canvas_list.length > 0) {
     for (index = 0; index < canvas_list.length; index++) {
-      console.log("index", index, "id", props.id);
+      console.log(
+        "index",
+        index,
+        "canvas_list[index][0]",
+        canvas_list[index][0],
+        "id",
+        props.id
+      );
       if (canvas_list[index][0] === props.id) {
         add_is = false;
         break;

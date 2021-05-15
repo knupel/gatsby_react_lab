@@ -1,12 +1,12 @@
 // https://medium.com/codait/environment-variables-or-keeping-your-secrets-secret-in-a-node-js-app-99019dfff716
 
-require("dotenv").config()
+require("dotenv").config();
 
 module.exports = {
   siteMetadata: {
-    title: `Stan le Punk Labo Gatsby React `,
-    description: `Here you find my work around the gatsby and React concept to understand the messy web jungle`,
-    author: `Stan le Punk`,
+    title: `Knupel Labo Gatsby React `,
+    description: `Here you find my work around the gatsby and React concept to understand the jungle web`,
+    author: `Knupel`,
   },
   plugins: [
     // FONT
@@ -86,4 +86,4 @@ module.exports = {
       },
     },
   ],
-}
+};
