@@ -23,13 +23,13 @@ export default function () {
       </div>
       <div>{dial_p5}</div>
       <div onClick={mouse_click}>
-        <Dialogue color="rouge" dial={click} />
+        <Dialogue color="rouge" id={2} dial={click} />
       </div>
       <div onClick={mouse_click}>
-        <Dialogue color="magenta" dial={click} />
+        <Dialogue color="magenta" id={20} dial={click} />
       </div>
       <div onClick={mouse_click}>
-        <Dialogue color="rouge" dial={click} />
+        <Dialogue color="rouge" id={345} dial={click} />
       </div>
     </div>
   );
@@ -42,7 +42,8 @@ function Dialogue(props) {
   if (props.dial !== data[2]) {
     set_data(["Je suis", props.color, props.dial]);
   }
-  return <P5Wrapper sketch={my_sketch} id={0} data={data}></P5Wrapper>;
+  // console.log("Dialogue id", props.id);
+  return <P5Wrapper sketch={my_sketch} id={props.id} data={data}></P5Wrapper>;
 }
 
 function my_sketch(p) {

@@ -16,31 +16,27 @@ import p5 from "p5";
 // let canvas = null;
 // let Canvas_context = createContext();
 let canvas_list = [];
+let canvas = null;
 export default function P5Wrapper(props) {
-  let canvas = null;
+  // let canvas = null;
   let add_is = true;
   let index = 0;
   if (canvas_list.length > 0) {
     for (index = 0; index < canvas_list.length; index++) {
-      console.log(
-        "index",
-        index,
-        "canvas_list[index][0]",
-        canvas_list[index][0],
-        "id",
-        props.id
-      );
       if (canvas_list[index][0] === props.id) {
+        // console.log("list id", canvas_list[index][0], "new id", props.id);
         add_is = false;
         break;
       }
     }
   }
   if (add_is) {
+    console.log("add canvas");
+    // canvas_list.push([props.id, null]); // problem is here
     canvas_list.push([props.id, canvas]);
     index = canvas_list.length - 1;
   }
-  console.log("canvas list length", canvas_list.length);
+  console.log("canvas_list[index][1] children", canvas_list[index][1]);
   return (
     <P5WrapperComp sketch={props.sketch} data={props.data}>
       {canvas_list[index][1]}
@@ -49,59 +45,29 @@ export default function P5Wrapper(props) {
 }
 
 const P5WrapperComp = ({ children, ...props }) => {
-  console.log("P5WrapperComp", children);
+  console.log("0 children", children);
   function set_data() {}
   const sketch_ref = useRef();
 
   useEffect(() => {
     children = new p5(props.sketch, sketch_ref.current);
+    console.log("1 children", children);
     if (children.set_data && props.data) {
       children.set_data(props.data);
     }
   }, []);
 
   // update sketch from react
+  console.log("2 children", children);
   if (children) {
     if (children.set_data && props.data) {
       children.set_data(props.data);
     }
   }
-
+  console.log("10 children", children);
   return <div ref={sketch_ref} />;
 };
 
 P5WrapperComp.propTypes = {
   sketch: PropTypes.func.isRequired,
 };
-
-// export default P5Wrapper;
-
-// let canvas = null;
-// const P5Wrapper = props => {
-
-//   // use canvas
-//   function set_data() {}
-//   const sketch_ref = useRef();
-
-//   useEffect(() => {
-//     canvas = new p5(props.sketch, sketch_ref.current);
-//     if (canvas.set_data && props.data) {
-//       canvas.set_data(props.data);
-//     }
-//   }, []);
-
-//   // update sketch from react
-//   if (canvas) {
-//     if (canvas.set_data && props.data) {
-//       canvas.set_data(props.data);
-//     }
-//   }
-
-//   return <div ref={sketch_ref} />;
-// };
-
-// P5Wrapper.propTypes = {
-//   sketch: PropTypes.func.isRequired,
-// };
-
-// export default P5Wrapper;
