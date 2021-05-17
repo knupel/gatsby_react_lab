@@ -6,9 +6,29 @@ import Layout from "../../components/layout";
 
 // Processing
 import P5Wrapper from "../../components/p5_wrapper";
+import P5Manager from "../../components/p5_manager";
 import background from "./background";
 
 export default function () {
+  return (
+    <div>
+      <div>
+        <Layout title="Use fews sketches and pass data from React"></Layout>
+      </div>
+      <P5Manager>
+        <Dialogue color="rouge" id={2} />
+      </P5Manager>
+      <P5Manager>
+        <Dialogue color="magenta" id={20} />
+      </P5Manager>
+      <P5Manager>
+        <Dialogue color="rouge" id={345} />
+      </P5Manager>
+    </div>
+  );
+}
+
+function Dialogue(props) {
   const [click, set_click] = useState(0);
   function mouse_click(event) {
     event.preventDefault();
@@ -16,36 +36,20 @@ export default function () {
     set_click(i);
   }
 
+  const [data, set_data] = useState([]);
+  if (click !== data[2]) {
+    set_data(["Je suis", props.color, click]);
+  }
   return (
-    <div>
-      <div>
-        <Layout title="Use fews sketches and pass data from React"></Layout>
-      </div>
-      <div>{dial_p5}</div>
-      <div onClick={mouse_click}>
-        <Dialogue color="rouge" id={2} dial={click} />
-      </div>
-      <div onClick={mouse_click}>
-        <Dialogue color="magenta" id={20} dial={click} />
-      </div>
-      <div onClick={mouse_click}>
-        <Dialogue color="rouge" id={345} dial={click} />
-      </div>
+    <div onClick={mouse_click}>
+      <P5Wrapper sketch={my_sketch} id={props.id} data={data}></P5Wrapper>
     </div>
   );
 }
-
-var dial_p5;
-
-function Dialogue(props) {
-  const [data, set_data] = useState([]);
-  if (props.dial !== data[2]) {
-    set_data(["Je suis", props.color, props.dial]);
-  }
-  // console.log("Dialogue id", props.id);
-  return <P5Wrapper sketch={my_sketch} id={props.id} data={data}></P5Wrapper>;
-}
-
+/**
+ *
+ * Sketch Processing
+ */
 function my_sketch(p) {
   p.setup = function () {
     p.createCanvas(p.windowWidth, p.windowHeight / 4);
@@ -77,6 +81,8 @@ function my_sketch(p) {
 
   p.set_data = function (data) {
     str = data[0] + " " + data[1] + " " + data[2];
-    colour = data[1];
+    if (typeof data[1] === "string") {
+      colour = data[1];
+    }
   };
 }

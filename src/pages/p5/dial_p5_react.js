@@ -1,11 +1,15 @@
 import React from "react";
 import { useState } from "react";
+import { useContext } from "react";
 
 // site
 import Layout from "../../components/layout";
 
 // Processing
 import P5Wrapper from "../../components/p5_wrapper";
+import P5Manager from "../../components/p5_manager";
+// import P5DispatchContext from "../../components/p5_wrapper";
+// import P5StateContext from "../../components/p5_manager";
 import background from "./background";
 
 export default function () {
@@ -21,7 +25,6 @@ export default function () {
       <div>
         <Layout title="Dialogue between P5 and React"></Layout>
       </div>
-      <div>{dial_p5}</div>
       <div onClick={mouse_click}>
         <Dialogue dial={click} />
       </div>
@@ -29,14 +32,17 @@ export default function () {
   );
 }
 
-var dial_p5;
-
 function Dialogue(props) {
   const [data, set_data] = useState("You talk to me ?", props.dial);
+
   if (props.dial !== data[1]) {
     set_data(["You click to me?\nClick and shut your mouse", props.dial]);
   }
-  return <P5Wrapper sketch={my_sketch} data={data}></P5Wrapper>;
+  return (
+    <P5Manager>
+      <P5Wrapper sketch={my_sketch} data={data}></P5Wrapper>
+    </P5Manager>
+  );
 }
 
 function my_sketch(p) {
