@@ -1,14 +1,19 @@
 /**
- * Inspired from Wendy Dherin
- * @see https://github.com/doubledherin/gatsby-p5-starter/blob/master/src/components/sketchWrapper.jsx
+ * Gatsby-React P5 Wrapper v 0.0.1
+ * 2021-2021
  *
- * v 0.1.0
+ * Inspired
+ * https://github.com/doubledherin/gatsby-p5-starter/blob/master/src/components/sketchWrapper.jsx
+ * https://github.com/atorov/react-hooks-p5js
+ *
+ * v 0.0.1
  * 2021-2021
  */
 import React from "react";
 import { useRef, useEffect } from "react";
 import { useState } from "react";
 import { useContext } from "react";
+import { memo } from "react";
 // import { createContext, useContext } from "react";
 import PropTypes from "prop-types";
 import p5 from "p5";
@@ -21,6 +26,46 @@ import P5StateContext from "./p5_manager";
 // https://kentcdodds.com/blog/how-to-use-react-context-effectively
 // https://www.xspdf.com/resolution/53771877.html
 // https://www.tutorialspoint.com/using-usecontext-in-react-js
+
+export default function (id = "abc...xyz") {
+  let env = null;
+
+  function P5Wrapper({ sketch = () => {}, data = {}, dispatch = () => {} }) {
+    const sketchContainer = useRef(null);
+
+    useEffect(() => {
+      env = new p5(sketch, sketchContainer.current);
+      env.data = data;
+      env.dispatch = dispatch;
+      return () => {
+        env.remove();
+      };
+    }, [dispatch, sketch, data]);
+
+    return <div ref={sketchContainer}></div>;
+  }
+
+  P5Wrapper.propTypes = {
+    data: PropTypes.object,
+    dispatch: PropTypes.func,
+    sketch: PropTypes.func,
+  };
+
+  P5Wrapper.defaultProps = {
+    data: {},
+    dispatch: () => {},
+    sketch: () => {},
+  };
+
+  return memo(P5Wrapper, (_, nextProps) => {
+    if (env) {
+      env.data = { ...nextProps.data };
+      return true;
+    }
+    return false;
+  });
+}
+
 /**
  *
  *
@@ -28,40 +73,40 @@ import P5StateContext from "./p5_manager";
  *
  *
  */
-const P5Wrapper = props => {
-  const dispatch = useContext(P5DispatchContext);
-  const { sketch } = useContext(P5StateContext);
+// const P5Wrapper = props => {
+//   const dispatch = useContext(P5DispatchContext);
+//   const { sketch } = useContext(P5StateContext);
 
-  let buf_sketch = null;
-  console.log("P5Manager", P5Manager);
-  dispatch({ type: "USE_SKETCH" });
-  let { sketches, set_sketches } = useContext(P5Manager);
-  function set_data() {}
-  const sketch_ref = useRef();
+//   // let buf_sketch = null;
+//   console.log("P5Manager", P5Manager);
 
-  useEffect(() => {
-    // dispatch({ type: "USE_SKETCH" });
-    buf_sketch = new p5(props.sketch, sketch_ref.current);
-    if (buf_sketch.set_data && props.data) {
-      buf_sketch.set_data(props.data);
-    }
-    set_sketches(buf_sketch);
-  }, []);
+//   let { sketches, set_sketches } = useContext(P5Manager);
+//   function set_data() {}
+//   const sketch_ref = useRef();
 
-  // update sketch from react
-  if (sketches) {
-    if (sketches.set_data && props.data) {
-      sketches.set_data(props.data);
-    }
-  }
-  return <div ref={sketch_ref} />;
-};
+//   useEffect(() => {
+//     sketch = new p5(props.sketch, sketch_ref.current);
+//     if (sketch.set_data && props.data) {
+//       sketch.set_data(props.data);
+//     }
+//     dispatch({ type: "USE_SKETCH", payload: sketch });
+//     set_sketches(sketch);
+//   }, []);
 
-P5Wrapper.propTypes = {
-  sketch: PropTypes.func.isRequired,
-};
+//   // update sketch from react
+//   if (sketches) {
+//     if (sketches.set_data && props.data) {
+//       sketches.set_data(props.data);
+//     }
+//   }
+//   return <div ref={sketch_ref} />;
+// };
 
-export default P5Wrapper;
+// P5Wrapper.propTypes = {
+//   sketch: PropTypes.func.isRequired,
+// };
+
+// export default P5Wrapper;
 /**
  *
  *

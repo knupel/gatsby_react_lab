@@ -1,38 +1,27 @@
+/**
+ * Gatsby-React P5 Manager
+ * v 0.0.1
+ * 2021-2021
+ *
+ * */
 import React from "react";
 import PropTypes from "prop-types";
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 import { useReducer } from "react";
 import { useState } from "react";
 
 // https://kentcdodds.com/blog/how-to-use-react-context-effectively
 // https://www.xspdf.com/resolution/53771877.html
 // https://www.tutorialspoint.com/using-usecontext-in-react-js
-
-const init_state = {
-  sketch: null,
-};
+// https://blog.logrocket.com/guide-to-react-usereducer-hook/
 
 export const P5DispatchContext = createContext(() => {});
 export const P5StateContext = createContext(init_state);
 
-function reducer(state, action) {
-  switch (action.type) {
-    case "USE_SKETCH": {
-      return { sketch: true };
-    }
-
-    default: {
-      throw new Error(`Unhandled action type: ${action.type}`);
-    }
-  }
-}
-
-//     <P5DispatchContext.Provider value={dispatch({ type: "USE_SKETCH" })}>
 export default function P5Manager({ children }) {
   const [state, dispatch] = useReducer(reducer, init_state);
-
-  // const [sketches, set_sketches] = useState(null);
-  // const value = { sketches, set_sketches };
+  const { x } = useContext(P5StateContext);
+  console.log("x", x);
   return (
     <P5DispatchContext.Provider value={dispatch}>
       <P5StateContext.Provider value={state}>
@@ -46,4 +35,49 @@ P5Manager.propTypes = {
   children: PropTypes.any.isRequired,
 };
 
-// export P5Manager;
+/**
+ *
+ * INIT
+ *
+ */
+const init_state = {
+  x: 0,
+  y: 0,
+  z: 0,
+  data: {},
+  sketch: null,
+};
+
+/**
+ *
+ * REDUCER
+ *
+ */
+function reducer(state, action) {
+  switch (action.type) {
+    case "USE_SKETCH": {
+      return { ...state, sketch: action.payload };
+      // return { ...state, [action.payload.key]: action.payload.value };
+    }
+
+    case "SET_DATA": {
+      return { ...state, data: action.payload };
+    }
+
+    case "SET_X": {
+      return { ...state, x: action.payload };
+    }
+
+    case "SET_Y": {
+      return { ...state, y: action.payload };
+    }
+
+    case "SET_Z": {
+      return { ...state, z: action.payload };
+    }
+
+    default: {
+      throw new Error(`Unhandled action type: ${action.type}`);
+    }
+  }
+}

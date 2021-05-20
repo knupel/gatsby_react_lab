@@ -9,6 +9,10 @@ import P5Wrapper from "../../components/p5_wrapper";
 import P5Manager from "../../components/p5_manager";
 import background from "./background";
 
+const Dial_A_P5Wrapper = P5Wrapper("dialogue A");
+const Dial_B_P5Wrapper = P5Wrapper("dialogue B");
+const Dial_C_P5Wrapper = P5Wrapper("dialogue C");
+
 export default function () {
   return (
     <div>
@@ -16,13 +20,9 @@ export default function () {
         <Layout title="Use fews sketches and pass data from React"></Layout>
       </div>
       <P5Manager>
-        <Dialogue color="rouge" id={2} />
-      </P5Manager>
-      <P5Manager>
-        <Dialogue color="magenta" id={20} />
-      </P5Manager>
-      <P5Manager>
-        <Dialogue color="rouge" id={345} />
+        <Dialogue color="rouge" id={2} comp={Dial_A_P5Wrapper} />
+        <Dialogue color="magenta" id={20} comp={Dial_B_P5Wrapper} />
+        <Dialogue color="rouge" id={345} comp={Dial_C_P5Wrapper} />
       </P5Manager>
     </div>
   );
@@ -42,7 +42,8 @@ function Dialogue(props) {
   }
   return (
     <div onClick={mouse_click}>
-      <P5Wrapper sketch={my_sketch} id={props.id} data={data}></P5Wrapper>
+      <props.comp sketch={my_sketch} id={props.id} data={data}></props.comp>
+      {/* <P5Wrapper sketch={my_sketch} id={props.id} data={data}></P5Wrapper> */}
     </div>
   );
 }

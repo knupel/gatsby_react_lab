@@ -1,8 +1,8 @@
-import React from "react"
-import Layout from "../../components/layout"
-import Header from "../../components/header"
-import styles from "../../styles/about.module.css"
-import Container, { Test } from "../../components/container"
+import React from "react";
+import Layout from "../../components/layout";
+import Header from "../../components/header";
+import styles from "../../styles/about.module.css";
+import Container, { Test } from "../../components/container";
 
 const User = props => (
   <div className={styles.user}>
@@ -12,7 +12,7 @@ const User = props => (
       <p className={styles.excerpt}>{props.excerpt}</p>
     </div>
   </div>
-)
+);
 
 export default function About() {
   return (
@@ -36,5 +36,5 @@ export default function About() {
 
       <p>Knupel is Lepunk tootoo</p>
     </div>
-  )
+  );
 }
