@@ -12,6 +12,8 @@ import P5DispatchContext from "../../components/p5_wrapper";
 import P5StateContext from "../../components/p5_manager";
 import background from "./background";
 
+const Dial_P5Wrapper = P5Wrapper("dialogue");
+
 export default function () {
   return (
     <div>
@@ -48,17 +50,16 @@ function P5Comp() {
   );
 }
 
-const Dial_P5Wrapper = P5Wrapper("dialogue");
-
 function Dialogue(props) {
   let buf_data = {
     title: "You talk to me ?",
-    value: props.dial,
+    value: "Mister Number",
   };
   const [state_data, set_data] = useState(buf_data);
   const dispatch = useContext(P5DispatchContext);
 
   if (props.dial !== state_data.value) {
+    buf_data.title = "Je suis ne pas un muméro";
     buf_data.value = props.dial;
     console.log("il y a du nouveau buf", buf_data);
     set_data(buf_data);
@@ -98,6 +99,6 @@ function my_sketch(p) {
     p.textSize(size);
     // p.data.value
     // where the path data is set in the React part
-    p.text(p.data.title + p.data.value, 20, size);
+    p.text(p.data.title + " " + p.data.value, 20, size);
   };
 }

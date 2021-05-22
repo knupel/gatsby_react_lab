@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { useContext } from "react";
 
 // site
 import Layout from "../../components/layout";
@@ -7,6 +8,7 @@ import Layout from "../../components/layout";
 // Processing
 import P5Wrapper from "../../components/p5_wrapper";
 import P5Manager from "../../components/p5_manager";
+import P5DispatchContext from "../../components/p5_wrapper";
 import background from "./background";
 
 const Dial_A_P5Wrapper = P5Wrapper("dialogue A");
@@ -29,21 +31,33 @@ export default function () {
 }
 
 function Dialogue(props) {
+  let buf_data = {
+    str: "Je suis",
+    colour: props.color,
+    value: -1,
+  };
   const [click, set_click] = useState(0);
+  const dispatch = useContext(P5DispatchContext);
   function mouse_click(event) {
     event.preventDefault();
+    console.log("Dialogue ID", props.id);
     const i = click + 1;
     set_click(i);
   }
 
-  const [data, set_data] = useState([]);
-  if (click !== data[2]) {
-    set_data(["Je suis", props.color, click]);
+  const [state_data, set_data] = useState(buf_data);
+  if (click !== state_data.value) {
+    buf_data.colour = props.color;
+    buf_data.value = click;
+    set_data(buf_data);
   }
   return (
     <div onClick={mouse_click}>
-      <props.comp sketch={my_sketch} id={props.id} data={data}></props.comp>
-      {/* <P5Wrapper sketch={my_sketch} id={props.id} data={data}></P5Wrapper> */}
+      <props.comp
+        sketch={my_sketch}
+        id={props.id}
+        data={state_data}
+      ></props.comp>
     </div>
   );
 }
@@ -63,6 +77,7 @@ function my_sketch(p) {
   let str = "";
   let colour = "";
   p.draw = function () {
+    set_colour();
     if (p.keyIsPressed) p.background(255, 0, 255);
     else if (colour.localeCompare("magenta") === 0) p.background(255, 0, 255);
     else if (colour.localeCompare("orange") === 0) p.background(255, 125, 0);
@@ -80,10 +95,10 @@ function my_sketch(p) {
     p.text(str, 20, size);
   };
 
-  p.set_data = function (data) {
-    str = data[0] + " " + data[1] + " " + data[2];
-    if (typeof data[1] === "string") {
-      colour = data[1];
+  function set_colour() {
+    str = p.data.str + " " + p.data.colour + " " + p.data.value;
+    if (typeof p.data.colour === "string") {
+      colour = p.data.colour;
     }
-  };
+  }
 }
