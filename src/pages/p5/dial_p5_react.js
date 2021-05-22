@@ -51,20 +51,24 @@ function P5Comp() {
 const Dial_P5Wrapper = P5Wrapper("dialogue");
 
 function Dialogue(props) {
-  const [state_data, set_data] = useState("You talk to me ?", props.dial);
+  let buf_data = {
+    title: "You talk to me ?",
+    value: props.dial,
+  };
+  const [state_data, set_data] = useState(buf_data);
   const dispatch = useContext(P5DispatchContext);
 
-  console.log("x", props.dial, state_data[1]);
-
-  if (props.dial !== state_data[1]) {
-    console.log("il y a du nouveau");
-    set_data(["You click to me?\nClick and shut your mouse", props.dial]);
+  if (props.dial !== state_data.value) {
+    buf_data.value = props.dial;
+    console.log("il y a du nouveau buf", buf_data);
+    set_data(buf_data);
+    console.log("il y a du nouveau state", state_data);
   }
   return (
     <Dial_P5Wrapper
       sketch={my_sketch}
       dispatch={dispatch}
-      data={{ state_data }}
+      data={state_data}
     ></Dial_P5Wrapper>
   );
 }
@@ -94,6 +98,6 @@ function my_sketch(p) {
     p.textSize(size);
     // p.data.value
     // where the path data is set in the React part
-    p.text(p.data[0] + p.data[1], 20, size);
+    p.text(p.data.title + p.data.value, 20, size);
   };
 }
