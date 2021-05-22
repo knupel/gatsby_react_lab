@@ -20,8 +20,6 @@ export const P5StateContext = createContext(init_state);
 
 export default function P5Manager({ children }) {
   const [state, dispatch] = useReducer(reducer, init_state);
-  const { x } = useContext(P5StateContext);
-  console.log("x", x);
   return (
     <P5DispatchContext.Provider value={dispatch}>
       <P5StateContext.Provider value={state}>

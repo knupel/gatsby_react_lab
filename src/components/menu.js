@@ -112,7 +112,7 @@ function Menu_misc() {
       <Menu_link link="/misc/react_info/" name={"MISC: react info"}></Menu_link>
       <Menu_link
         link="/misc/context_reducer/"
-        name={"MISC: sue Reducer context and dispatch"}
+        name={"MISC: use reducer, context and dispatch"}
       ></Menu_link>
     </div>
   );
