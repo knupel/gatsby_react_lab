@@ -6,10 +6,10 @@ import { useContext } from "react";
 import Layout from "../../components/layout";
 
 // Processing
-import P5Wrapper from "../../components/p5_wrapper";
-import P5Manager from "../../components/p5_manager";
-import P5DispatchContext from "../../components/p5_wrapper";
-import background from "./background";
+import P5Wrapper from "../../components/P5Wrapper";
+import P5Manager from "../../components/P5Manager";
+import P5DispatchContext from "../../components/P5Wrapper";
+// import background from "./background";
 
 const Dial_A_P5Wrapper = P5Wrapper("dialogue A");
 const Dial_B_P5Wrapper = P5Wrapper("dialogue B");

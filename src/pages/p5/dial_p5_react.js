@@ -6,27 +6,27 @@ import { useContext } from "react";
 import Layout from "../../components/layout";
 
 // Processing
-import P5Wrapper from "../../components/p5_wrapper";
-import P5Manager from "../../components/p5_manager";
-import P5DispatchContext from "../../components/p5_wrapper";
-import P5StateContext from "../../components/p5_manager";
-import background from "./background";
+import P5Wrapper from "../../components/P5Wrapper";
+import P5Manager from "../../components/P5Manager";
+import P5DispatchContext from "../../components/P5Wrapper";
 
-const Dial_P5Wrapper = P5Wrapper("dialogue");
+// const Dial_P5Wrapper = P5Wrapper("dialogue");
 
 export default function () {
+  // export default function DialP5React() {
   return (
     <div>
       <div>
         <Layout title="Dialogue between P5 and React"></Layout>
       </div>
-      <P5Manager>
+      {/* <P5Manager>
         <P5Comp />
-      </P5Manager>
+      </P5Manager> */}
     </div>
   );
 }
 
+/*
 function P5Comp() {
   const [click, set_click] = useState(0);
   const dispatch = useContext(P5DispatchContext);
@@ -74,13 +74,9 @@ function Dialogue(props) {
   );
 }
 
-/**
- *
- *
- * Sketch processing
- *
- *
- */
+
+// Sketch processing
+//
 function my_sketch(p) {
   p.setup = function () {
     p.createCanvas(p.windowWidth, p.windowHeight);
@@ -102,3 +98,4 @@ function my_sketch(p) {
     p.text(p.data.title + " " + p.data.value, 20, size);
   };
 }
+*/

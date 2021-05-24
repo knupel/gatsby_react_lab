@@ -1,7 +1,14 @@
 /**
  * Gatsby-React P5 Manager
- * v 0.0.1
+ * v 0.0.2
  * 2021-2021
+ *
+ *  Inspired from
+ * https://github.com/atorov/react-hooks-p5js
+ * https://kentcdodds.com/blog/how-to-use-react-context-effectively
+ * https://www.xspdf.com/resolution/53771877.html
+ * https://www.tutorialspoint.com/using-usecontext-in-react-js
+ * https://blog.logrocket.com/guide-to-react-usereducer-hook/
  *
  * */
 import React from "react";
@@ -10,10 +17,13 @@ import { createContext, useContext } from "react";
 import { useReducer } from "react";
 import { useState } from "react";
 
-// https://kentcdodds.com/blog/how-to-use-react-context-effectively
-// https://www.xspdf.com/resolution/53771877.html
-// https://www.tutorialspoint.com/using-usecontext-in-react-js
-// https://blog.logrocket.com/guide-to-react-usereducer-hook/
+const init_state = {
+  x: 0,
+  y: 0,
+  z: 0,
+  data: {},
+  sketch: null,
+};
 
 export const P5DispatchContext = createContext(() => {});
 export const P5StateContext = createContext(init_state);
@@ -33,29 +43,10 @@ P5Manager.propTypes = {
   children: PropTypes.any.isRequired,
 };
 
-/**
- *
- * INIT
- *
- */
-const init_state = {
-  x: 0,
-  y: 0,
-  z: 0,
-  data: {},
-  sketch: null,
-};
-
-/**
- *
- * REDUCER
- *
- */
 function reducer(state, action) {
   switch (action.type) {
     case "USE_SKETCH": {
       return { ...state, sketch: action.payload };
-      // return { ...state, [action.payload.key]: action.payload.value };
     }
 
     case "SET_DATA": {
