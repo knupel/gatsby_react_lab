@@ -9,7 +9,6 @@ import Layout from "../../components/layout";
 import P5Wrapper from "../../components/P5Wrapper";
 import P5Manager from "../../components/P5Manager";
 import P5DispatchContext from "../../components/P5Wrapper";
-// import background from "./background";
 
 const Dial_A_P5Wrapper = P5Wrapper("dialogue A");
 const Dial_B_P5Wrapper = P5Wrapper("dialogue B");

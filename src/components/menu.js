@@ -122,18 +122,23 @@ function Menu_p5() {
   return (
     <div>
       <Menu_link
-        link="/p5/no_dial_just_p5/"
-        name={"P5: No dialogue between react and P5, just show the sketch"}
+        link="/pprocessing/no_dial_just_processing/"
+        name={
+          "P5 JS: No dialogue between react and P5 JS, just show the sketch"
+        }
       ></Menu_link>
-      {/* <Menu_link
-        link="/p5/dial_p5_react/"
-        name={"P5: dialogue between React and P5"}
-      ></Menu_link> */}
       <Menu_link
-        link="/p5/multi_sketches/"
-        name={"P5: Mange few sketches in same time"}
+        link="/processing/dial_processing_react/"
+        name={"P5 JS: dialogue between React and P5 JS"}
       ></Menu_link>
-      <Menu_link link="/p5/link_p5/" name={"P5: link about p5"}></Menu_link>
+      <Menu_link
+        link="/processing/multi_sketches/"
+        name={"P5 JS: Mange few sketches in same time"}
+      ></Menu_link>
+      <Menu_link
+        link="/processing/link_processing/"
+        name={"P5 JS: link about P5 JS"}
+      ></Menu_link>
     </div>
   );
 }
