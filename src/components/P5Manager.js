@@ -27,22 +27,6 @@ const init_state = {
 
 export const P5DispatchContext = createContext(() => {});
 export const P5StateContext = createContext(init_state);
-
-export default function P5Manager({ children }) {
-  const [state, dispatch] = useReducer(reducer, init_state);
-  return (
-    <P5DispatchContext.Provider value={dispatch}>
-      <P5StateContext.Provider value={state}>
-        {children}
-      </P5StateContext.Provider>
-    </P5DispatchContext.Provider>
-  );
-}
-
-P5Manager.propTypes = {
-  children: PropTypes.any.isRequired,
-};
-
 function reducer(state, action) {
   switch (action.type) {
     case "USE_SKETCH": {
@@ -70,3 +54,18 @@ function reducer(state, action) {
     }
   }
 }
+
+export default function P5Manager({ children }) {
+  const [state, dispatch] = useReducer(reducer, init_state);
+  return (
+    <P5DispatchContext.Provider value={dispatch}>
+      <P5StateContext.Provider value={state}>
+        {children}
+      </P5StateContext.Provider>
+    </P5DispatchContext.Provider>
+  );
+}
+
+P5Manager.propTypes = {
+  children: PropTypes.any.isRequired,
+};

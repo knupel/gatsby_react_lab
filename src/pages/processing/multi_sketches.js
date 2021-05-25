@@ -36,7 +36,6 @@ function Dialogue(props) {
     value: -1,
   };
   const [click, set_click] = useState(0);
-  const dispatch = useContext(P5DispatchContext);
   function mouse_click(event) {
     event.preventDefault();
     console.log("Dialogue ID", props.id);

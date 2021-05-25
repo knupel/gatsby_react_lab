@@ -1,5 +1,4 @@
 // https://medium.com/codait/environment-variables-or-keeping-your-secrets-secret-in-a-node-js-app-99019dfff716
-
 require("dotenv").config();
 
 module.exports = {
