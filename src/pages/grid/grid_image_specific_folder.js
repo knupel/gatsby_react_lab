@@ -1,12 +1,17 @@
-import React from "react"
-import { graphql } from "gatsby"
-import Img from "gatsby-image"
-import Layout from "../../components/layout"
+import React from "react";
+import { graphql } from "gatsby";
+import Img from "gatsby-image";
+import Layout from "../../components/layout";
+
+// const img_grid_style = {
+//   display: "grid",
+//   gridTemplateColumns: `repeat(auto-fill, 200px)`,
+// };
 
 const img_grid_style = {
   display: "grid",
-  gridTemplateColumns: `repeat(auto-fill, 200px)`,
-}
+  gridTemplateColumns: `1fr 1fr 1fr`,
+};
 
 export default ({ data }) => {
   return (
@@ -18,8 +23,8 @@ export default ({ data }) => {
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
 export const query = graphql`
   query {
@@ -37,4 +42,4 @@ export const query = graphql`
       }
     }
   }
-`
+`;

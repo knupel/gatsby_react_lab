@@ -1,6 +1,6 @@
-import React from "react"
-import Layout from "../../components/layout"
-import NewTabLink from "../../components/new_tab_link"
+import React from "react";
+import Layout from "../../components/layout";
+import NewTabLink from "../../components/new_tab_link";
 // add this external link in the future
 
 function SectionCode() {
@@ -40,7 +40,7 @@ function SectionCode() {
         title="find the id of each key on your keybord: keycode.info"
       />
     </div>
-  )
+  );
 }
 
 function SectionExercise() {
@@ -52,7 +52,7 @@ function SectionExercise() {
         title="the Meilleur Netflix of the Monde... HAHAHAHA"
       />
     </div>
-  )
+  );
 }
 
 function SectionFun() {
@@ -74,8 +74,12 @@ function SectionFun() {
         href="https://cryptoart.io/artists"
         title="List of Crypto artists"
       />
+      <NewTabLink
+        href="https://www.universaleverything.com/"
+        title="Walking artist and more"
+      />
     </div>
-  )
+  );
 }
 
 export default function () {
@@ -89,5 +93,5 @@ export default function () {
       <br />
       <SectionFun />
     </div>
-  )
+  );
 }
