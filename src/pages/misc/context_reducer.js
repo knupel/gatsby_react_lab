@@ -7,7 +7,6 @@
 // https://medium.com/crowdbotics/how-to-use-usereducer-in-react-hooks-for-performance-optimization-ecafca9e7bf5
 import React from "react";
 import Layout from "../../components/layout";
-import { useState } from "react";
 import { useReducer } from "react";
 import { createContext, useContext } from "react";
 

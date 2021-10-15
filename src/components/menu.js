@@ -18,9 +18,11 @@ function Menu_design() {
     <Menu_link
       link="design/design_typo/"
       name={"DESIGN: choice typo typekit"}
-    ></Menu_link>
+    ></Menu_link>  
   );
 }
+
+
 
 function Menu_grid() {
   return (

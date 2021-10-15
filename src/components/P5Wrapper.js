@@ -13,16 +13,14 @@
  */
 import React from "react";
 import { useRef, useEffect } from "react";
-import { useState } from "react";
-import { useContext } from "react";
 import { memo } from "react";
 // import { createContext, useContext } from "react";
 import PropTypes from "prop-types";
 import p5 from "p5";
-import P5Manager from "./P5Manager";
+// import P5Manager from "./P5Manager";
 
-import P5DispatchContext from "./P5Wrapper";
-import P5StateContext from "./P5Manager";
+// import P5DispatchContext from "./P5Wrapper";
+// import P5StateContext from "./P5Manager";
 
 export default function (id = "abc...xyz") {
   let env = null;

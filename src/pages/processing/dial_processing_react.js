@@ -76,7 +76,6 @@ function my_sketch(p) {
     };
   };
 
-  let str = "";
   p.draw = function () {
     if (!p.keyIsPressed) p.background(255, 0, 0);
     else p.background(255, 0, 255);
