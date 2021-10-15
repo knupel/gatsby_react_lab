@@ -18,11 +18,9 @@ function Menu_design() {
     <Menu_link
       link="design/design_typo/"
       name={"DESIGN: choice typo typekit"}
-    ></Menu_link>  
+    ></Menu_link>
   );
 }
-
-
 
 function Menu_grid() {
   return (
@@ -124,7 +122,7 @@ function Menu_p5() {
   return (
     <div>
       <Menu_link
-        link="/pprocessing/no_dial_just_processing/"
+        link="/processing/no_dial_just_processing/"
         name={
           "P5 JS: No dialogue between react and P5 JS, just show the sketch"
         }
