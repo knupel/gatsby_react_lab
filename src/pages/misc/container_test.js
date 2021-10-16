@@ -4,15 +4,30 @@ import Header from "../../components/header";
 import styles from "../../styles/about.module.css";
 import Container, { Test } from "../../components/container";
 
-const User = props => (
-  <div className={styles.user}>
-    <img src={props.avatar} className={styles.avatar} alt="" />
-    <div className={styles.description}>
-      <h2 className={styles.username}>{props.username}</h2>
-      <p className={styles.excerpt}>{props.excerpt}</p>
+// const User = props => (
+//   <div className={styles.user}>
+//     <img src={props.avatar} className={styles.avatar} alt="" />
+//     <div className={styles.description}>
+//       <h2 className={styles.username}>{props.username}</h2>
+//       <p className={styles.excerpt}>{props.excerpt}</p>
+//     </div>
+//   </div>
+// );
+
+function User(props) {
+  console.log("styles", styles, props.username);
+  if (styles === undefined)
+    return <div>styles.module.container css is undefined</div>;
+  return (
+    <div className={styles.user}>
+      <img src={props.avatar} className={styles.avatar} alt="" />
+      <div className={styles.description}>
+        <h2 className={styles.username}>{props.username}</h2>
+        <p className={styles.excerpt}>{props.excerpt}</p>
+      </div>
     </div>
-  </div>
-);
+  );
+}
 
 export default function About() {
   return (
