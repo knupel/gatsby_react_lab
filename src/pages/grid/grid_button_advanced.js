@@ -4,7 +4,10 @@ import Img from "gatsby-image";
 import Layout from "../../components/layout";
 import { hsb_to_hex } from "../../utils/color_convertor";
 import { Get_window } from "../../utils/canvas";
-import styles from "../../styles/container.module.css";
+/**
+ *  To use module CSS need to invoke in the brace each components of this one
+ */
+import { gatsbyImageWrapper } from "../../styles/container.module.css";
 
 // GRID PART
 const set_button_style = (props, select_is, mouse_is) => {
@@ -58,10 +61,11 @@ function Cell({ children, ...props }) {
     mouse_is ? set_mouse_is(false) : set_mouse_is(true);
   };
   console.log("Cell() cell props", props.w, props.h);
-  if (styles === undefined)
-    return <div>styles.module.container css is undefined</div>;
+  // if (styles === undefined)
+  //   return <div>styles.module.container css is undefined</div>;
   return (
-    <div className={styles.gatsbyImageWrapper}>
+    <div className={gatsbyImageWrapper}>
+      {/* <div className={styles.gatsbyImageWrapper}> */}
       <button
         onClick={toggle_cell}
         onMouseEnter={mouse_state}

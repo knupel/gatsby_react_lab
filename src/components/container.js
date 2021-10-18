@@ -1,18 +1,13 @@
 import React from "react";
 /**
- * add .module  like file.module.css at the end of file make something interesting but why ????
+ *  To use module CSS need to invoke in the brace each components of this one
  */
-// import container from "../styles/container.css"
-import container from "../styles/container.module.css";
+import { base, test } from "../styles/container.module.css";
 
 export function Test({ children }) {
-  if (container === undefined)
-    return <div>container.module.container css is undefined</div>;
-  return <div className={container.test}>{children}</div>;
+  return <div className={test}>{children}</div>;
 }
 
 export default function Container({ children }) {
-  if (container === undefined)
-    return <div>container.module.container css is undefined</div>;
-  return <div className={container.container}>{children}</div>;
+  return <div className={base}>{children}</div>;
 }
