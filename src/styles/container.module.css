@@ -2,7 +2,7 @@
  * add .module  like file.module.css at the end of file make something interesting but why ????
  */
 
-.container {
+.base {
   /* margin: 3rem auto; */
   /* background: yellow; */
   font-family: Arial, Helvetica, sans-serif;

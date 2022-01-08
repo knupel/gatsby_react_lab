@@ -3,15 +3,15 @@
 
 // https://www.robinwieruch.de/react-hooks-fetch-data
 
-import React, { Fragment, useState, useEffect } from "react"
-import { Link } from "gatsby"
+import React, { Fragment, useState, useEffect } from "react";
+import { Link } from "gatsby";
 
-import axios from "axios"
+import axios from "axios";
 
-import { Paper, TextField } from "@material-ui/core"
-import { makeStyles } from "@material-ui/core/styles"
+import { Paper, TextField } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
-import Layout from "../../components/layout"
+import Layout from "../../components/layout";
 const search_style = makeStyles(theme => ({
   root: {
     padding: "2px 4px",
@@ -30,10 +30,10 @@ const search_style = makeStyles(theme => ({
     height: 28,
     margin: 4,
   },
-}))
+}));
 
 function Show_item(props) {
-  let alt_name = "url img: " + props.url_img_medium
+  let alt_name = "url img: " + props.url_img_medium;
   return (
     <div>
       <div>{props.name}</div>
@@ -45,7 +45,7 @@ function Show_item(props) {
         <img alt={alt_name} src={props.url_img_medium} />
       </Link>
     </div>
-  )
+  );
 }
 
 function Get_list({ children }) {
@@ -59,14 +59,14 @@ function Get_list({ children }) {
           resume={children.show.summary}
         />
       </div>
-    )
+    );
   } else {
-    return <></>
+    return <></>;
   }
 }
 
 function Render_show({ children }) {
-  console.log("children shows", children)
+  console.log("children shows", children);
   if (children !== null && Array.isArray(children)) {
     return (
       <div>
@@ -76,30 +76,30 @@ function Render_show({ children }) {
           </div>
         ))}
       </div>
-    )
+    );
   } else {
-    return <></>
+    return <></>;
   }
 }
 
 export default function Api_public() {
-  const style = search_style()
-  const [data, setData] = useState({ hits: [] })
-  const [query, setQuery] = useState("england")
+  const style = search_style();
+  const [data, setData] = useState({ hits: [] });
+  const [query, setQuery] = useState("england");
 
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
         `https://api.tvmaze.com/search/shows?q=${query}`
         // `https://cors-anywhere.herokuapp.com/https://api.tvmaze.com/search/shows?q=${query}`
-      )
-      setData(result.data)
-    }
+      );
+      setData(result.data);
+    };
 
-    fetchData()
-  }, [query])
+    fetchData();
+  }, [query]);
 
-  console.log("query:", query)
+  console.log("query:", query);
   return (
     <div>
       <Layout title="API PUBLIC RESEARCH with AXIOS" link="true"></Layout>
@@ -119,5 +119,5 @@ export default function Api_public() {
         </div>
       </Fragment>
     </div>
-  )
+  );
 }
