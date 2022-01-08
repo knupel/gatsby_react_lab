@@ -1,156 +1,156 @@
 import React from "react";
-import { Menu_link } from "../components/menu_link";
+import { MenuLink } from "../components/menu_link";
 
-function Menu_api() {
+function MenuApi() {
   return (
     <div>
-      <Menu_link link="api/mongodb/" name={"API: mongo db"}></Menu_link>
-      <Menu_link
+      <MenuLink link="api/mongodb/" name={"API: mongo db"}></MenuLink>
+      <MenuLink
         link="api/api_public/"
         name={"API: acces to public api with Axios"}
-      ></Menu_link>
+      ></MenuLink>
     </div>
   );
 }
 
-function Menu_design() {
+function MenuDesign() {
   return (
-    <Menu_link
+    <MenuLink
       link="design/design_typo/"
       name={"DESIGN: choice typo typekit"}
-    ></Menu_link>
+    ></MenuLink>
   );
 }
 
-function Menu_grid() {
+function MenuGrid() {
   return (
     <div>
       {" "}
-      <Menu_link link="/grid/grid_image/" name={"GRID: images"}></Menu_link>
-      <Menu_link
+      <MenuLink link="/grid/grid_image/" name={"GRID: images"}></MenuLink>
+      <MenuLink
         link="/grid/grid_image_radio/"
         name={"GRID: selected like a radio system"}
-      ></Menu_link>
-      <Menu_link
+      ></MenuLink>
+      <MenuLink
         link="/grid/grid_image_specific_folder/"
         name={"GRID: image from specific folder"}
-      ></Menu_link>
-      <Menu_link link="/grid/grid_button/" name={"GRID: button"}></Menu_link>
-      <Menu_link
+      ></MenuLink>
+      <MenuLink link="/grid/grid_button/" name={"GRID: button"}></MenuLink>
+      <MenuLink
         link="/grid/grid_button_advanced/"
         name={"GRID: button advanced"}
-      ></Menu_link>
+      ></MenuLink>
     </div>
   );
 }
 
-function Menu_gui() {
+function MenuGui() {
   return (
     <div>
-      <Menu_link link="/gui/side_bar/" name={"GUI: side bar"}></Menu_link>
-      <Menu_link link="gui/fullscreen/" name={"GUI: fullscreen"}></Menu_link>
-      <Menu_link link="gui/form_class/" name={"GUI: form Class"}></Menu_link>
-      <Menu_link link="gui/form_hook/" name={"GUI: form Hook"}></Menu_link>
-      <Menu_link
+      <MenuLink link="/gui/side_bar/" name={"GUI: side bar"}></MenuLink>
+      <MenuLink link="gui/fullscreen/" name={"GUI: fullscreen"}></MenuLink>
+      <MenuLink link="gui/form_class/" name={"GUI: form Class"}></MenuLink>
+      <MenuLink link="gui/form_hook/" name={"GUI: form Hook"}></MenuLink>
+      <MenuLink
         link="gui/mui_button_typekit_font/"
         name={"GUI: Mui button typekit font"}
-      ></Menu_link>
-      <Menu_link
+      ></MenuLink>
+      <MenuLink
         link="gui/mui_local_font/"
         name={"GUI: Mui local font"}
-      ></Menu_link>
-      <Menu_link
+      ></MenuLink>
+      <MenuLink
         link="gui/form_signup_hook/"
         name={"GUI: form signup Hook"}
-      ></Menu_link>
-      <Menu_link link="gui/contact/" name={"GUI: send me an email"}></Menu_link>
+      ></MenuLink>
+      <MenuLink link="gui/contact/" name={"GUI: send me an email"}></MenuLink>
     </div>
   );
 }
 
-function Menu_image() {
+function MenuImage() {
   return (
     <div>
-      <Menu_link
+      <MenuLink
         link="/image/image_direct/"
         name={"IMG: images direct"}
-      ></Menu_link>
-      <Menu_link
+      ></MenuLink>
+      <MenuLink
         link="/image/image_fixed/"
         name={"IMG: images fixed"}
-      ></Menu_link>
-      <Menu_link
+      ></MenuLink>
+      <MenuLink
         link="/image/image_fluid/"
         name={"IMG: images fluid"}
-      ></Menu_link>
-      <Menu_link
+      ></MenuLink>
+      <MenuLink
         link="/image/image_multi/"
         name={"IMG: images multi"}
-      ></Menu_link>
+      ></MenuLink>
     </div>
   );
 }
 
-function Menu_misc() {
+function MenuMisc() {
   let blabla =
     "Something from the Head Quarter Menu.js : use state={{ info: props.str }} in the Gatsby component Link and catch it with location.state.xxx!";
   return (
     <div>
-      <Menu_link
+      <MenuLink
         link="/misc/link_utils/"
         name={"MISC: fews interesting externals links"}
-      ></Menu_link>
-      <Menu_link
+      ></MenuLink>
+      <MenuLink
         link="/misc/container_test/"
         name={"MISC: container test"}
-      ></Menu_link>
-      <Menu_link
+      ></MenuLink>
+      <MenuLink
         link="/misc/link_location_state/"
         name={"MISC: pass data from menu link with component Gatsby Link"}
         str={blabla}
-      ></Menu_link>
-      <Menu_link link="/misc/react_info/" name={"MISC: react info"}></Menu_link>
-      <Menu_link
+      ></MenuLink>
+      <MenuLink link="/misc/react_info/" name={"MISC: react info"}></MenuLink>
+      <MenuLink
         link="/misc/context_reducer/"
         name={"MISC: use reducer, context and dispatch"}
-      ></Menu_link>
+      ></MenuLink>
     </div>
   );
 }
 
-function Menu_p5() {
+function MenuP5() {
   return (
     <div>
-      <Menu_link
+      <MenuLink
         link="/processing/no_dial_just_processing/"
         name={
           "P5 JS: No dialogue between react and P5 JS, just show the sketch"
         }
-      ></Menu_link>
-      <Menu_link
+      ></MenuLink>
+      <MenuLink
         link="/processing/dial_processing_react/"
         name={"P5 JS: dialogue between React and P5 JS"}
-      ></Menu_link>
-      <Menu_link
+      ></MenuLink>
+      <MenuLink
         link="/processing/multi_sketches/"
         name={"P5 JS: Mange few sketches in same time"}
-      ></Menu_link>
-      <Menu_link
+      ></MenuLink>
+      <MenuLink
         link="/processing/link_processing/"
         name={"P5 JS: link about P5 JS"}
-      ></Menu_link>
+      ></MenuLink>
     </div>
   );
 }
 
-function Menu_video() {
+function MenuVideo() {
   return (
     <div>
-      <Menu_link link="/video/video_basic/" name={"VIDEO: basic"}></Menu_link>
-      <Menu_link
+      <MenuLink link="/video/video_basic/" name={"VIDEO: basic"}></MenuLink>
+      <MenuLink
         link="/video/video_fullscreen/"
         name={"VIDEO: fullscreen"}
-      ></Menu_link>
+      ></MenuLink>
     </div>
   );
 }
@@ -158,14 +158,14 @@ function Menu_video() {
 export default function Menu() {
   return (
     <div>
-      <Menu_api />
-      <Menu_design />
-      <Menu_grid />
-      <Menu_gui />
-      <Menu_image />
-      <Menu_misc />
-      <Menu_p5 />
-      <Menu_video />
+      <MenuApi />
+      <MenuDesign />
+      <MenuGrid />
+      <MenuGui />
+      <MenuImage />
+      <MenuMisc />
+      <MenuP5 />
+      <MenuVideo />
     </div>
   );
 }
