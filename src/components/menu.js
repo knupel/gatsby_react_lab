@@ -9,6 +9,10 @@ function MenuApi() {
         link="api/api_public/"
         name={"API: acces to public api with Axios"}
       ></MenuLink>
+      <MenuLink
+        link="api/api_contentful/"
+        name={"API: Contentful CMS : basic asset"}
+      ></MenuLink>
     </div>
   );
 }

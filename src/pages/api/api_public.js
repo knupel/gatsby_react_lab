@@ -32,7 +32,7 @@ const search_style = makeStyles(theme => ({
   },
 }));
 
-function Show_item(props) {
+function ShowItem(props) {
   let alt_name = "url img: " + props.url_img_medium;
   return (
     <div>
@@ -48,11 +48,11 @@ function Show_item(props) {
   );
 }
 
-function Get_list({ children }) {
+function GetList({ children }) {
   if (children.show.image !== null) {
     return (
       <div key={children.show.id}>
-        <Show_item
+        <ShowItem
           name={children.show.name}
           url_site={children.show.url}
           url_img_medium={children.show.image.medium}
@@ -65,14 +65,14 @@ function Get_list({ children }) {
   }
 }
 
-function Render_show({ children }) {
+function RenderShow({ children }) {
   console.log("children shows", children);
   if (children !== null && Array.isArray(children)) {
     return (
       <div>
         {children.map(item => (
           <div key={item.show.id}>
-            <Get_list>{item}</Get_list>
+            <GetList>{item}</GetList>
           </div>
         ))}
       </div>
@@ -82,7 +82,7 @@ function Render_show({ children }) {
   }
 }
 
-export default function Api_public() {
+export default function ApiPublic() {
   const style = search_style();
   const [data, setData] = useState({ hits: [] });
   const [query, setQuery] = useState("england");
@@ -115,7 +115,7 @@ export default function Api_public() {
           />
         </Paper>
         <div>
-          <Render_show>{data}</Render_show>
+          <RenderShow>{data}</RenderShow>
         </div>
       </Fragment>
     </div>
