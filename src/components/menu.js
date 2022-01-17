@@ -7,11 +7,15 @@ function MenuApi() {
       <MenuLink link="api/mongodb/" name={"API: mongo db"}></MenuLink>
       <MenuLink
         link="api/api_public/"
-        name={"API: acces to public api with Axios"}
+        name={"API: Axios acces to puplic api"}
       ></MenuLink>
       <MenuLink
-        link="api/api_contentful/"
-        name={"API: Contentful CMS : basic asset"}
+        link="api/api_contentful_all_contentful_asset/"
+        name={"API: Contentful CMS : all asset"}
+      ></MenuLink>
+      <MenuLink
+        link="api/api_contentful_article/"
+        name={"API: Contentful CMS : article"}
       ></MenuLink>
     </div>
   );

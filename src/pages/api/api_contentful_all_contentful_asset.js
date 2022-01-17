@@ -16,28 +16,31 @@ function ShowContent ({list}) {
 }
 export default function ApiContentful(props) {
   const content = props.data.allContentfulAsset.nodes;
-  console.log("content.title",content.title);
-  console.log("content",content);
   return (
     <div>
       <Layout
-        title="API Contentful"
+        title="API Contentful show all asset"
       ></Layout>
       <ShowContent list={content}/>
     </div>
   );
 }
 
-export const content_query = graphql`
- query {
-   allContentfulAsset {
-     nodes {
-      title
-      description
-      gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED, width: 1280)
-       resize(height: 630, width: 1200) {
-         src
-       }
-     }
-   }
- }`
+// allContentfulAsset(filter: {title: {eq: "Boxon 3"}}) {
+// allContentfulAsset {
+// allContentfulAsset(filter: {title: {regex: "/Boxon/"}}) {
+export const content_query = graphql
+`
+  query {
+    allContentfulAsset(filter: {title: {regex: "/Boxon/"}}) {
+      nodes {
+        title
+        description
+        gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED, width: 1280)
+        resize(height: 630, width: 1200) {
+          src
+        }
+      }
+    }
+  }
+`
