@@ -51,24 +51,43 @@
  // allContentfulKnupelPage { >>> work with a single media ????
  export const content_query = graphql
  `
-	 query {
-		allContentfulKnupelLab {
-			nodes {
+ query {
+	allContentfulKnupelLab {
+		nodes {
+			id
+			title
+			description {
+				description
+			}
+			artWork {
+				description
 				id
 				title
-				description {
-					description
-				}
-				artWork {
-					description
-					id
-					title
-					gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED, width: 1280)
-					resize(height: 630, width: 1200) {
-						src
-					}
-				}
+				gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED, width: 1280)
 			}
 		}
 	}
- `
+}
+`
+//  `
+// 	 query {
+// 		allContentfulKnupelLab {
+// 			nodes {
+// 				id
+// 				title
+// 				description {
+// 					description
+// 				}
+// 				artWork {
+// 					description
+// 					id
+// 					title
+// 					gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED, width: 1280)
+// 					resize(height: 630, width: 1200) {
+// 						src
+// 					}
+// 				}
+// 			}
+// 		}
+// 	}
+//  `

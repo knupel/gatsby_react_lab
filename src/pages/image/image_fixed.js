@@ -1,5 +1,5 @@
 import React from "react"
-import Img from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 import Layout from "../../components/layout"
 import { graphql } from "gatsby"
 
@@ -7,23 +7,17 @@ export const query = graphql`
   query {
     file(relativePath: { eq: "profil/knupel_2020_11_13_200x200px.jpg" }) {
       childImageSharp {
-        fixed(width: 200, height: 200) {
-          ...GatsbyImageSharpFixed
-        }
+        gatsbyImageData(layout: FIXED, width:200, height: 200, placeholder: BLURRED)
       }
     }
   }
 `
 
-export default function Image({ data }) {
+export default function ImageFixed({ data }) {
   return (
     <div>
       <Layout title="IMAGE FIXED"></Layout>
-      <Img
-        className="my_image"
-        fixed={data.file.childImageSharp.fixed}
-        alt="my_image"
-      />
+      <GatsbyImage image={data.file.childImageSharp.gatsbyImageData}/>
     </div>
   )
 }

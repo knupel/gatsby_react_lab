@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
-import Img from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image";
 import Layout from "../../components/layout"
 
 const img_grid_style = {
@@ -15,7 +15,7 @@ export default function image_grid({ data }) {
       <Layout title="IMAGE GRID"></Layout>
       <div style={img_grid_style}>
         {data.allImageSharp.edges.map(edge => (
-          <Img height="100%" fluid={edge.node.fluid} />
+          <GatsbyImage image={edge.node.gatsbyImageData} />
         ))}
       </div>
     </div>
@@ -27,10 +27,7 @@ export const query = graphql`
     allImageSharp {
       edges {
         node {
-          id
-          fluid(maxWidth: 200, maxHeight: 200) {
-            ...GatsbyImageSharpFluid
-          }
+          gatsbyImageData(height: 250, width: 250, placeholder: BLURRED)
         }
       }
     }

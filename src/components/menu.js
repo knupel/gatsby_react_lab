@@ -17,6 +17,10 @@ function MenuApi() {
         link="api/api_contentful_article/"
         name={"API: Contentful CMS : article"}
       ></MenuLink>
+      <MenuLink
+        link="api/api_contentful_tag/"
+        name={"API: Contentful CMS : select a part of content by tag"}
+      ></MenuLink>
     </div>
   );
 }
@@ -141,7 +145,7 @@ function MenuP5() {
       ></MenuLink>
       <MenuLink
         link="/processing/multi_sketches/"
-        name={"P5 JS: Mange few sketches in same time"}
+        name={"P5 JS: Manage few sketches in same time"}
       ></MenuLink>
       <MenuLink
         link="/processing/link_processing/"

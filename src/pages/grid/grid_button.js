@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react"
 import { graphql } from "gatsby"
-import Img from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 import Layout from "../../components/layout"
 import { hsb_to_hex } from "../../utils/color_convertor"
+
 
 /**
  * remove the problem of problem syntax unknew in this case, with the binary statement else-if
@@ -68,13 +69,14 @@ function Cell({ children, ...props }) {
         style={set_button_style(props, is, mouse_is)}
         // style={set_button_style(props.w, props.h, alpha)}
       >
-        {<Img fluid={children.childImageSharp.fluid} />}
+        <GatsbyImage image={children.childImageSharp.gatsbyImageData}/>
+        {/* {<Img fluid={children.childImageSharp.fluid} />} */}
       </button>
     </div>
   )
 }
 
-export default ({ data }) => {
+const GridButton = ({ data }) => {
   let w = 150
   let h = 150
 
@@ -92,6 +94,8 @@ export default ({ data }) => {
   )
 }
 
+export default GridButton;
+
 export const query = graphql`
   query {
     allFile(filter: { sourceInstanceName: { eq: "tdm" } }) {
@@ -100,6 +104,7 @@ export const query = graphql`
           extension
           relativePath
           childImageSharp {
+            gatsbyImageData(layout: CONSTRAINED, width:200, height: 200, placeholder: BLURRED)
             fluid(maxWidth: 200, maxHeight: 200) {
               ...GatsbyImageSharpFluid
             }

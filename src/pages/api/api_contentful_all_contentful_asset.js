@@ -32,6 +32,56 @@ export default function ApiContentful(props) {
 export const content_query = graphql
 `
   query {
+    allContentfulAsset {
+      nodes {
+        title
+        description
+        gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED, width: 1280)
+      }
+    }
+  }
+`
+// `
+//   query {
+//     allContentfulAsset {
+//       nodes {
+//         title
+//         description
+//         gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED, width: 1280)
+//         resize(height: 630, width: 1200) {
+//           src
+//         }
+//       }
+//     }
+//   }
+// `
+/*
+`
+query FilterByTagsQuery {
+  allContentfulAsset(
+    sort: { fields: contentful_id }
+    filter: {
+      metadata: {
+        tags: { elemMatch: { contentful_id: { eq: "artWork" } } }
+      }
+    }
+  ) {
+    nodes {
+      title
+        description
+        gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED, width: 1280)
+        resize(height: 630, width: 1200) {
+          src
+        }
+      }
+    }
+  }
+`
+*/
+
+/*
+`
+  query {
     allContentfulAsset(filter: {title: {regex: "/Boxon/"}}) {
       nodes {
         title
@@ -44,3 +94,24 @@ export const content_query = graphql
     }
   }
 `
+*/
+
+/*
+`
+query FilterByTagsQuery {
+  allContentfulNumber(
+    sort: { fields: contentful_id }
+    filter: {
+      metadata: {
+        tags: { elemMatch: { contentful_id: { eq: "numberInteger" } } }
+      }
+    }
+  ) {
+    nodes {
+      title
+      integer
+    }
+  }
+}
+`
+*/

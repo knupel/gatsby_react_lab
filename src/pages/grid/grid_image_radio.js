@@ -3,7 +3,7 @@ import { Fragment } from "react"
 
 import { createContext, useState, useEffect } from "react"
 import { graphql } from "gatsby"
-import Img from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 import Layout from "../../components/layout"
 
 //https://fmontes.com/blog/dynamic-gatsby-images-an-anternative/
@@ -53,7 +53,7 @@ function Diaporama({ children, ...props }) {
             position: "absolute",
           }}
         >
-          <Img height="100%" fluid={children.node.childImageSharp.fluid}></Img>
+          <GatsbyImage image={children.node.childImageSharp.gatsbyImageData}/>
         </div>
       </Fragment>
     )
@@ -92,7 +92,7 @@ function Cell({ children }) {
         onMouseLeave={mouse_state}
         style={cell_style(over_is)}
       >
-        <Img height="100%" fluid={children[1].node.childImageSharp.fluid}></Img>
+        <GatsbyImage image={children[1].node.childImageSharp.gatsbyImageData}/>
       </button>
       <button
         onClick={toggle_state}
@@ -151,9 +151,7 @@ export const query = graphql`
           id
           extension
           childImageSharp {
-            fluid(maxWidth: 2000, maxHeight: 2000, quality: 100) {
-              ...GatsbyImageSharpFluid
-            }
+            gatsbyImageData(layout: CONSTRAINED, placeholder: BLURRED)
           }
         }
       }

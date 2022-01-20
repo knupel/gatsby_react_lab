@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { graphql } from "gatsby";
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 import Layout from "../../components/layout";
 import { hsb_to_hex } from "../../utils/color_convertor";
 import { Get_window } from "../../utils/canvas";
@@ -60,7 +60,8 @@ function Cell({ children, ...props }) {
   const mouse_state = () => {
     mouse_is ? set_mouse_is(false) : set_mouse_is(true);
   };
-  console.log("Cell() cell props", props.w, props.h);
+  // console.log("Cell() cell props", props.w, props.h);
+  // console.log("children.relativePath", children.relativePath);
   // if (styles === undefined)
   //   return <div>styles.module.container css is undefined</div>;
   return (
@@ -74,16 +75,7 @@ function Cell({ children, ...props }) {
         style={set_button_style(props, is, mouse_is)}
         // style={set_button_style(props.w, props.h, alpha)}
       >
-        {
-          <Img
-            // className="gatsby-image-wrapper"
-            // style={{ height: "100%", width: "100%" }}
-            // className={container.gatsbyImageWrapper}
-            height="100%"
-            fluid={children.childImageSharp.fluid}
-            // Tag="div"
-          />
-        }
+        <GatsbyImage image={children.childImageSharp.gatsbyImageData}/>
       </button>
     </div>
   );
@@ -97,8 +89,6 @@ function GridButtonAdvanced({ data }) {
 
   let val = res[0] - marge * (num_pic_by_col + 1);
   let size_cell = Math.floor(val / num_pic_by_col);
-
-  // console.log("window size", res[0], "cell", size_cell)
   const [cell_width, set_cell_width] = useState(size_cell);
   const [cell_height, set_cell_height] = useState(size_cell);
 
@@ -106,7 +96,7 @@ function GridButtonAdvanced({ data }) {
     set_cell_width(size_cell);
     set_cell_height(size_cell);
   }
-  console.log("GridButtonAdvanced() cell size", cell_width, cell_height);
+
   return (
     <div>
       <Layout title="GRID BUTTON ADVANCED"></Layout>
@@ -131,12 +121,9 @@ export const query = graphql`
     allFile(filter: { sourceInstanceName: { eq: "tdm" } }) {
       edges {
         node {
-          extension
           relativePath
           childImageSharp {
-            fluid(maxWidth: 200, maxHeight: 200) {
-              ...GatsbyImageSharpFluid
-            }
+            gatsbyImageData(layout: CONSTRAINED, width:600, height:600, placeholder: BLURRED)
           }
         }
       }

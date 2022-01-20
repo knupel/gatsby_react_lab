@@ -7,7 +7,7 @@ import P5Wrapper from "../../components/P5Wrapper";
 
 const BG = P5Wrapper("background");
 
-export default function () {
+export default function NoDialJustP5() {
   return (
     <div>
       <div style={{ position: "absolute" }}>
@@ -19,6 +19,7 @@ export default function () {
     </div>
   );
 }
+
 
 function P5Background() {
   return <BG sketch={my_sketch}></BG>;

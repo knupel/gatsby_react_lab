@@ -9,7 +9,7 @@
 import React from "react"
 import Layout from "../../components/layout"
 import { graphql } from "gatsby"
-import Img from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image";
 
 const Show = ({ children, ...props }) => {
   if (children.node.relativePath.includes(props.file_name)) {
@@ -19,7 +19,7 @@ const Show = ({ children, ...props }) => {
         <p>
           size: {props.size[0]}x{props.size[1]} cm
         </p>
-        <Img fluid={children.node.childImageSharp.fluid} />
+        <GatsbyImage image={children.node.childImageSharp.gatsbyImageData} />
       </div>
     )
   }
@@ -67,13 +67,9 @@ export const pageQuery = graphql`
     allFile(filter: { sourceInstanceName: { eq: "media_art" } }) {
       edges {
         node {
-          extension
           relativePath
-          sourceInstanceName
           childImageSharp {
-            fluid(maxHeight: 200) {
-              ...GatsbyImageSharpFluid
-            }
+            gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
           }
         }
       }
