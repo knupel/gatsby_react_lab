@@ -13,7 +13,7 @@ const Dial_A_P5Wrapper = P5Wrapper("dialogue A");
 const Dial_B_P5Wrapper = P5Wrapper("dialogue B");
 const Dial_C_P5Wrapper = P5Wrapper("dialogue C");
 
-export default function () {
+export default function Multisketches() {
   return (
     <div>
       <div>

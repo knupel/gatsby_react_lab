@@ -10,9 +10,9 @@ import P5Wrapper from "../../components/P5Wrapper";
 import P5Manager from "../../components/P5Manager";
 import { P5DispatchContext, P5StateContext } from "../../components/P5Manager";
 
-const Dial_P5Wrapper = P5Wrapper("dialogue");
+const DialP5Wrapper = P5Wrapper("dialogue");
 
-export default function () {
+export default function DialP5React() {
   return (
     <div>
       <div>
@@ -57,11 +57,11 @@ function Dialogue(props) {
     set_data(buf_data);
   }
   return (
-    <Dial_P5Wrapper
+    <DialP5Wrapper
       sketch={my_sketch}
       dispatch={dispatch}
       data={state_data}
-    ></Dial_P5Wrapper>
+    ></DialP5Wrapper>
   );
 }
 

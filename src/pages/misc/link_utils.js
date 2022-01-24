@@ -82,7 +82,7 @@ function SectionFun() {
   );
 }
 
-export default function () {
+export default function LinkUtils() {
   return (
     <div>
       <Layout title="EXTERNAL UTILS LINK"></Layout>
@@ -95,3 +95,4 @@ export default function () {
     </div>
   );
 }
+

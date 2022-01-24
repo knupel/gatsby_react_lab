@@ -1,7 +1,7 @@
 import React from "react"
 import Layout from "../../components/layout"
 
-export default ({ location }) => {
+const LinkLocationStata = ({ location }) => {
   // need to test for step `gatsby build`
   if (!location.state) {
     return null
@@ -14,3 +14,5 @@ export default ({ location }) => {
     )
   }
 }
+
+export default LinkLocationStata;

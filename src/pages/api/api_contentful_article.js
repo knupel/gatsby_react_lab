@@ -15,14 +15,14 @@
  }
  
  function ShowElem({elem}) {
-	 console.log("elem.artWork.title",elem.artWork.title);
-	 console.log("elem.artWork.description",elem.artWork.description);
-	 console.log("elem.artWork.legnth",elem.artWork.length);
+	 console.log("elem.artwork.title",elem.artwork.title);
+	 console.log("elem.artwork.description",elem.artwork.description);
+	 console.log("elem.artwork.length",elem.artwork.length);
 	 console.log("elem.title",elem.title);
 	 return(
 	 				<div>
 		 				<div>{elem.title}</div>
-						<div>{elem.artWork.map(elem =>(<ShowImage img={elem}/>))}</div>
+						<div>{elem.artwork.map(elem =>(<ShowImage img={elem}/>))}</div>
 					</div>
 					)
 
@@ -37,7 +37,7 @@
 
  export default function ApiContentful(props) {
 	//  const nodes = props.data.allContentfulKnupelPage.nodes; >>> work with a single media ????
-	const nodes = props.data.allContentfulKnupelLab.nodes;
+	const nodes = props.data.allContentfulPageArtwork.nodes;
 	 return (
 		 <div>
 			 <Layout
@@ -52,14 +52,14 @@
  export const content_query = graphql
  `
  query {
-	allContentfulKnupelLab {
+	allContentfulPageArtwork {
 		nodes {
 			id
 			title
 			description {
 				description
 			}
-			artWork {
+			artwork {
 				description
 				id
 				title

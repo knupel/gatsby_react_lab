@@ -15,8 +15,8 @@ import Layout from "../../components/layout"
 // https://reactjs.org/docs/context.html
 // https://milddev.com/react/react-createcontext/
 
-const Context_grid_radio = createContext()
-Context_grid_radio.displayName = "context_grid_radio"
+const ContextGridRadio = createContext()
+ContextGridRadio.displayName = "context_grid_radio"
 
 const img_grid_style = {
   display: "grid",
@@ -104,7 +104,7 @@ function Cell({ children }) {
   )
 }
 
-export default function ({ data }) {
+export default function GridImageRadio({ data }) {
   const [radio_is, set_radio_is] = useState([])
   let id = 0
   useEffect(() => {
@@ -117,13 +117,13 @@ export default function ({ data }) {
   return (
     <div>
       <Layout title="GRID IMAGE show selected image one by one, like a radio menu"></Layout>
-      <Context_grid_radio.Provider value={radio_is}>
+      <ContextGridRadio.Provider value={radio_is}>
         <div style={img_grid_style}>
           {radio_is.map(elem => (
             <Cell>{elem}</Cell>
           ))}
         </div>
-      </Context_grid_radio.Provider>
+      </ContextGridRadio.Provider>
     </div>
   )
   // return (

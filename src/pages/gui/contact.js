@@ -13,7 +13,7 @@ import Layout from "../../components/layout"
 //   }
 // }
 
-export default () => {
+const Contact = () => {
   return (
     <div>
       <Layout title="Send me an email, for that. You don't know but i use Netlify"></Layout>
@@ -53,3 +53,5 @@ export default () => {
     </div>
   )
 }
+
+export default Contact;
