@@ -30,14 +30,12 @@ export function useFocus() {
   const focus_in = e => {
     const name = e.target.name;
     // e.persist();
-    set_focus({[name]: true});
-    // console.log("useFocus() in", focus);
+    set_focus({id: [name], is: true, [name]: true});
   }
 
   const focus_out = e => {
     const name = e.target.name;
-    set_focus({[name]: false});
-    // console.log("useFocus() out", focus);
+    set_focus({id: [name], is: true, [name]: false});
   }
 
   return {

@@ -87,7 +87,6 @@ const TextArea = (props) => (
 
 const Button = (props) => <button className={button_form}>{props.children}</button>;
 
-
 const setting = {
   name: {
     name: "name",
@@ -139,26 +138,40 @@ function FormAdvHook() {
   const [data, set_data] = useState(setting);
 
   function update_data(focus, input) {
-    const new_setting = {
-      name: {
-        name: "name",
-        label: "Name",
-        value: input.name,
-        focus: focus.name
-      },
-      email: {
-        name: "email",
-        label: "Email",
-        value: input.email,
-        focus: focus.email
-      },
-      message: {
-        name: "message",
-        label: "Message",
-        value: input.message,
-        focus: focus.message
+    
+    const new_setting = data;
+    // console.log("new setting", new_setting);
+    const list = Object.keys(new_setting);
+    for(const key of list ) {
+      console.log("key",key,"focus.id",focus.id);
+      if(key === focus.id) {
+        console.log("key",key);
+        console.log("key.name", key.name);
+        console.log("key.focus", key.focus);
+
       }
-    };
+    }
+
+    // const new_setting = {
+    //   name: {
+    //     name: "name",
+    //     label: "Name",
+    //     value: input.name,
+    //     focus: focus.name
+    //   },
+    //   email: {
+    //     name: "email",
+    //     label: "Email",
+    //     value: input.email,
+    //     focus: focus.email
+    //   },
+    //   message: {
+    //     name: "message",
+    //     label: "Message",
+    //     value: input.message,
+    //     focus: focus.message
+    //   }
+    // };
     set_data(new_setting);
   }
 
@@ -169,20 +182,17 @@ function FormAdvHook() {
   }
 
 
-
-
-
 	const { handle_submit, handle_input, input} = useFormAdv(callback_func);
   const { focus_in, focus_out, focus } = useFocus();
 
-  // console.log(" FormAdvHook() focus.name", focus.name);
-  // console.log(" FormAdvHook() focus.email", focus.email);
-  // console.log(" FormAdvHook() focus.message", focus.message);
-  // console.log(" FormAdvHook() focus", focus);
-
   useEffect(() => {
     if(focus.name || focus.email || focus.message) {
-      console.log("update",focus.name, focus.email,focus.message);
+      if(focus.name === undefined) focus.name = false;
+      if(focus.email === undefined) focus.email = false;
+      if(focus.message === undefined) focus.message = false;
+      console.log("update name ",focus.name, focus.email, focus.message);
+      console.log("update id",focus.id);
+      console.log("update is",focus.is);
       update_data(focus, input);
       console.log("data", data);
     };
