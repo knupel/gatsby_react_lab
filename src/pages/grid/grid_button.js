@@ -45,7 +45,7 @@ function Cell({ children, ...props }) {
 
   const [is, set_is] = useState(false)
   useEffect(() => {
-    set_is(is)
+    set_is(is);
   }, [is])
   const toggle_cell = () => {
     if (is) {

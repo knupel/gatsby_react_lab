@@ -16,9 +16,9 @@ class FormClass extends React.Component {
     lastName: "",
   }
   handleInputChange = event => {
-    const target = event.target
-    const value = target.value
-    const name = target.name
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
     this.setState({
       [name]: value,
     })

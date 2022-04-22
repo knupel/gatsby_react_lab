@@ -39,7 +39,7 @@ export const Sidebar = ({ width, height, children }) => {
         >
           <></>
         </button>
-        <div className="content">{children}</div>
+        <div>{children}</div>
       </div>
     </Fragment>
   )

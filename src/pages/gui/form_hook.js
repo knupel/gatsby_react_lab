@@ -1,3 +1,8 @@
+/**
+ * Form hook
+ * 2021-2022
+ * v 0.2.0
+ * */
 import React from "react"
 import Layout from "../../components/layout"
 import { useForm } from "../../components/custom_hook"
@@ -12,11 +17,12 @@ export default function PageForm() {
 }
 
 function FormHook() {
-  const info = () => {
-    alert(`User Created! Name: ${input.firstName} ${input.lastName}`)
+  const callback_func = () => {
+    // alert(`Et voilà la valeur de retour: ${input.firstName} ${input.lastName}`)
+    console.log(`Et voilà la valeur de retour: ${input.firstName} ${input.lastName}`)
   }
 
-  const { handle_submit, handle_input, input } = useForm(info)
+  const { handle_submit, handle_input, input } = useForm(callback_func)
 
   return (
     <form onSubmit={handle_submit}>

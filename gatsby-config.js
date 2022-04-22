@@ -16,6 +16,8 @@ module.exports = {
     author: `Knupel`,
   },
   plugins: [
+    // SCSS
+    `gatsby-plugin-sass`,
     // FONT
     {
       resolve: "gatsby-plugin-web-font-loader",

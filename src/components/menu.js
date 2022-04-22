@@ -63,6 +63,8 @@ function MenuGui() {
       <MenuLink link="gui/fullscreen/" name={"GUI: fullscreen"}></MenuLink>
       <MenuLink link="gui/form_class/" name={"GUI: form Class"}></MenuLink>
       <MenuLink link="gui/form_hook/" name={"GUI: form Hook"}></MenuLink>
+      <MenuLink link="gui/form_adv_class/" name={"GUI: form advanced Class"}></MenuLink>
+      <MenuLink link="gui/form_adv_hook/" name={"GUI: form advanced Hook"}></MenuLink>
       <MenuLink
         link="gui/mui_button_typekit_font/"
         name={"GUI: Mui button typekit font"}
