@@ -109,70 +109,22 @@ const setting = {
 };
 
 /** Root Component */
-// function update_data(focus, input) {
-//   const new_setting = {
-//     name: {
-//       name: "name",
-//       label: "Name",
-//       value: input.name,
-//       focus: focus.name
-//     },
-//     email: {
-//       name: "email",
-//       label: "Email",
-//       value: input.email,
-//       focus: focus.email
-//     },
-//     message: {
-//       name: "message",
-//       label: "Message",
-//       value: input.message,
-//       focus: focus.message
-//     }
-//   };
-//   set_data(new_setting);
-// }
-
 function FormAdvHook() {
 
   const [data, set_data] = useState(setting);
 
   function update_data(focus, input) {
-    
-    const new_setting = data;
-    // console.log("new setting", new_setting);
-    const list = Object.keys(new_setting);
+    const list = Object.keys(data);
     for(const key of list ) {
-      console.log("key",key,"focus.id",focus.id);
-      if(key === focus.id) {
-        console.log("key",key);
-        console.log("key.name", key.name);
-        console.log("key.focus", key.focus);
-
+      if(key === focus.id[0]) {
+        console.log("data[key]",data[key]);
+        const elem = Object.assign({}, data[key]);
+        console.log("0 elem",elem);
+        elem.focus = focus.is;
+        console.log("1 elem",elem);
+        set_data({[key] : elem});
       }
     }
-
-    // const new_setting = {
-    //   name: {
-    //     name: "name",
-    //     label: "Name",
-    //     value: input.name,
-    //     focus: focus.name
-    //   },
-    //   email: {
-    //     name: "email",
-    //     label: "Email",
-    //     value: input.email,
-    //     focus: focus.email
-    //   },
-    //   message: {
-    //     name: "message",
-    //     label: "Message",
-    //     value: input.message,
-    //     focus: focus.message
-    //   }
-    // };
-    set_data(new_setting);
   }
 
 
@@ -187,14 +139,7 @@ function FormAdvHook() {
 
   useEffect(() => {
     if(focus.name || focus.email || focus.message) {
-      if(focus.name === undefined) focus.name = false;
-      if(focus.email === undefined) focus.email = false;
-      if(focus.message === undefined) focus.message = false;
-      console.log("update name ",focus.name, focus.email, focus.message);
-      console.log("update id",focus.id);
-      console.log("update is",focus.is);
       update_data(focus, input);
-      console.log("data", data);
     };
   },[focus]);
   

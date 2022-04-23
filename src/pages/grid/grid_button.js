@@ -38,15 +38,17 @@ const img_grid_style = size => {
 }
 
 function Cell({ children, ...props }) {
-  const [mouse_is, set_mouse_is] = useState(false)
+  const [mouse_is, set_mouse_is] = useState(false);
   useEffect(() => {
     set_mouse_is(mouse_is)
   }, [mouse_is])
 
-  const [is, set_is] = useState(false)
+  const [is, set_is] = useState(false);
+
   useEffect(() => {
     set_is(is);
   }, [is])
+
   const toggle_cell = () => {
     if (is) {
       set_is(false)

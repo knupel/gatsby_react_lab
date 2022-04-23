@@ -13,6 +13,7 @@ export const query = graphql`
   }
 `
 
+
 export default function ImageFixed({ data }) {
   return (
     <div>
