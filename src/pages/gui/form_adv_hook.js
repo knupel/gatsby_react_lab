@@ -117,7 +117,6 @@ const setting = [
 ];
 
 
-
 function FormAdvHook() {
   const [data, set_data] = useState(setting);
   function update_data(focus, input) {
