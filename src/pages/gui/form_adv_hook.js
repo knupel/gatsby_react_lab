@@ -1,3 +1,12 @@
+/**
+* Advanced Hook Form
+* based on 
+* Based on Advanced class Form
+*
+* v 0.0.1
+* 2022-2022
+* */
+
 import React, { useEffect } from "react";
 import {useState} from "react";
 import { useFormAdv, useFocus } from "../../components/custom_hook"
@@ -52,12 +61,12 @@ function TextInput(props) {
       type="text"
       name={props.name}
       value={props.value}
-      onChange={props.onChange}
 
-      onInput={props.onInput}
-
+      onChange={props.get_change}
       onFocus={props.focus_in}
       onBlur={props.focus_out}
+
+      onInput={props.onInput}
     />
   </div>
   )
@@ -75,55 +84,55 @@ const TextArea = (props) => (
 			className={props.focus === true || props.value !== "" ? input_focus : ""}
       name={props.name}
       value={props.value}
-      onChange={props.onChange}
-      
-      onInput={props.onInput}
 
+      onChange={props.get_change}
       onFocus={props.focus_in}
       onBlur={props.focus_out}
+      
+      onInput={props.onInput}
     />
   </div>
 );
 
 const Button = (props) => <button className={button_form}>{props.children}</button>;
-
-const setting = {
-  name: {
+const setting = [
+  {
     name: "name",
     label: "Name",
     value: "",
     focus: false
   },
-  email: {
+  {
     name: "email",
     label: "Email",
     value: "",
     focus: false
   },
-  message: {
+  {
     name: "message",
     label: "Message",
     value: "",
     focus: false
   }
-};
+];
 
-/** Root Component */
+
+
 function FormAdvHook() {
-
   const [data, set_data] = useState(setting);
-
   function update_data(focus, input) {
-    const list = Object.keys(data);
-    for(const key of list ) {
-      if(key === focus.id[0]) {
-        console.log("data[key]",data[key]);
-        const elem = Object.assign({}, data[key]);
-        console.log("0 elem",elem);
+    const buf = [];
+    data.map(elem => {
+      if(elem.name === focus.id[0]) {
         elem.focus = focus.is;
-        console.log("1 elem",elem);
-        set_data({[key] : elem});
+        buf.push(elem);
+      } else {
+        elem.focus = false;
+        buf.push(elem);
       }
+    })
+    if(buf !== undefined) {
+      set_data(buf);
     }
   }
 
@@ -134,17 +143,19 @@ function FormAdvHook() {
   }
 
 
-	const { handle_submit, handle_input, input} = useFormAdv(callback_func);
+	const { handle_submit, get_change, input} = useFormAdv(callback_func);
   const { focus_in, focus_out, focus } = useFocus();
 
   useEffect(() => {
-    if(focus.name || focus.email || focus.message) {
+    if(focus.id !== undefined) {
       update_data(focus, input);
     };
   },[focus]);
   
-	const { name, email, message } = data;
-
+  // not really good system :(
+  const name = data[0];
+  const email = data[1];
+  const message = data[2];
 
 	return (
 		<div className={container}>
@@ -155,24 +166,23 @@ function FormAdvHook() {
 						{...name}
 						focus_in={focus_in}
 						focus_out={focus_out}
-						onChange={handle_input}
+						onChange={get_change}
 					/>
 					<TextInput
 						{...email}
 						focus_in={focus_in}
 						focus_out={focus_out}
-						onChange={handle_input}
+						onChange={get_change}
 					/>
 					<TextArea
 						{...message}
 						focus_in={focus_in}
 						focus_out={focus_out}
-						onChange={handle_input}
+						onChange={get_change}
 					/>
 					<Button>Send</Button>
 				</Form>
 			</Card>
 		</div>
 	);
-
 }

@@ -47,7 +47,7 @@ function TextInput(props) {
       type="text"
       name={props.name}
       value={props.value}
-      onChange={props.onChange}
+      onChange={props.get_change}
       onInput={props.onInput}
       onFocus={props.focus_in}
       onBlur={props.focus_out}
@@ -68,7 +68,7 @@ const TextArea = (props) => (
 			className={props.focus || props.value !== "" ? input_focus : ""}
       name={props.name}
       value={props.value}
-      onChange={props.onChange}
+      onChange={props.get_change}
       onInput={props.onInput}
       onFocus={props.focus_in}
       onBlur={props.focus_out}
@@ -131,12 +131,12 @@ class FormAdvClass extends React.Component {
     });
   }
 
-  handleChange(e) {
+  get_change(e) {
     const name = e.target.name;
     const state = Object.assign({}, this.state[name]);
     state.value = e.target.value;
     this.setState({ [name]: state }, () => {
-      console.log(" handleChange(e)",state);
+      console.log(" get_change(e)",state);
     });
   }
 
@@ -151,19 +151,19 @@ class FormAdvClass extends React.Component {
               {...name}
               focus_in={this.focus_in.bind(this)}
               focus_out={this.focus_out.bind(this)}
-              onChange={this.handleChange.bind(this)}
+              get_change={this.get_change.bind(this)}
             />
             <TextInput
               {...email}
               focus_in={this.focus_in.bind(this)}
               focus_out={this.focus_out.bind(this)}
-              onChange={this.handleChange.bind(this)}
+              get_change={this.get_change.bind(this)}
             />
             <TextArea
               {...message}
               focus_in={this.focus_in.bind(this)}
               focus_out={this.focus_out.bind(this)}
-              onChange={this.handleChange.bind(this)}
+              get_change={this.get_change.bind(this)}
             />
             <Button data={this.state}>Send</Button>
           </Form>
