@@ -1,5 +1,14 @@
+/**
+* Advanced class Form
+* based on 
+* Based on code https://codepen.io/cojdev/pen/LMZVqj 
+* Charles Ojukwu: https://codepen.io/cojdev
+*
+* v 0.2.0
+* 2022-2022
+* */
+
 import React from "react";
-// import {useState, useEffect } from "react";
 import Layout from "../../components/layout"
 import {container, title, card, form, 
         button_form, 
@@ -17,8 +26,7 @@ export default function PageForm() {
 }
 
 
-// Based on code https://codepen.io/cojdev/pen/LMZVqj 
-// Charles Ojukwu: https://codepen.io/cojdev
+
 
 /** Components */
 const Card = (props) => (

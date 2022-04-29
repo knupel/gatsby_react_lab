@@ -3,6 +3,7 @@ import { graphql, useStaticQuery } from "gatsby"
 import Layout from "../../components/layout"
 import { GatsbyImage } from "gatsby-plugin-image"
 
+
 const Image = ({ name, alt, style }) => {
   const { allImageSharp } = useStaticQuery(graphql`
     query {
@@ -18,7 +19,7 @@ const Image = ({ name, alt, style }) => {
     }
   `)
 
-  const img = allImageSharp.nodes.find(n => n.fluid.originalName === name).gatsbyImageData;
+  const img = allImageSharp.nodes.find(elem => elem.fluid.originalName === name).gatsbyImageData;
 
   return (
     <figure>
