@@ -4,7 +4,6 @@ import { MenuLink } from "../components/menu_link";
 function MenuApi() {
   return (
     <div>
-      <MenuLink link="api/mongodb/" name={"API: mongo db"}></MenuLink>
       <MenuLink
         link="api/api_public/"
         name={"API: Axios acces to puplic api"}
