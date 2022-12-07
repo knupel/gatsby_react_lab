@@ -20,7 +20,8 @@ const search_style = makeStyles(theme => ({
     width: 400,
   },
   input: {
-    marginLeft: theme.spacing(1),
+    // marginLeft: theme.spacing(1),
+    marginLeft: 10,
     flex: 1,
   },
   iconButton: {
