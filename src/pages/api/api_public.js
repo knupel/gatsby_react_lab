@@ -8,8 +8,8 @@ import { Link } from "gatsby";
 
 import axios from "axios";
 
-import { Paper, TextField } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { Paper, TextField } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 
 import Layout from "../../components/layout";
 const search_style = makeStyles(theme => ({

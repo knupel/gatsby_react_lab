@@ -2,9 +2,8 @@ import React from "react"
 import Layout from "../../components/layout"
 import { Link } from "gatsby"
 
-import Button from "@material-ui/core/Button"
-import { createMuiTheme } from "@material-ui/core/styles"
-import { ThemeProvider } from "@material-ui/core/styles"
+import Button from "@mui/material/Button"
+import { createTheme, ThemeProvider } from "@mui/material/styles"
 
 import JuanitaTTF from "../../../fonts/Juanita ITC.ttf"
 
@@ -26,7 +25,7 @@ const juanita_itc = {
     "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF",
 }
 
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     fontFamily: "Juanita ITC, Arial",
     fontSize: 60,
@@ -43,7 +42,7 @@ const theme = createMuiTheme({
 export default function MUISimple() {
   return (
     <div>
-      <Layout title="MATERIAL UI local font" link="false"></Layout>
+      <Layout title="MUI V5: local font" link="false"></Layout>
       <ThemeProvider theme={theme}>
         <Link to="/">
           <Button variant="contained" color="primary" fullWidth="true">

@@ -1,48 +1,16 @@
 import React from "react"
 import Layout from "../../components/layout"
 
-import Button from "@material-ui/core/Button"
-import { createMuiTheme } from "@material-ui/core/styles"
-import { ThemeProvider } from "@material-ui/core/styles"
-import { Typography } from "@material-ui/core"
-// import CssBaseline from "@material-ui/core/CssBaseline"
-// import ScopedCssBaseline from "@material-ui/core/ScopedCssBaseline"
+import Button from "@mui/material/Button"
+import { createTheme, ThemeProvider} from "@mui/material/styles"
+import { Typography } from "@mui/material"
 
-// https://www.gatsbyjs.com/docs/using-web-fonts/
-// if id is define in .env look https://www.gatsbyjs.com/docs/environment-variables/  for the deployment and build part
-
-// const typekit_font = {
-//   fontFamily: "Malaga OTCE Bold",
-//   // fontFamily: "metalista-web, Malaga OTCE Bold",
-//   fontWeight: 400,
-//   fontDisplay: "auto",
-//   src: `
-//   `,
-// }
-
-const zero_style = createMuiTheme({
+const zero_style = createTheme({
   typography: {
     fontFamily: ["Malaga", "Metalista-web", "serif"],
     fontSize: 60,
   },
-  // overrides: {
-  //   MuiCssBaseline: {
-  //     "@global": {
-  //       "@font-face": [typekit_font],
-  //     },
-  //   },
-  // },
 })
-
-// zero_style.typography.h3 = {
-//   fontSize: 20,
-//   },
-// }
-
-// zero_style.typography.h2 = {
-//   fontSize: 20,
-//   },
-// }
 
 zero_style.typography.h1 = {
   fontSize: 300,

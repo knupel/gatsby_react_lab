@@ -5,10 +5,11 @@ import { Link } from "gatsby"
 
 // MATERIAL UI
 // function Mui
-import { createMuiTheme, withStyles } from "@material-ui/core/styles"
+
 // Component Mui
-import Button from "@material-ui/core/Button"
-import { ThemeProvider } from "@material-ui/core/styles"
+import Button from "@mui/material/Button"
+import { createTheme, ThemeProvider} from "@mui/material/styles"
+import { withStyles } from "@mui/styles"
 
 // https://www.gatsbyjs.com/docs/using-web-fonts/
 // if id is define in .env look https://www.gatsbyjs.com/docs/environment-variables/  for the deployment and build part
@@ -16,7 +17,7 @@ import { ThemeProvider } from "@material-ui/core/styles"
 
 // https://www.gatsbyjs.com/docs/gatsby-link/
 
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     fontFamily: "Malaga, serif",
     // fontFamily: "Metalista-web, serif",
@@ -24,7 +25,6 @@ const theme = createMuiTheme({
   },
 })
 
-// https://material-ui.com/components/buttons/
 const SuperButton = withStyles({
   root: {
     boxShadow: "none",
@@ -70,7 +70,7 @@ export default function MUISimple() {
   return (
     <div>
       <Layout
-        title="Material UI: Button setting with Typekit font"
+        title="Material UI V4: Button setting with Typekit font"
         link="false"
       ></Layout>
       <ThemeProvider theme={theme}>

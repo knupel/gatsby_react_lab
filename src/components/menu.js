@@ -66,16 +66,21 @@ function MenuGui() {
       <MenuLink link="gui/form_adv_hook/" name={"GUI: form advanced Hook"}></MenuLink>
       <MenuLink
         link="gui/mui_button_typekit_font/"
-        name={"GUI: Mui button typekit font"}
+        name={"GUI:M[aterial]UI button typekit font"}
       ></MenuLink>
       <MenuLink
         link="gui/mui_local_font/"
-        name={"GUI: Mui local font"}
+        name={"GUI: M[aterial]UIlocal font"}
+      ></MenuLink>
+      <MenuLink
+        link="gui/mui_icons/"
+        name={"GUI: M[aterial]UI icons"}
       ></MenuLink>
       <MenuLink
         link="gui/form_signup_hook/"
         name={"GUI: form signup Hook"}
       ></MenuLink>
+
       <MenuLink link="gui/contact/" name={"GUI: send me an email"}></MenuLink>
     </div>
   );

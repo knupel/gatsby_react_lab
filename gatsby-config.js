@@ -28,7 +28,7 @@ module.exports = {
       },
     },
     // UI / UX
-    `gatsby-plugin-material-ui`,
+    // `gatsby-plugin-material-ui`,
 
 
     // IMAGE

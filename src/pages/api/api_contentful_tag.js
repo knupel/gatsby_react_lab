@@ -53,9 +53,7 @@
  export const content_query = graphql
  `
  query FilterByTagsQuery {
-  boxon: allContentfulDiaporama(
-    sort: { fields: contentful_id }
-  ) {
+  boxon: allContentfulDiaporama(sort: {contentful_id: ASC}) {
     nodes {
       id
 			title
