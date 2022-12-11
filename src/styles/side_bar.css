@@ -1,0 +1,27 @@
+/* inspired from
+ https://medium.com/javascript-in-plain-english/create-a-reusable-sidebar-component-with-react-d75cf48a053a 
+ https://www.youtube.com/watch?v=17g0QZXRfQk
+ */
+.side_bar {
+  height: 100% !important;
+  display: flex;
+  flex-direction: column;
+  /* border-right: 1px solid; */
+  border-radius: 0;
+  /* border-color: rgba(0, 0, 0, 0.693); */
+  background-color: rgb(255, 0, 0);
+  transition: 0.8s ease;
+}
+
+.toggle_menu {
+  height: 50px;
+  border-top-right-radius: 10rem;
+  border-bottom-right-radius: 9rem;
+  width: 10px;
+  position: absolute;
+  outline: none;
+  z-index: 1;
+  background-color: rgba(255, 0, 0);
+  /* border-color: rgba(64, 194, 133, 0.693); */
+  border-left: 0;
+}
