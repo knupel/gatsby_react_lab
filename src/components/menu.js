@@ -8,7 +8,7 @@ function MenuApi() {
         link="api/api_public/"
         name={"API: Axios acces to puplic api"}
       ></MenuLink>
-      <MenuLink
+      {/* <MenuLink
         link="api/api_contentful_all_contentful_asset/"
         name={"API: Contentful CMS : all asset"}
       ></MenuLink>
@@ -19,7 +19,7 @@ function MenuApi() {
       <MenuLink
         link="api/api_contentful_tag/"
         name={"API: Contentful CMS : select a part of content by tag"}
-      ></MenuLink>
+      ></MenuLink> */}
     </div>
   );
 }
