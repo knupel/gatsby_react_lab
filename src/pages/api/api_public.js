@@ -9,29 +9,34 @@ import { Link } from "gatsby";
 import axios from "axios";
 
 import { Paper, TextField } from "@mui/material";
-import { makeStyles } from "@mui/styles";
+import { styled } from "@mui/material/styles"
+// import { makeStyles } from "@mui/styles";
 
 import Layout from "../../components/layout";
-const search_style = makeStyles(theme => ({
-  root: {
-    padding: "2px 4px",
-    display: "flex",
-    alignItems: "center",
-    width: 400,
-  },
-  input: {
-    // marginLeft: theme.spacing(1),
-    marginLeft: 10,
-    flex: 1,
-  },
-  iconButton: {
-    padding: 10,
-  },
-  divider: {
-    height: 28,
-    margin: 4,
-  },
-}));
+
+const SuperTextField = styled(TextField)`
+  color: #20b2aa;
+`;
+// const search_style = makeStyles(theme => ({
+//   root: {
+//     padding: "2px 4px",
+//     display: "flex",
+//     alignItems: "center",
+//     width: 400,
+//   },
+//   input: {
+//     // marginLeft: theme.spacing(1),
+//     marginLeft: 10,
+//     flex: 1,
+//   },
+//   iconButton: {
+//     padding: 10,
+//   },
+//   divider: {
+//     height: 28,
+//     margin: 4,
+//   },
+// }));
 
 function ShowItem(props) {
   let alt_name = "url img: " + props.url_img_medium;
@@ -84,7 +89,7 @@ function RenderShow({ children }) {
 }
 
 export default function ApiPublic() {
-  const style = search_style();
+  // const style = search_style();
   const [data, setData] = useState({ hits: [] });
   const [query, setQuery] = useState("england");
 
@@ -105,9 +110,8 @@ export default function ApiPublic() {
     <div>
       <Layout title="API PUBLIC RESEARCH with AXIOS" link="true"></Layout>
       <Fragment>
-        <Paper component="form" className={style.root}>
-          <TextField
-            className={style.input}
+      <Paper component="form">
+          <SuperTextField
             id="filled-search"
             label="Search field"
             type="search"
@@ -122,3 +126,43 @@ export default function ApiPublic() {
     </div>
   );
 }
+
+// export default function ApiPublic() {
+//   const style = search_style();
+//   const [data, setData] = useState({ hits: [] });
+//   const [query, setQuery] = useState("england");
+
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       const result = await axios(
+//         `https://api.tvmaze.com/search/shows?q=${query}`
+//         // `https://cors-anywhere.herokuapp.com/https://api.tvmaze.com/search/shows?q=${query}`
+//       );
+//       setData(result.data);
+//     };
+
+//     fetchData();
+//   }, [query]);
+
+//   console.log("query:", query);
+//   return (
+//     <div>
+//       <Layout title="API PUBLIC RESEARCH with AXIOS" link="true"></Layout>
+//       <Fragment>
+//         <Paper component="form" className={style.root}>
+//           <TextField
+//             className={style.input}
+//             id="filled-search"
+//             label="Search field"
+//             type="search"
+//             variant="filled"
+//             onChange={event => setQuery(event.target.value)}
+//           />
+//         </Paper>
+//         <div>
+//           <RenderShow>{data}</RenderShow>
+//         </div>
+//       </Fragment>
+//     </div>
+//   );
+// }
