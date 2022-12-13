@@ -86,14 +86,14 @@ h1 {
   /* font-family: "acier-bat-solid", -apple-system, BlinkMacSystemFont, Segoe UI,
     Roboto, */
   /* font-family: "Malaga", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, */
-  font-family: "Malaga", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+  font-family: "aglet-mono", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
     /* font-family: "Metalista", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, */
       /* font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, */
       Ubuntu,
     Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
-  font-size: 2.25rem;
+  font-size: 1.4rem;
   line-height: 1.1;
 }
 mark {

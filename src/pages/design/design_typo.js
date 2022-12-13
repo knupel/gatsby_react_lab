@@ -7,7 +7,7 @@ import { Typography } from "@mui/material"
 
 const zero_style = createTheme({
   typography: {
-    fontFamily: ["Malaga", "Metalista-web", "serif"],
+    fontFamily: ["aglet-mono", "Metalista-web", "serif"],
     fontSize: 60,
   },
 })
