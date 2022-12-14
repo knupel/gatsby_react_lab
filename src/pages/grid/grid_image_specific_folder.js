@@ -10,13 +10,9 @@ const img_grid_style = {
 };
 
 function Info({node}) {
-  // console.log("node",node);
-  // console.log("node.childImageSharp",node.childImageSharp);
-  // console.log("node.childImageSharp.gatsbyImageData",node.childImageSharp.gatsbyImageData);
   return(<div></div>)
 }
 const GridImgSpecificFolder = ({ data }) => {
-  // console.log("data.allFile.edges", data.allFile.edges[0].childImageSharp.gatsbyImageData);
   return (
     <div>
       <Layout title="IMAGE GRID FROM SPECIFIC FOLDER"></Layout>
@@ -25,7 +21,6 @@ const GridImgSpecificFolder = ({ data }) => {
           <div>
           <Info node ={node}/>
           <GatsbyImage image={node.childImageSharp.gatsbyImageData}/>
-          {/* <GatsbyImage fluid={node.childImageSharp.fluid}/> */}
           </div>
         ))}
       </div>
@@ -51,23 +46,5 @@ export const query = graphql`
   }
 `;
 
-// export const query = graphql`
-//   query {
-//     allFile(filter: { sourceInstanceName: { eq: "media_art" } }) {
-//       edges {
-//         node {
-//           extension
-//           relativePath
-//           childImageSharp {
-//             gatsbyImageData(placeholder: BLURRED, width: 800, height: 800)
-//             fluid(maxWidth: 200, maxHeight: 200) {
-//               ...GatsbyImageSharpFluid
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-// `;
 
 

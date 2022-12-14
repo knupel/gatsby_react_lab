@@ -66,15 +66,15 @@ function MenuGui() {
       <MenuLink link="gui/form_adv_hook/" name={"GUI: form advanced Hook"}></MenuLink>
       <MenuLink
         link="gui/mui_button_typekit_font/"
-        name={"GUI:M[aterial]UI button typekit font"}
+        name={"GUI: MUI button typekit font"}
       ></MenuLink>
       <MenuLink
         link="gui/mui_local_font/"
-        name={"GUI: M[aterial]UI local font"}
+        name={"GUI: MUI local font"}
       ></MenuLink>
       <MenuLink
         link="gui/mui_icons/"
-        name={"GUI: M[aterial]UI icons"}
+        name={"GUI: MUI icons"}
       ></MenuLink>
       <MenuLink
         link="gui/form_signup_hook/"
@@ -104,6 +104,10 @@ function MenuImage() {
       <MenuLink
         link="/image/image_multi/"
         name={"IMG: images multi"}
+      ></MenuLink>
+      <MenuLink
+        link="/image/image_carousel/"
+        name={"IMG: carousel / diaporama"}
       ></MenuLink>
     </div>
   );

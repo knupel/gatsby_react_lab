@@ -21,7 +21,7 @@ import { styled } from "@mui/system"
 
 const theme = createTheme({
   typography: {
-    fontFamily: "aglet-mono, mono",
+    fontFamily: "aglet-mono, mono", // font typekit project for knupel website
     // fontFamily: "Metalista-web, serif",
     fontSize: 20,
   },
