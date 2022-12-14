@@ -10,7 +10,7 @@
 import React, { useEffect } from "react";
 import {useState} from "react";
 import { useFormAdv, useFocus } from "../../components/custom_hook"
-import Layout from "../../components/layout"
+import Layout from "../../components/struct/layout"
 import {container, title, card, form, 
         button_form, 
         text_input, text_area, 

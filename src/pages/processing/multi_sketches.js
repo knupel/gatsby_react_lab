@@ -2,11 +2,11 @@ import React from "react";
 import { useState } from "react";
 
 // site
-import Layout from "../../components/layout";
+import Layout from "../../components/struct/layout";
 
 // Processing
-import P5Wrapper from "../../components/P5Wrapper";
-import P5Manager from "../../components/P5Manager";
+import P5Wrapper from "../../components/p5js/P5Wrapper";
+import P5Manager from "../../components/p5js/P5Manager";
 // import P5DispatchContext from "../../components/P5Wrapper";
 
 const Dial_A_P5Wrapper = P5Wrapper("dialogue A");

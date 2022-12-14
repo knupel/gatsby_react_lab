@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "../../components/layout";
+import Layout from "../../components/struct/layout";
 import NewTabLink from "../../components/new_tab_link";
 
 export default function P5() {

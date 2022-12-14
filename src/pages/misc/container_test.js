@@ -1,6 +1,6 @@
 import React from "react";
-import Layout from "../../components/layout";
-import Header from "../../components/header";
+import Layout from "../../components/struct/layout";
+import Header from "../../components/struct/header";
 /**
  *  To use module CSS need to invoke in the brace each components of this one
  */

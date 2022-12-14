@@ -1,5 +1,5 @@
 import React from "react"
-import Layout from "../../components/layout"
+import Layout from "../../components/struct/layout"
 
 import Button from "@mui/material/Button"
 import { createTheme, ThemeProvider} from "@mui/material/styles"

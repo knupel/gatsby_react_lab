@@ -1,5 +1,5 @@
 import React from "react"
-import Layout from "../../components/layout"
+import Layout from "../../components/struct/layout"
 
 // function check_address_email(email) {
 //   // let email = document.formulaire.EMAIL.value

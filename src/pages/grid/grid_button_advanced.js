@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
-import Layout from "../../components/layout";
+import Layout from "../../components/struct/layout";
 import { hsb_to_hex } from "../../utils/color_convertor";
 import { Get_window } from "../../utils/canvas";
 /**

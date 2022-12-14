@@ -1,5 +1,5 @@
 import React from "react"
-import Layout from "../../components/layout"
+import Layout from "../../components/struct/layout"
 import Video from "../../components/video"
 import { Get_window } from "../../utils/canvas"
 

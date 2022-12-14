@@ -4,7 +4,7 @@ import { Fragment } from "react"
 import { createContext, useState, useEffect } from "react"
 import { graphql } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-import Layout from "../../components/layout"
+import Layout from "../../components/struct/layout"
 
 //https://fmontes.com/blog/dynamic-gatsby-images-an-anternative/
 

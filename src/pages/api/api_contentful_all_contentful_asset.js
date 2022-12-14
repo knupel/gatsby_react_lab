@@ -4,7 +4,7 @@
  */
 
 import React from "react";
-import Layout from "../../components/layout";
+import Layout from "../../components/struct/layout";
 import { graphql } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image";
 

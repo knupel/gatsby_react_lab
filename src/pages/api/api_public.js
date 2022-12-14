@@ -12,7 +12,7 @@ import { Paper, TextField } from "@mui/material";
 import { styled } from "@mui/material/styles"
 // import { makeStyles } from "@mui/styles";
 
-import Layout from "../../components/layout";
+import Layout from "../../components/struct/layout";
 
 const SuperTextField = styled(TextField)`
   color: #20b2aa;

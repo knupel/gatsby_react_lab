@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
-import Header from "../components/header"
-import "../styles/layout.css"
+import Header from "./header"
+import "./layout.css"
 
 const Layout = (props, { children }) => {
   // export default function Layout(props, { children }) {

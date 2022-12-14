@@ -1,5 +1,5 @@
 import React from "react"
-import Layout from "../../components/layout"
+import Layout from "../../components/struct/layout"
 import { Link } from "gatsby"
 
 import Button from "@mui/material/Button"

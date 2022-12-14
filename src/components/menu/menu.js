@@ -1,5 +1,5 @@
 import React from "react";
-import { MenuLink } from "../components/menu_link";
+import { MenuLink } from "./menu_link";
 
 function MenuApi() {
   return (
@@ -107,7 +107,11 @@ function MenuImage() {
       ></MenuLink>
       <MenuLink
         link="/image/image_carousel/"
-        name={"IMG: carousel / diaporama"}
+        name={"IMG: carousel based on react-material-ui-carousel"}
+      ></MenuLink>
+      <MenuLink
+        link="/image/image_diaporama/"
+        name={"IMG: diaporama made in le Pré Saint-Gervais"}
       ></MenuLink>
     </div>
   );

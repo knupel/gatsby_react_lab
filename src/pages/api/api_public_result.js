@@ -1,5 +1,5 @@
 import React from "react"
-import Layout from "../../components/layout"
+import Layout from "../../components/struct/layout"
 
 export default function Api_public_result() {
   //console.log(data.location.aboutProps.name)

@@ -9,7 +9,7 @@
 * */
 
 import React from "react";
-import Layout from "../../components/layout"
+import Layout from "../../components/struct/layout"
 import {container, title, card, form, 
         button_form, 
         text_input, text_area, 

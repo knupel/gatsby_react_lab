@@ -7,7 +7,7 @@
 
 
 import React from "react"
-import Layout from "../../components/layout"
+import Layout from "../../components/struct/layout"
 // carousel
 import Carousel from 'react-material-ui-carousel';
 import { Paper, Button } from '@mui/material';
@@ -46,7 +46,7 @@ function CarouselLab({data}) {
 
 
 
-export default function carousel_mui({data}) {
+export default function CarouselMui({data}) {
   return (
     <div>
       <Layout title="CAROUSEL ou DIAPORAMA based on Material UI and react-material-ui-carousel"></Layout>
@@ -56,6 +56,7 @@ export default function carousel_mui({data}) {
 }
 
 
+// gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED,  width: 800, height: 800)
 
 export const query = graphql`
   query {
@@ -66,7 +67,13 @@ export const query = graphql`
           relativePath
 					name
           childImageSharp {
-            gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED,  width: 800, height: 800)
+						gatsbyImageData(
+									width: 1000
+                  height: 600
+                  placeholder: BLURRED
+                  quality: 90
+                  blurredOptions: { width: 100 }
+                  transformOptions: { cropFocus: CENTER, fit: CONTAIN })
           }
         }
       }

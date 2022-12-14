@@ -1,6 +1,6 @@
 import React from "react"
-import Header from "../components/header"
-import Menu from "../components/menu"
+import Header from "../components/struct/header"
+import Menu from "../components/menu/menu"
 
 export default function Home() {
   return (

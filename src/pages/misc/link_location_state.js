@@ -1,5 +1,5 @@
 import React from "react"
-import Layout from "../../components/layout"
+import Layout from "../../components/struct/layout"
 
 const LinkLocationStata = ({ location }) => {
   // need to test for step `gatsby build`
