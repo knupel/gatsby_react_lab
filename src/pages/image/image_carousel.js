@@ -18,8 +18,6 @@ import { GatsbyImage } from "gatsby-plugin-image";
 
 
 function Item({index, node}) {
-	console.log("index",index);
-	console.log("node.name",node.name);
 	return (
 		<Paper>
 			{/* <h2>{content.name}</h2>  */}
@@ -31,10 +29,40 @@ function Item({index, node}) {
 }
 
 
+
+
 function CarouselLab({data}) {
+  const style_button_next_previous = ()  => {
+    return { 
+      style: {
+        backgroundColor: 'red',
+        color: 'yellow',
+        borderRadius: 0
+      }
+    }
+  }
+
+
+  const anArrayOfNumbers = [1, 
+  2, 
+  3
+ ];
+
+
 	console.log("data", data.allFile.edges.length);
 	return (
-		<Carousel>
+		<Carousel 
+      // fullHeightHover={false}     // display or not the previous and next button
+    navButtonsProps={style_button_next_previous()}
+    IndicatorIcon={anArrayOfNumbers}
+    navButtonsWrapperProps={{   // Move the buttons to the bottom. Unsetting top here to override default style.
+        style: {
+            bottom: '0',
+            top: 'unset'
+        }
+    }} 
+    NextIcon='next'             // Change the "inside" of the next button to "next"
+    PrevIcon='prev' >
 			{data.allFile.edges.map(({node}, index) => 
 				<Item index={index} node={node} />
 			)}

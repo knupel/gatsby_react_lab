@@ -3,7 +3,7 @@ import React from "react";
 // site
 import Layout from "../../components/struct/layout";
 // Processing
-import P5Wrapper from "../../components/p5js/P5Wrapper";
+import P5Wrapper from "../../components/processing/P5Wrapper";
 
 const BG = P5Wrapper("background");
 

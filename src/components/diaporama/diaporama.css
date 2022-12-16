@@ -6,7 +6,7 @@
   display: grid;
   /* grid-template-columns: 110px 1fr; */
 }
-.button_nav {
+.button_console {
   min-width: 100px;
   height: 40px;
   background-color: magenta;
@@ -16,6 +16,19 @@
   border: 0px;
   margin: 10px 5px;
   cursor: pointer;
+}
+
+.button_summary {
+  min-width: 10px;
+  height: 10px;
+  background-color: yellow;
+  color: yellow;
+  font-size: 20px;
+  padding: 0px 5px;
+  border: 0px;
+  margin: 10px 5px;
+  cursor: pointer;
+
 }
 
 .slide {

@@ -1,10 +1,14 @@
-import React from "react"
-import { Fragment } from "react"
-
-import { createContext, useState, useEffect } from "react"
-import { graphql } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image"
-import Layout from "../../components/struct/layout"
+/**
+ * Grid image radio
+ * 
+ * In progress, the result is not really good !
+ * 
+ * v 0.0.1
+ * 2021-2021
+ * https://www.knupel.art/
+ * stan[at]knupel.art
+ * 
+ * */
 
 //https://fmontes.com/blog/dynamic-gatsby-images-an-anternative/
 
@@ -15,8 +19,19 @@ import Layout from "../../components/struct/layout"
 // https://reactjs.org/docs/context.html
 // https://milddev.com/react/react-createcontext/
 
-const ContextGridRadio = createContext()
-ContextGridRadio.displayName = "context_grid_radio"
+import React from "react"
+import { Fragment } from "react"
+import { createContext, useState, useEffect } from "react"
+
+
+import { graphql } from "gatsby"
+import { GatsbyImage } from "gatsby-plugin-image"
+import Layout from "../../components/struct/layout"
+
+
+
+const ContextGridRadio = createContext();
+ContextGridRadio.displayName = "context_grid_radio";
 
 const img_grid_style = {
   display: "grid",
@@ -27,9 +42,11 @@ const img_grid_style = {
 // avout cursor
 // https://developer.mozilla.org/fr/docs/Web/CSS/cursor
 const cell_style = over_is => {
+  // what that ???? this sentence is ununderstandable
   let cursor_is = `auto`
-  if (cursor_is) cursor_is = `pointer`
+  if (over_is) cursor_is = `pointer`
 
+  //
   return {
     width: `100%`,
     height: `100%`,
@@ -112,7 +129,7 @@ export default function GridImageRadio({ data }) {
       set_radio_is(prev_id => [...prev_id, [id++, elem]])
     })
   }, []) // avoid to put the dependencies, if you do your start in loop
-  radio_is.forEach(elem => console.log("elem:", elem))
+  // radio_is.forEach(elem => console.log("elem:", elem))
 
   return (
     <div>
@@ -126,18 +143,6 @@ export default function GridImageRadio({ data }) {
       </ContextGridRadio.Provider>
     </div>
   )
-  // return (
-  //   <div>
-  //     <Layout title="GRID IMAGE show selected image one by one, like a radio menu"></Layout>
-  //     <Context_grid_radio.Provider value={radio_is}>
-  //       <div style={img_grid_style}>
-  //         {data.allFile.edges.map(edge => (
-  //           <Cell>{edge}</Cell>
-  //         ))}
-  //       </div>
-  //     </Context_grid_radio.Provider>
-  //   </div>
-  // )
 }
 
 export const query = graphql`

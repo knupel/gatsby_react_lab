@@ -20,32 +20,33 @@ const DiaporamaPhoto = () => {
   const { allFile } = useStaticQuery(
     graphql`
       query {
-    allFile(filter: { sourceInstanceName: { eq: "tdm" } }) {
-      edges {
-        node {
-					id
-					base
-          extension
-          relativePath
-					name
-          childImageSharp {
-						gatsbyImageData(
-									width: 1000
-                  height: 600
-                  placeholder: BLURRED
-                  quality: 90
-                  blurredOptions: { width: 100 }
-                  transformOptions: { cropFocus: CENTER, fit: CONTAIN })
+        allFile(filter: { sourceInstanceName: { eq: "tdm" } }) {
+          edges {
+            node {
+              id
+              base
+              extension
+              relativePath
+              name
+              childImageSharp {
+                gatsbyImageData(
+                      backgroundColor: "red"
+                      width: 1000
+                      height: 600
+                      placeholder: BLURRED
+                      quality: 90
+                      blurredOptions: { width: 100 }
+                      transformOptions: { cropFocus: CENTER, fit: CONTAIN })
+              }
+            }
           }
         }
       }
-    }
-  }
     `
   );
 
   const setting = {
-    background: "black",
+    background: "red",
     first_is: true,
     first: "first",
     last_is: false,

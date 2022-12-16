@@ -6,9 +6,9 @@ import { useContext } from "react";
 import Layout from "../../components/struct/layout";
 
 // Processing
-import P5Wrapper from "../../components/p5js/P5Wrapper";
-import P5Manager from "../../components/p5js/P5Manager";
-import { P5DispatchContext, P5StateContext } from "../../components/p5js/P5Manager";
+import P5Wrapper from "../../components/processing/P5Wrapper";
+import P5Manager from "../../components/processing/P5Manager";
+import { P5DispatchContext, P5StateContext } from "../../components/processing/P5Manager";
 
 const DialP5Wrapper = P5Wrapper("dialogue");
 

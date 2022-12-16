@@ -1,6 +1,6 @@
 /**
  * Diaporama
- * v 0.0.1
+ * v 0.0.2
  * 2021-2022
  * by @knupel
  * https://www.knupel.art/
@@ -27,13 +27,16 @@ function Title({ title, is, index, current, node }) {
   } else return null;
 }
 
-function Button({ click, name }) {
+function Button({ click, name, className }) {
   return (
-    <button className="button_nav" onClick={click}>
+    <button className={className} onClick={click}>
       {name}
     </button>
   );
 }
+
+// CONSOLE
+///////////////
 
 function Console({ allFile, setting }) {
   const { current, set_current } = useContext(DiapoContext);
@@ -62,18 +65,50 @@ function Console({ allFile, setting }) {
     }
   };
 
+  const go_to = (index) => {
+    // console.log("index", index);
+    set_current(index);
+  }
+
+
   return (
+    <>
     <div>
-      <Button click={go_first} name={setting.first} />
-      <Button click={go_previous} name={setting.previous} />
-      <Button click={go_next} name={setting.next} />
-      <Button click={go_last} name={setting.last} />
+      <Button click={go_first} name={setting.first} className={"button_console"}/>
+      <Button click={go_previous} name={setting.previous} className={"button_console"}/>
+      <Button click={go_next} name={setting.next} className={"button_console"}/>
+      <Button click={go_last} name={setting.last} className={"button_console"}/>
     </div>
+    <div style={{display: "flex"}}>
+    {allFile.edges.map((elem,index) => (
+      <Button click={go_to(index)} className={"button_summary"}/>
+    ))}
+  </div>
+  </>
   );
 }
 
-// scrimba diaporama
-// https://scrimba.com/scrim/cpqd9rta
+
+// function Summary({allFile}) {
+//   const { current, set_current } = useContext(DiapoContext);
+
+//   const go_to = (index) => {
+//     set_current(index);
+//   }
+
+//   return (
+//     <div style={{display: "flex"}}>
+//       {allFile.edges.map((elem,index) => (
+//         <Button click={go_to(index)} className={"button_summary"}/>
+//       ))}
+//     </div>
+//   )
+
+// }
+
+// DIAPORAMA
+///////////////////
+
 export function Diaporama({ allFile, setting }) {
   const style = {
     display: "flex",
@@ -109,12 +144,13 @@ export function Diaporama({ allFile, setting }) {
               aria-hidden={index !== current}
             >
               {index === current && (
-                <GatsbyImage image={getImage(node)} alt={node.base} />
+              <GatsbyImage image={getImage(node)} alt={node.base} backgroundColor={setting.background}/>
               )}
             </div>
           </div>
         ))}
         <Console allFile={allFile} setting={setting} />
+        {/* <Summary allFile={allFile}/> */}
       </div>
     </DiapoContext.Provider>
   );

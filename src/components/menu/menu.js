@@ -37,19 +37,19 @@ function MenuGrid() {
   return (
     <div>
       {" "}
-      <MenuLink link="/grid/grid_image/" name={"GRID: images"}></MenuLink>
+      <MenuLink link="/grid/grid_image/" name={"GRID: grid image"}></MenuLink>
       <MenuLink
         link="/grid/grid_image_radio/"
-        name={"GRID: selected like a radio system"}
+        name={"GRID: grid image radio"}
       ></MenuLink>
       <MenuLink
         link="/grid/grid_image_specific_folder/"
-        name={"GRID: image from specific folder"}
+        name={"GRID: grid image specific folder"}
       ></MenuLink>
       <MenuLink link="/grid/grid_button/" name={"GRID: button"}></MenuLink>
       <MenuLink
         link="/grid/grid_button_advanced/"
-        name={"GRID: button advanced"}
+        name={"GRID: grid button advanced"}
       ></MenuLink>
     </div>
   );
@@ -82,6 +82,7 @@ function MenuGui() {
       ></MenuLink>
 
       <MenuLink link="gui/contact/" name={"GUI: send me an email"}></MenuLink>
+      <MenuLink link="gui/button_radio/" name={"GUI: radio button"}></MenuLink>
     </div>
   );
 }
