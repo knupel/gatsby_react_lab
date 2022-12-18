@@ -82,7 +82,7 @@ function MenuGui() {
       ></MenuLink>
 
       <MenuLink link="gui/contact/" name={"GUI: send me an email"}></MenuLink>
-      <MenuLink link="gui/button_radio/" name={"GUI: radio button"}></MenuLink>
+      <MenuLink link="gui/button_radio/button_radio" name={"GUI: radio button"}></MenuLink>
     </div>
   );
 }
