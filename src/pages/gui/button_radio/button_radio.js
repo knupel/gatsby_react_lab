@@ -48,13 +48,13 @@ function useRadioContext() {
 
 function RadioGroup({ children, defaultValue, onChange }) {
 	// over
-	const [over_is, set_over_is] = useState(false);
-	useEffect(() => {
-    set_over_is(over_is)
-  }, [over_is])
-	const mouse_state = () => {
-    over_is ? set_over_is(false) : set_over_is(true);
-  }
+	// const [over_is, set_over_is] = useState(false);
+	// useEffect(() => {
+  //   set_over_is(over_is)
+  // }, [over_is])
+	// const mouse_state = () => {
+  //   over_is ? set_over_is(false) : set_over_is(true);
+  // }
 
 	// toggle
   const [toggle_is, set_toggle_is] = useState("");
@@ -95,10 +95,11 @@ const button_single_style = (over_is, toggle_is) => {
 function RadioSingle({ value, children }) {
   const [toggle_is, onChange] = useRadioContext();
   const checked = value === toggle_is;
-	const over_is = true;
   return (
 		<div>
-			<label htmlFor="radio_button" className="radio-label">
+			<label className="radio-label">
+			{/* <label htmlFor="radio_button" className="radio-label"> */}
+			
 				<input
 					className="radio-input"
 					id="radio_button"
@@ -110,12 +111,40 @@ function RadioSingle({ value, children }) {
 						console.log(target.value, checked);
 						onChange(target.value)}}
 				/>
-				<span className="custom-radio" />
-				{/* // {"truc"} */}
+			<div className="custom-radio" >
+				</div>
 			</label>
 		</div>
   );
 }
+
+
+// function RadioSingle({ value, children }) {
+//   const [toggle_is, onChange] = useRadioContext();
+//   const checked = value === toggle_is;
+// 	const over_is = true;
+//   return (
+// 		<div>
+// 			<label htmlFor="radio_button" className="radio-label">
+// 			{/* <span className="custom-radio" > */}
+// 				<input
+// 					className="radio-input"
+// 					id="radio_button"
+// 					value={value}
+// 					checked={checked}
+// 					type="radio"
+// 					onChange={({ target }) => {
+// 						// some code if necessary
+// 						console.log(target.value, checked);
+// 						onChange(target.value)}}
+// 				/>
+// 				<span className="custom-radio" >
+// 				{"truc"}
+// 				</span>
+// 			</label>
+// 		</div>
+//   );
+// }
 
 // function RadioSingle({ value, children }) {
 //   const [toggle_is, onChange] = useRadioContext();

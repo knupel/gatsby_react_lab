@@ -3,37 +3,60 @@
 	/* height: 40px; */
   /* font-size: 14px; */
   /* font-weight: 400; */
+  /* opacity: 0.1; */
   margin-right: 7px;
-  -webkit-tap-highlight-color: transparent;
+  /* -webkit-tap-highlight-color: transparent; */
   /* cursor: pointer; */
 }
 
+
+
 .radio-input {
+  height: 30px;
+  width: 30px;
   margin: 0;
+  z-index:1;
+  /* visibility: collapse; */
   /* visibility: hidden; */
-  opacity: 0;
+  /* opacity: 0.1;*/
+  opacity: 0.5;
   cursor: pointer;
 }
 
+/* .radio-input:hover {
+  background:magenta;
+} */
 
-.radio-input:checked + span {
 
-  border: 2px solid magenta;
-	background: cyan;
+
+.radio-input:checked + div {
+	background: magenta;
 }
 
-.radio-input:checked + span:after {
-	background: cyan;
-  opacity: 1;
+.radio-input:checked + div:after {
+	/* background: magenta; */
+  /* opacity: 0; */
 }
 
+/*
+position:static;
+position:absolute;
+ position:sticky;
+position:fixed;
+position:relative;
+  top: -15px;
+*/
+.custom-radio {
+  position:relative;
 
-/* .custom-radio {
-  width: 40px;
-  height: 40px;
+  z-index:0;
+  bottom: 15px;
+  /* left: 30px; */
+  width: 30px;
+  height: 30px;
   background: cyan;
 
-} */
+}
 
 /* .custom-radio {
   left: -8px;
