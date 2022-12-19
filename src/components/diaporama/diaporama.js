@@ -1,6 +1,6 @@
 /**
  * Diaporama
- * v 0.0.2
+ * v 0.0.3
  * 2021-2022
  * by @knupel
  * https://www.knupel.art/
@@ -26,6 +26,7 @@ function Title({ title, is, index, current, node }) {
     );
   } else return null;
 }
+// BUTTON GLOBAL
 
 function Button({ click, name, className }) {
   return (
@@ -35,10 +36,9 @@ function Button({ click, name, className }) {
   );
 }
 
-// CONSOLE
-///////////////
+// BUTTON NEXT
 
-function Console({ allFile, setting }) {
+function ButtonNext({ allFile, name, is }) {
   const { current, set_current } = useContext(DiapoContext);
 
   const go_next = () => {
@@ -48,14 +48,16 @@ function Console({ allFile, setting }) {
       set_current(0);
     }
   };
+  if(is) {
+    return <Button click={go_next} name={name} className={"button_console"}/>
+  } else return null;
+  
+}
 
-  const go_first = () => {
-    set_current(0);
-  };
+// BUTTON PREVIOUS
 
-  const go_last = () => {
-    set_current(allFile.edges.length - 1);
-  };
+function ButtonPrevious({ allFile, name, is }) {
+  const { current, set_current } = useContext(DiapoContext);
 
   const go_previous = () => {
     if (current > 0) {
@@ -64,47 +66,93 @@ function Console({ allFile, setting }) {
       set_current(allFile.edges.length - 1);
     }
   };
+  if(is) {
+    return <Button click={go_previous} name={name} className={"button_console"}/>
+  } else return null;
+  
+}
 
-  const go_to = (index) => {
-    // console.log("index", index);
-    set_current(index);
+// BUTTON FIRST
+
+function ButtonFirst({ name, is }) {
+  const { set_current } = useContext(DiapoContext);
+
+  const go_first = () => {
+    set_current(0);
+  };
+  if(is) {
+    return <Button click={go_first} name={name} className={"button_console"}/>
+  } else return null;
+ 
+}
+
+// BUTTON LAST
+function ButtonLast({ allFile, name, is }) {
+  const { set_current } = useContext(DiapoContext);
+
+  const go_last = () => {
+    set_current(allFile.edges.length - 1);
+  };
+  if(is) {
+    return <Button click={go_last} name={name} className={"button_console"}/>
+  } else {
+    return null
   }
+}
 
+// BUTTON LAST
+function ButtonClose({ name, is }) {
+  const { current, set_current, set_ref } = useContext(DiapoContext);
 
-  return (
-    <>
-    <div>
-      <Button click={go_first} name={setting.first} className={"button_console"}/>
-      <Button click={go_previous} name={setting.previous} className={"button_console"}/>
-      <Button click={go_next} name={setting.next} className={"button_console"}/>
-      <Button click={go_last} name={setting.last} className={"button_console"}/>
-    </div>
-    <div style={{display: "flex"}}>
-    {allFile.edges.map((elem,index) => (
-      <Button click={go_to(index)} className={"button_summary"}/>
-    ))}
-  </div>
-  </>
-  );
+  const close = () => {
+    set_ref(current);
+    set_current( - 1);
+  };
+  if(is) {
+    return <Button click={close} name={name} className={"button_console"}/>
+  } else {
+    return null
+  }
+}
+
+function ButtonOpen({ name, is }) {
+  const { ref, set_current } = useContext(DiapoContext);
+
+  const open = () => {
+    set_current(ref);
+  };
+  if(is) {
+    return <Button click={open} name={name} className={"button_console"}/>
+  } else {
+    return null
+  }
 }
 
 
-// function Summary({allFile}) {
-//   const { current, set_current } = useContext(DiapoContext);
+// CONSOLE
+///////////////
 
-//   const go_to = (index) => {
-//     set_current(index);
-//   }
+function Console({ allFile, setting }) {
+  const {current} = useContext(DiapoContext);
+  if(current < 0) {
+    return <ButtonOpen name={setting.open} is={setting.open_is}/>
 
-//   return (
-//     <div style={{display: "flex"}}>
-//       {allFile.edges.map((elem,index) => (
-//         <Button click={go_to(index)} className={"button_summary"}/>
-//       ))}
-//     </div>
-//   )
+  } else {
+    return (
+      <div>
+        <ButtonFirst name={setting.first} is={setting.first_is}/>
+        <ButtonPrevious allFile={allFile} name={setting.previous} is={setting.previous_is}/>
+        <ButtonNext allFile={allFile} name={setting.next} is={setting.next_is}/>
+        <ButtonLast allFile={allFile} name={setting.last} is={setting.last_is}/>
+        <ButtonClose name={setting.close} is={setting.close_is}/>
+      </div>
+    );
 
-// }
+  }
+  
+}
+
+
 
 // DIAPORAMA
 ///////////////////
@@ -120,6 +168,7 @@ export function Diaporama({ allFile, setting }) {
   };
 
   const [current, set_current] = useState(0);
+  const [ref, set_ref] = useState(0);
 
   // security
   if (!Array.isArray(allFile.edges) || allFile.edges.length <= 0) {
@@ -127,7 +176,7 @@ export function Diaporama({ allFile, setting }) {
   }
 
   return (
-    <DiapoContext.Provider value={{ current, set_current }}>
+    <DiapoContext.Provider value={{ current, set_current, ref, set_ref }}>
       <div style={style}>
         {allFile.edges.map(({ node }, index) => (
           <div>

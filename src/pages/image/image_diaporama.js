@@ -47,7 +47,7 @@ const DiaporamaPhoto = () => {
 
   const setting = {
     background: "red",
-    first_is: true,
+    first_is: false,
     first: "first",
     last_is: false,
     last: "last",
@@ -55,6 +55,11 @@ const DiaporamaPhoto = () => {
     previous: "previous",
     next_is: true,
     next: "next",
+
+    close_is: true,
+    close: "close",
+    open_is: true,
+    open: "open",
   };
 
   return (

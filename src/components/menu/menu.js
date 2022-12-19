@@ -39,6 +39,10 @@ function MenuGrid() {
       {" "}
       <MenuLink link="/grid/grid_image/" name={"GRID: grid image"}></MenuLink>
       <MenuLink
+        link="/grid/grid_image_zoom_over/"
+        name={"GRID: grid image zoom over"}
+      ></MenuLink>
+      <MenuLink
         link="/grid/grid_image_radio/"
         name={"GRID: grid image radio"}
       ></MenuLink>
@@ -51,6 +55,7 @@ function MenuGrid() {
         link="/grid/grid_button_advanced/"
         name={"GRID: grid button advanced"}
       ></MenuLink>
+
     </div>
   );
 }
