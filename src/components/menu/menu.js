@@ -146,6 +146,10 @@ function MenuMisc() {
         link="/misc/context_reducer/"
         name={"MISC: use reducer, context and dispatch"}
       ></MenuLink>
+      <MenuLink
+        link="/misc/css_variable_root/"
+        name={"MISC: catch the css globales variables :root --my_var to use in your app"}
+      ></MenuLink>
     </div>
   );
 }

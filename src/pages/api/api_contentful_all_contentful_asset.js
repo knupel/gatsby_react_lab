@@ -14,6 +14,7 @@ function ShowContent ({list}) {
     <div>{list.map(elem =>(<GatsbyImage alt={elem.title} image={elem.gatsbyImageData} />))}</div>
   )
 }
+
 export default function ApiContentful(props) {
   const content = props.data.allContentfulAsset.nodes;
   return (

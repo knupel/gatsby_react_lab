@@ -130,7 +130,8 @@ function ButtonOpen({ name, is }) {
 
 
 // CONSOLE
-///////////////
+///////////////lemonde.fr
+
 
 function Console({ allFile, setting }) {
   const {current} = useContext(DiapoContext);
