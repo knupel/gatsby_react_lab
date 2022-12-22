@@ -4,6 +4,9 @@ require("dotenv").config();
 
 
 module.exports = {
+  // flags: {
+  //   DEV_SSR: true
+  // },
   siteMetadata: {
     title: `Knupel Labo Gatsby React `,
     description: `Here you find my work around the gatsby and React concept to understand the jungle web`,

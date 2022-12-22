@@ -2,10 +2,17 @@ import React from "react";
 import { useState } from "react";
 import Layout from "../../components/struct/layout";
 
+// https://blog.greenroots.info/gatsby-the-window-is-not-defined-error-what-and-how-to-fix-it
+/**
+ * 
+ * need to check if the indow is available before use document, if we don't do that that's failed to the building phase
+ */
 
 function CssVarRoot() {
 	const [variables, set_variables] = useState([]);
-	if(variables.length === 0) {
+	const isBrowser = typeof window !== "undefined";
+
+	if(variables.length === 0 && isBrowser) {
 		let buf = Array.from(document.styleSheets)
 		.filter( sheet => sheet.href === null || sheet.href.startsWith(window.location.origin))
 		.reduce(
@@ -44,9 +51,7 @@ function CssVarRoot() {
 	const render_list = (list) => {
 		if(list !== undefined) {
 			return list.map((elem,index) => <div>{elem.name}: {elem.value}</div>);
-
-		} else return null;
-			
+		} else return null;	
 	}
 	
 
