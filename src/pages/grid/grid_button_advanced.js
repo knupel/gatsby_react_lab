@@ -3,7 +3,7 @@ import { graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import Layout from "../../components/struct/layout";
 import { hsb_to_hex } from "../../utils/color_convertor";
-import { Get_window } from "../../utils/canvas";
+import { GetWindow } from "../../utils/canvas";
 /**
  *  To use module CSS need to invoke in the brace each components of this one
  */
@@ -44,10 +44,11 @@ const img_grid_style = (size, marge) => {
 
 function Cell({ children, ...props }) {
   const [is, set_is] = useState(true);
+  const [mouse_is, set_mouse_is] = useState(false);
+
   useEffect(() => {
     set_is(is);
   }, [is]);
-  const [mouse_is, set_mouse_is] = useState(false);
 
   useEffect(() => {
     set_mouse_is(mouse_is);
@@ -85,9 +86,9 @@ function Cell({ children, ...props }) {
 function GridButtonAdvanced({ data }) {
   let num_pic_by_col = 3;
   let marge = 0;
-  let res = Get_window();
+  let res = GetWindow();
 
-  let val = res[0] - marge * (num_pic_by_col + 1);
+  let val = res.width - marge * (num_pic_by_col + 1);
   let size_cell = Math.floor(val / num_pic_by_col);
   const [cell_width, set_cell_width] = useState(size_cell);
   const [cell_height, set_cell_height] = useState(size_cell);
