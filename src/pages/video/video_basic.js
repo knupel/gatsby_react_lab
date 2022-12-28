@@ -1,6 +1,6 @@
 import React from "react"
 import Layout from "../../components/struct/layout"
-import Video from "../../components/video"
+import { Video }  from "../../components/video"
 
 const VideoShow = () => (
   <div>

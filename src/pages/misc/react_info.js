@@ -1,7 +1,7 @@
 /**
  * REACT INFO
  * 2021-2022
- * v 0.2.0
+ * v 0.2.1
  * 
 */
 import React from "react"
@@ -16,7 +16,9 @@ function ReactInfo() {
 	const [pos_div, set_pos_div] = useState({x:0,y:0});
 
   const get_position = () => {
-    set_pos_div({x: ref.current.offsetLeft, y: ref.current.offsetTop});
+    if(ref.current !== null) {
+      set_pos_div({x: ref.current.offsetLeft, y: ref.current.offsetTop});
+    }
   };
 
 	useEffect(() => {
@@ -26,16 +28,16 @@ function ReactInfo() {
 	useEffect(() => {
     window.addEventListener("resize", get_position);
   }, []);
-
+  console.log("res", res);
 
   return (
     <div>
       <Layout title="REACT INFO"></Layout>
-      <div style={{display: "flex"}}>
+      <div  style={{display: "flex"}}>
         <div ref={ref} style={{width: "250px"}}>
-          window is {res[0]} x {res[1]} 
+          window is {res.width} x {res.height} 
         </div>
-        <div ref={ref}>div position is {pos_div.x} x {pos_div.y}</div>
+        <div ref={ref} >div position is {pos_div.x} x {pos_div.y}</div>
       </div>
     </div>
   )
