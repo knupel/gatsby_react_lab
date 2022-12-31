@@ -154,6 +154,17 @@ function MenuMisc() {
   );
 }
 
+function MenuNav() {
+  return (
+    <div>
+      <MenuLink
+        link="/nav/nav_motion/"
+        name={"NAV: navigation with motion"}
+      ></MenuLink>
+      
+    </div>
+  );
+}
 function MenuP5() {
   return (
     <div>
@@ -200,6 +211,7 @@ export default function Menu() {
       <MenuGui />
       <MenuImage />
       <MenuMisc />
+      <MenuNav />
       <MenuP5 />
       <MenuVideo />
     </div>
