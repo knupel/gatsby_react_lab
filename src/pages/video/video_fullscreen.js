@@ -23,6 +23,7 @@ export default function VideoFullscreen() {
       set_value({x: ref.current.offsetLeft, y: ref.current.offsetTop});
     }
   };
+  
   useEffect(() => {
     update();
   }, []);

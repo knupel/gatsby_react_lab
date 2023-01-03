@@ -150,6 +150,11 @@ function MenuMisc() {
         link="/misc/css_variable_root/"
         name={"MISC: catch the css globales variables :root --my_var to use in your app"}
       ></MenuLink>
+
+      <MenuLink
+        link="/misc/transition/"
+        name={"MISC: transition test"}
+      ></MenuLink>
     </div>
   );
 }

@@ -1,0 +1,11 @@
+.transit {
+	font-size: 20px;
+	background: cyan;
+	cursor: pointer;
+	transition: font-size 0.6s, background-color 2s;
+}
+
+.transit:hover {
+	background: magenta;
+	font-size:50px;
+}
