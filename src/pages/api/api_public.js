@@ -127,6 +127,14 @@ export default function ApiPublic() {
   );
 }
 
+
+export const Head = () => {
+	<>
+		<title>API</title>
+		<meta name="author" content="Knupel" />
+		<meta name="description" content="Mon petit laboratoire pour tester mes fonction react / gatsby / javascript" />
+	</>
+}
 // export default function ApiPublic() {
 //   const style = search_style();
 //   const [data, setData] = useState({ hits: [] });
