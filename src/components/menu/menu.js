@@ -20,6 +20,10 @@ function MenuApi() {
         link="api/api_contentful_tag/"
         name={"API: Contentful CMS : select a part of content by tag"}
       ></MenuLink>
+            <MenuLink
+        link="api/api_google_map_react/"
+        name={"API: Google Map React"}
+      ></MenuLink>
     </div>
   );
 }
