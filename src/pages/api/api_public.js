@@ -39,6 +39,7 @@ const SuperTextField = styled(TextField)`
 // }));
 
 function ShowItem(props) {
+  
   let alt_name = "url img: " + props.url_img_medium;
   return (
     <div>

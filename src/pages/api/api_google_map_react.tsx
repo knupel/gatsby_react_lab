@@ -51,25 +51,28 @@ const render = (status: Status): ReactElement => {
   return null;
 };
 
-const env_google_id : string | undefined = process.env.GOOGLE_MAP_ID;
+// need to pass by GATSBY_XXXXX to keep the key visible in file... but now the key have a public exposition
+const env_google_id : string | undefined = process.env.GATSBY_GOOGLE_MAP_ID;
 
-function GoogleMap({key}) {
+function GoogleMap() {
   // corsican coordinate
   const center = { lat: 42.15, lng: 9.15 };
   const zoom = 8;
-  
-  return  <Wrapper apiKey={key} render={render} >
-    <MyMap center={center} zoom={zoom}/>
-  </Wrapper>
+
+  // WORK but the API KEY is exposed, but never mind because the URL of the site is write in the Google account
+  if(typeof env_google_id ===  "string") {
+    return  <Wrapper apiKey={env_google_id} render={render} >
+      <MyMap center={center} zoom={zoom}/>
+    </Wrapper>
+  } else return null;
 }
 
 
 export default function ApiGoogleMapReact() {
-
   return (
     <div>
       <Layout title="API Google Map React" link="true"></Layout>
-			<GoogleMap key={env_google_id}/>
+      <GoogleMap/>
     </div>
   );
 }

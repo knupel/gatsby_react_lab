@@ -5,7 +5,7 @@ require("dotenv").config();
 // require("dotenv").config({
 //   path: `.env.${process.env.NODE_ENV}`,
 // });
-
+// export const TRUC = process.env.GOOGLE_MAP_ID;
 
 module.exports = {
   // flags: {
