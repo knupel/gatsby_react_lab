@@ -1,6 +1,6 @@
 import React from "react";
-import Layout from "../../components/struct/layout";
-import NewTabLink from "../../components/new_tab_link";
+import Layout from "../components/struct/layout";
+import NewTabLink from "../components/new_tab_link";
 // add this external link in the future
 
 function SectionCode() {

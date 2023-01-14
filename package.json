@@ -13,6 +13,7 @@
     "@mui/material": "^5.10.17",
     "@mui/system": "^5.10.17",
     "axios": "^1.2.1",
+    "babel-plugin-prismjs": "^2.1.0",
     "fast-equals": "^4.0.3",
     "gatsby": "^5.2.0",
     "gatsby-plugin-image": "^3.2.0",
@@ -26,6 +27,7 @@
     "gatsby-source-filesystem": "^5.2.0",
     "gatsby-transformer-sharp": "^5.2.0",
     "p5": "^1.5.0",
+    "prismjs": "^1.29.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -34,7 +36,10 @@
     "sass": "^1.54.3"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-decorators": "^7.20.7",
     "@types/google.maps": "^3.51.0",
+    "@types/prismjs": "^1.26.0",
+    "babel-preset-gatsby": "^3.4.0",
     "prettier": "^2.8.0"
   },
   "keywords": [

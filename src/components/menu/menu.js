@@ -29,12 +29,16 @@ function MenuApi() {
 }
 
 function MenuDesign() {
-  return (
+  return <>
     <MenuLink
       link="design/design_typo/"
       name={"DESIGN: choice typo typekit"}
     ></MenuLink>
-  );
+    <MenuLink
+      link="design/highlight_code/"
+      name={"DESIGN: highlight your code with Prism"}
+    ></MenuLink>
+  </>;
 }
 
 function MenuGrid() {
@@ -128,14 +132,8 @@ function MenuImage() {
 }
 
 function MenuMisc() {
-  let blabla =
-    "Something from the Head Quarter Menu.js : use state={{ info: props.str }} in the Gatsby component Link and catch it with location.state.xxx!";
   return (
     <div>
-      <MenuLink
-        link="/misc/link_utils/"
-        name={"MISC: fews interesting externals links"}
-      ></MenuLink>
       <MenuLink
         link="/misc/container_test/"
         name={"MISC: container test"}
@@ -143,7 +141,7 @@ function MenuMisc() {
       <MenuLink
         link="/misc/link_location_state/"
         name={"MISC: pass data from menu link with component Gatsby Link"}
-        str={blabla}
+        str={"Something from the Head Quarter Menu.js : use state={{ info: props.str }} in the Gatsby component Link and catch it with location.state.xxx!"}
       ></MenuLink>
       <MenuLink link="/misc/react_info/" name={"MISC: react info"}></MenuLink>
       <MenuLink
@@ -214,6 +212,7 @@ function MenuVideo() {
 export default function Menu() {
   return (
     <div>
+      <MenuLink link="/link_utils/" name={"LINK: fews interesting externals links"}/>
       <MenuApi />
       <MenuDesign />
       <MenuGrid />

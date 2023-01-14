@@ -34,7 +34,7 @@ const set_button_style = (props, select_is, mouse_is) => {
   };
 };
 
-const img_grid_style = (size, marge) => {
+const img_grid_style = (size) => {
   return {
     display: "grid",
     //gridTemplateColumns: `repeat(auto-fill, ${size}px)`,
@@ -84,6 +84,7 @@ function Cell({ children, ...props }) {
 
 // FINALIZE PART
 function GridButtonAdvanced({ data }) {
+  // console.log("data", data);
   let num_pic_by_col = 3;
   let marge = 0;
   let res = GetWindow();
