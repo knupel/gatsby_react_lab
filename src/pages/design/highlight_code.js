@@ -4,43 +4,6 @@ import Layout from "../../components/struct/layout"
 import Prism from "prismjs";
 
 
-/*
-$ npm install prismjs
-$ npm install babel-plugin-prismjs
-// https://www.npmjs.com/package/babel-plugin-prismjs
-$ npm i --save-dev @types/prismjs
-$ npm install --save-dev @babel/plugin-proposal-decorators
-$ npm install --save-dev babel-preset-gatsby
-$ npm install
-create file 
-[ROOT].babelrc
-{
-  "plugins": [
-		["@babel/plugin-proposal-decorators", { "legacy": true }],
-    ["prismjs", {
-        "languages": ["javascript", "css", "markup"],
-        "plugins": ["line-numbers"],
-        "theme": "okaidia",
-        "css": true
-    }],
-  ],
-	"presets": [
-    [
-      "babel-preset-gatsby",
-      {
-        "targets": {
-          "browsers": [">0.25%", "not dead"]
-        }
-      }
-    ]
-  ]
-}
-
-other theme example : "tomorrow",  "okaidia
-plugin : "line-numbers", "show-invisibles"
-*/
-
-
 function Code({content, language}) {
 	useEffect(() => {
     Prism.highlightAll();
@@ -84,12 +47,59 @@ export default function HighlightCode() {
 	}
 	`;
 
+	const code_stan = `
+	# install
+
+	To install highlight syntax in Gatsby context, follow the line
+
+	> npm install prismjs
+	> npm install babel-plugin-prismjs
+
+	// https://www.npmjs.com/package/babel-plugin-prismjs
+	
+	> npm install --save-dev @types/prismjs
+	> npm install --save-dev @babel/plugin-proposal-decorators
+	> npm install --save-dev babel-preset-gatsby
+	> npm install
+
+	# create file
+
+	create ".babelrc" and add it to the root of your project and the below content
+
+	{
+		"plugins": [
+			["@babel/plugin-proposal-decorators", { "legacy": true }],
+			["prismjs", {
+					"languages": ["javascript", "css", "markup"],
+					"plugins": ["line-numbers"],
+					"theme": "okaidia",
+					"css": true
+			}],
+		],
+		"presets": [
+			[
+				"babel-preset-gatsby",
+				{
+					"targets": {
+						"browsers": [">0.25%", "not dead"]
+					}
+				}
+			]
+		]
+	}
+ 
+	other language : https://prismjs.com/
+	choice theme :  "tomorrow",  "okaidia", "dark", "twilight", "funky"
+	plugin : "line-numbers", "show-invisibles"
+	`
+
 
   return (
 		<div>
 			<Layout title="Highlight your code with Prism to magnify it"/>
 			<Code content={code_javascript} language={"javascript"}/>
 			<Code content={code_processing} language={"processing"}/>
+			<Code content={code_stan} language={"stan"}/>
 		</div>
 	)
 }

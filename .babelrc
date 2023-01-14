@@ -2,9 +2,9 @@
   "plugins": [
 		["@babel/plugin-proposal-decorators", { "legacy": true }],
     ["prismjs", {
-        "languages": ["processing", "javascript", "css", "markup"],
+        "languages": ["stan", "markdown", "processing", "javascript", "css", "markup"],
         "plugins": ["line-numbers"],
-        "theme": "tomorrow",
+        "theme": "funky",
         "css": true
     }],
   ],
