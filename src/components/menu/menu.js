@@ -157,6 +157,10 @@ function MenuMisc() {
         link="/misc/transition/"
         name={"MISC: transition test"}
       ></MenuLink>
+       <MenuLink
+        link="/misc/code_sandbox/"
+        name={"MISC: Embed Code Sandbox"}
+      ></MenuLink>
     </div>
   );
 }
