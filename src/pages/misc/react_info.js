@@ -1,13 +1,13 @@
 /**
  * REACT INFO
- * 2021-2022
- * v 0.2.1
+ * 2021-2023
+ * v 0.2.2
  * 
 */
 import React from "react"
 import { useState, useEffect, useRef } from "react";
 import Layout from "../../components/struct/layout"
-import { GetWindow } from "../../utils/canvas"
+import { GetWindow, GetWidth, GetHeight } from "../../utils/canvas"
 
 function ReactInfo() {
   const ref = useRef(null);
@@ -28,13 +28,12 @@ function ReactInfo() {
 	useEffect(() => {
     window.addEventListener("resize", get_position);
   }, []);
-  console.log("res", res);
-
   return (
     <div>
       <Layout title="REACT INFO"></Layout>
       <div  style={{display: "flex"}}>
-        <div ref={ref} style={{width: "250px"}}>
+      <div style={{width: "250px"}}>
+        {/* <div ref={ref} style={{width: "250px"}}> */}
           window is {res.width} x {res.height} 
         </div>
         <div ref={ref} >div position is {pos_div.x} x {pos_div.y}</div>

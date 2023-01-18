@@ -1,6 +1,6 @@
 /* Utils Canvas
-* 2021_2022 
-* v 0.3.0
+* 2021_2023
+* v 0.3.2
 */
 
 import { useState, useRef, useLayoutEffect } from "react";
@@ -43,11 +43,16 @@ export function GetHeight() {
   return GetWindow().height;
 }
 
-export function Window_is_higher_than(value : number) {
-  let res = false;
+export function WidthIsHigherThan(value : number) {
   if(GetWidth() > value) {
-    res = true;
-  } else return res;
+    return true;
+  } else return false;
+}
+
+export function HeightIsHigherThan(value : number) {
+  if(GetHeight() > value) {
+    return true;
+  } else return false;
 }
 
 export function in_canvas(cursor : any, pos : any, canvas : any) {
