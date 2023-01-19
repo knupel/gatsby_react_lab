@@ -1,9 +1,14 @@
+/**
+ *  Grid Button Advanced
+ * 2022-2023
+ * v 0.2.0
+ * */
 import React, { useState, useEffect } from "react";
 import { graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import Layout from "../../components/struct/layout";
 import { hsb_to_hex } from "../../utils/color_convertor";
-import { GetWindow } from "../../utils/canvas";
+import { use_get_window } from "../../utils/canvas";
 /**
  *  To use module CSS need to invoke in the brace each components of this one
  */
@@ -87,7 +92,7 @@ function GridButtonAdvanced({ data }) {
   // console.log("data", data);
   let num_pic_by_col = 3;
   let marge = 0;
-  let res = GetWindow();
+  let res = use_get_window();
 
   let val = res.width - marge * (num_pic_by_col + 1);
   let size_cell = Math.floor(val / num_pic_by_col);
