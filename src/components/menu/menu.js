@@ -28,6 +28,15 @@ function MenuApi() {
   );
 }
 
+function MenuCode() {
+  return <>
+    <MenuLink
+      link="code/destructuring_array/"
+      name={"CODE: destructuring array"}
+    ></MenuLink>
+  </>;
+}
+
 function MenuDesign() {
   return <>
     <MenuLink
@@ -218,6 +227,7 @@ export default function Menu() {
     <div>
       <MenuLink link="/link_utils/" name={"LINK: fews interesting externals links"}/>
       <MenuApi />
+      <MenuCode />
       <MenuDesign />
       <MenuGrid />
       <MenuGui />

@@ -1,7 +1,7 @@
 /**
  * REACT INFO
  * 2021-2023
- * v 0.2.2
+ * v 0.2.3
  * 
 */
 import React from "react"
