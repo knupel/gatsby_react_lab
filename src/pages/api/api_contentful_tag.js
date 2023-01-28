@@ -67,6 +67,6 @@ export const Head = () => {
 	<>
 		<title>API Contentful</title>
 		<meta name="author" content="Knupel" />
-		<meta name="description" content="Mon petit laboratoire pour tester mes fonctions react, gatsby, javascript" />
+		<meta name="description" content="Laboratoire pour tester l'API Contentful" />
 	</>
 }

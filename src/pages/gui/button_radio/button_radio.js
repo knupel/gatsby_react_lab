@@ -1,7 +1,7 @@
 /**
  * Button radio
- * v 0.0.2
- * 2022-2022
+ * v 0.0.3
+ * 2022-2023
  * https://www.knupel.art/
  * stan[at]knupel.art
  * 
@@ -111,7 +111,7 @@ function RadioSingle({ value, children }) {
 						console.log(target.value, checked);
 						onChange(target.value)}}
 				/>
-			<div className="custom-radio" >
+				<div className="custom-radio" >
 				</div>
 			</label>
 		</div>
@@ -202,6 +202,8 @@ export default function RadioButton() {
 							))}
 					</div>
       </RadioGroup> 
+			
+
 			<div style={{height: "10px"}}></div>
 			<div style={{display: "flex"}}>
 					{radio_is.map((elem, index) => (

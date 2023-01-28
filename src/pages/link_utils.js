@@ -42,6 +42,7 @@ function SectionCode() {
       <NewTabLink href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#D%C3%A9composition_d'un_tableau"
       title="french text about destruring array in javascript"
       />
+      <NewTabLink href="https://putaindecode.io/" title="Blog de code, sur le putain de code"/>
     </div>
   );
 }

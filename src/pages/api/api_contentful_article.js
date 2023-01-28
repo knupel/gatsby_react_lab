@@ -10,15 +10,9 @@
 
  function ShowImage({img}) {
 	 return(<GatsbyImage alt={img.title} image={img.gatsbyImageData} />)
-	
-
  }
  
  function ShowElem({elem}) {
-	 console.log("elem.artwork.title",elem.artwork.title);
-	 console.log("elem.artwork.description",elem.artwork.description);
-	 console.log("elem.artwork.length",elem.artwork.length);
-	 console.log("elem.title",elem.title);
 	 return(
 	 				<div>
 		 				<div>{elem.title}</div>
@@ -76,6 +70,6 @@ export const Head = () => {
 	<>
 		<title>API Contentful</title>
 		<meta name="author" content="Knupel" />
-		<meta name="description" content="Mon petit laboratoire pour tester mes fonctions react, gatsby, javascript" />
+		<meta name="description" content="Laboratoire pour tester l'API Contentful" />
 	</>
 }
