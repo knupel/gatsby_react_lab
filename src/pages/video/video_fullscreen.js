@@ -9,12 +9,12 @@ import { useState, useRef, useEffect} from "react";
 // APP
 import Layout from "../../components/struct/layout"
 import { Video } from "../../components/video"
-import { use_get_window } from "../../utils/canvas"
+import { get_window } from "../../utils/canvas"
 
 export default function VideoFullscreen() {
   const ref = useRef(null);
   let canvas = {width:0, height:0}
-  canvas = use_get_window();
+  canvas = get_window();
 
   // now we need to this strnage code, to update the canvas size very weird.
   const [value, set_value] = useState({x:0,y:0});

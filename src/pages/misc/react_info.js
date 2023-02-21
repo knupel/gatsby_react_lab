@@ -7,11 +7,11 @@
 import React from "react"
 import { useState, useEffect, useRef } from "react";
 import Layout from "../../components/struct/layout"
-import { use_get_window, use_get_width, use_get_height } from "../../utils/canvas"
+import { get_window, get_width, get_height } from "../../utils/canvas"
 
 function ReactInfo() {
   const ref = useRef(null);
-  let res = use_get_window();
+  let res = get_window();
 
 	const [pos_div, set_pos_div] = useState({x:0,y:0});
 

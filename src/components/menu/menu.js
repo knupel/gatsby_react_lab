@@ -34,6 +34,10 @@ function MenuCode() {
       link="code/destructuring_array/"
       name={"CODE: destructuring array"}
     ></MenuLink>
+    <MenuLink
+      link="code/query_selector/"
+      name={"CODE: catch something from your project code"}
+    ></MenuLink>
   </>;
 }
 

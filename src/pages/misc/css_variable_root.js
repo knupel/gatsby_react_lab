@@ -5,7 +5,7 @@ import Layout from "../../components/struct/layout";
 
 /**
  * https://blog.greenroots.info/gatsby-the-window-is-not-defined-error-what-and-how-to-fix-it
- * need to check if the indow is available before use document, if we don't do that that's failed to the building phase
+ * need to check if the window is available before use document, if we don't do that that's failed to the building phase
  */
 
 function CssVarRoot() {
