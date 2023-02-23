@@ -1,7 +1,7 @@
 /**
  * 
  * COLOR CONVERTOR
- * v 0.2.1
+ * v 0.2.2
  * 2021-2023
  * 
  * https://stackoverflow.com/questions/36721830/convert-hsl-to-rgb-and-hex
@@ -28,25 +28,21 @@ export function rgb_to_filter(rgb  : number[]) {
 }
 
 export function hex_to_rgb(str : string){
-  console.log("0 str", str);
   if(str !== undefined && str !== null) {
-    console.log("1 str", str);
     if(str[0] === "#") {
       str = str.substring(1);
     }
-    console.log("2 str", str);
+
     if(str.length === 3) {
       let a = str[0];
       let b = str[1];
       let c = str[2];
       str = a+a+b+b+c+c;
     }
-    console.log("3 str", str);
 
     if(str.length !== 6){
       throw "Only six-digit hex colors are allowed.";
     }
-    console.log("4 str", str);
 
     let rgb_hex = str.match(/.{1,2}/g);
     let arr: number[];
@@ -107,11 +103,6 @@ export function hsl_to_rgb(h: number, s: number, l: number) {
     b = hue_to_rgb(p, q, h - 1 / 3)
   }
   return [r, g, b]
-  // return {
-  //   x: r,
-  //   y: g,
-  //   z: b,
-  // };
 }
 
 export function hsb_to_rgb(h: number, s: number, v: number) {
@@ -157,9 +148,4 @@ export function hsb_to_rgb(h: number, s: number, v: number) {
   }
 
   return [r, g, b]
-  // return {
-  //   x: r,
-  //   y: g,
-  //   z: b,
-  // };
 }

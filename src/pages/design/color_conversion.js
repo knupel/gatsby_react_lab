@@ -12,11 +12,8 @@ export default function ColorConversion() {
     background: get_css_value('--first_color'),
   }
   const name = get_css_value('--first_color');
-  console.log("get_css_value('--first_color')",name);
   const hex_color = name_to_hex(name);
-  console.log("hex_color",hex_color);
   const arr_col = hex_to_rgb(hex_color);
-  console.log("arr_col",arr_col);
   if(arr_col !== null) {
     const result = rgb_to_filter(arr_col);
     const filter = result.filter;
