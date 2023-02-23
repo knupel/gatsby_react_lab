@@ -29,7 +29,7 @@ export function rgb_to_filter(rgb  : number[]) {
 
 export function hex_to_rgb(str : string){
   console.log("0 str", str);
-  if(str !== undefined) {
+  if(str !== undefined && str !== null) {
     console.log("1 str", str);
     if(str[0] === "#") {
       str = str.substring(1);
