@@ -156,7 +156,10 @@ const impl_hex_to_name = Object.fromEntries(Object.entries(dic_name_to_hex).map(
 
 
 export function name_to_hex(color_name : string) {
-  if(color_name !== undefined) return dic_name_to_hex[color_name.toLowerCase()];
+  if(color_name !== undefined) {
+    if(color_name[0] === "#") return color_name;
+    return dic_name_to_hex[color_name.toLowerCase()];
+  } else return null;
 }
 
 export function hex_to_name(color_hex : string) {
