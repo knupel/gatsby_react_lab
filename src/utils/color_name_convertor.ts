@@ -1,4 +1,7 @@
 /*
+* color name convertor
+* v 0.0.2
+* 2023-2023
 * https://stackoverflow.com/questions/9224404/get-color-name-by-hex-or-rgb
 */
 const dic_name_to_hex = {
