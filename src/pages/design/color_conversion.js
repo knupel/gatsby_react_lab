@@ -14,7 +14,7 @@ export default function ColorConversion() {
   const hex_color = name_to_hex(get_css_value('--first_color'));
   const arr_col = hex_to_rgb(hex_color);
   if(arr_col !== null) {
-    const result = rgb_to_filter(arr_col[0],arr_col[1],arr_col[2]);
+    const result = rgb_to_filter(arr_col);
     const filter = result.filter;
     return (
       <div>
@@ -30,7 +30,7 @@ export default function ColorConversion() {
         <div style={{ height: `100px`,
                       width: `100px`,
                       background: 'black',
-                      filter: result.filter}}></div>
+                      filter: filter}}></div>
         <div>{"loss < 1 is perfect"}</div>
         <div>{"loss 1 > 5 is ok"}</div>
         <div>{"loss 5 > 15 try again"}</div>

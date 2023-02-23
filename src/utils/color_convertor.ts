@@ -1,7 +1,7 @@
 /**
  * 
  * COLOR CONVERTOR
- * v 0.2.0
+ * v 0.2.1
  * 2021-2023
  * 
  * https://stackoverflow.com/questions/36721830/convert-hsl-to-rgb-and-hex
@@ -17,12 +17,14 @@ import { Color, Solver } from "./color_convertor_for_filter_css";
  * Assumes all values in the set is from to[0,1]
  * value is return in the range [0,1]
  */
-
-export function rgb_to_filter(r : number, g : number, b : number) {
-  let color = new Color(r *255, g *255, b *255);
-  let solver = new Solver(color);
-  let result = solver.solve();
-  return result;
+export function rgb_to_filter(rgb  : number[]) {
+  if(rgb !== null && rgb.length === 3) {
+    let color = new Color(rgb[0] *255, rgb[1] *255, rgb[2] *255);
+    let solver = new Solver(color);
+    let result = solver.solve();
+    return result;
+  }
+  return "";
 }
 
 export function hex_to_rgb(str : string){
@@ -79,7 +81,7 @@ export function hsl_to_rgb(h: number, s: number, l: number) {
   if (s === 0) {
     r = g = b = l // achromatic
   } else {
-    const hue_to_rgb = (p, q, t) => {
+    const hue_to_rgb = (p: number, q: number, t: number) => {
       if (t < 0) t += 1
       if (t > 1) t -= 1
       if (t < 1 / 6) return p + (q - p) * 6 * t
@@ -102,7 +104,8 @@ export function hsl_to_rgb(h: number, s: number, l: number) {
 }
 
 export function hsb_to_rgb(h: number, s: number, v: number) {
-  let r, g, b, i, f, p, q, t
+  let r: number, g: number, b: number, i: number, f: number, p: number, q: number, t: number;
+  r = g = b = i= f= p = q = t = 0;
   i = Math.floor(h * 6)
   f = h * 6 - i
   p = v * (1 - s)
