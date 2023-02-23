@@ -32,8 +32,15 @@ export function hex_to_rgb(str : string){
     if(str[0] === "#") {
       str = str.substring(1);
     }
+    if(str.length === 3) {
+      let a = str[0];
+      let b = str[1];
+      let c = str[2];
+      str = a+a+b+b+c+c;
+      console.log("new str", str);
+    }
 
-    if(str.length != 6){
+    if(str.length !== 6){
       throw "Only six-digit hex colors are allowed.";
     }
 
