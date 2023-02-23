@@ -51,6 +51,10 @@ function MenuDesign() {
       link="design/highlight_code/"
       name={"DESIGN: highlight your code with Prism"}
     ></MenuLink>
+    <MenuLink
+      link="design/color_conversion/"
+      name={"DESIGN: Convert color is always useful"}
+    ></MenuLink>
   </>;
 }
 
