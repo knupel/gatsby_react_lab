@@ -43,6 +43,7 @@ function SectionCode() {
       title="french text about destruring array in javascript"
       />
       <NewTabLink href="https://putaindecode.io/" title="Blog de code, sur le putain de code"/>
+      <NewTabLink href="https://www.i18next.com/" title="Module et plugin pour traduire des sites... à explorer ou pas"/>
     </div>
   );
 }
