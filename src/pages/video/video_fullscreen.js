@@ -16,7 +16,7 @@ export default function VideoFullscreen() {
   let canvas = {width:0, height:0}
   canvas = get_window();
 
-  // now we need to this strnage code, to update the canvas size very weird.
+  // now we need to this strange code, to update the canvas size very weird.
   const [value, set_value] = useState({x:0,y:0});
   const update = () => {
     if(ref.current !== null) {

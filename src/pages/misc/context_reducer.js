@@ -8,7 +8,7 @@
 import React from "react";
 import Layout from "../../components/struct/layout";
 import { useReducer } from "react";
-import { createContext, useContext } from "react";
+import { createContext } from "react";
 
 const init_state_exp = {
   arg: 10,
@@ -25,7 +25,7 @@ function ContextBuilder({ children }) {
 
 function Comp() {
   const [state, dispatch] = useReducer(reducer, init_state_exp);
-  const { arg } = useContext(StateContext);
+  // const { arg } = useContext(StateContext);
 
   function add(event) {
     event.preventDefault();
