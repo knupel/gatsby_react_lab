@@ -7,7 +7,7 @@
 import React from "react"
 import { useState, useEffect, useRef } from "react";
 import Layout from "../../components/struct/layout"
-import { get_window, get_width, get_height } from "../../utils/canvas"
+import { get_window } from "../../utils/canvas"
 
 function ReactInfo() {
   const ref = useRef(null);
