@@ -30,7 +30,7 @@ function Deploy() {
   );
 }
 
-export function MenuP5() {
+export function MenuProcessing() {
   const [is, set_is] = useState(false);
 
   function mouse_click(event) {

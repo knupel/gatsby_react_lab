@@ -7,5 +7,5 @@ export { MenuGui } from "./menu_content/menu_gui";
 export { MenuImage } from "./menu_content/menu_image";
 export { MenuMisc } from "./menu_content/menu_misc";
 export { MenuNav } from "./menu_content/menu_navigation";
-export { MenuP5 } from "./menu_content/menu_p5";
+export { MenuProcessing } from "./menu_content/menu_processing";
 export { MenuLinksUtils } from "./menu_content/menu_links_utils";

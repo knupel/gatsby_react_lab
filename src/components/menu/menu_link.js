@@ -1,11 +1,11 @@
 import React from "react"
 import { Link } from "gatsby"
 
-export function MenuLink({name, link, str}) {
+export function MenuLink(props) {
   return (
     <div>
-      <Link to={link} state={{ info: str }}>
-        {name}
+      <Link to={props.link} state={{ info: props.str }}>
+        {props.name}
       </Link>
     </div>
   )

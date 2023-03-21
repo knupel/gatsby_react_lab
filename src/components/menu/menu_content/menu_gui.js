@@ -5,7 +5,7 @@ import { useState} from "react";
 import { MenuLink } from "../menu_link";
 import { MenuTitle } from "../menu_title";
 
-export function Deploy() {
+function Deploy() {
   return (
     <div>
       <MenuLink link="/gui/side_bar/" name={"GUI: side bar"}></MenuLink>

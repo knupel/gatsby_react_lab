@@ -26,7 +26,7 @@ export function MenuVideo() {
   }
 
   return (<>
-      <div style={{cursor: 'pointer'}} onClick={mouse_click}><MenuTitle is={is} title="Vidéo"/></div>
+      <div style={{cursor: 'pointer'}} onClick={mouse_click}><MenuTitle is={is} title="VIDÉO"/></div>
       {is ? <Deploy/>: null}
     </>
   );
