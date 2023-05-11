@@ -48,12 +48,17 @@ function SectionCode() {
       <NewTabLink href="https://github.com/Kristories/awesome-guidelines"
                   title="coding guide by lkanguage and companies"
       />
-    <NewTabLink href="https://lincnil.github.io/Guide-RGPD-du-developpeur/"
+      <NewTabLink href="https://lincnil.github.io/Guide-RGPD-du-developpeur/"
                   title="RGPD, guide pour les développeurs"
       />
-    <NewTabLink href="https://www.cnil.fr/fr/outil-pia-telechargez-et-installez-le-logiciel-de-la-cnil"
+      <NewTabLink href="https://www.cnil.fr/fr/outil-pia-telechargez-et-installez-le-logiciel-de-la-cnil"
                   title="AIPD, PIA logiciel développé par la CNIL pour tester le RGPD / AIPD"
       />
+      <NewTabLink href="https://github.com/markdown-templates/markdown-emojis"
+                  title="Emoji to add in your github markdown"
+      />
+
+
     </div>
   );
 }

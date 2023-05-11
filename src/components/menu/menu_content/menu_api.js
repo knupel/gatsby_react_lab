@@ -9,6 +9,10 @@ function Deploy() {
   return (
     <div>
       <MenuLink
+        link="api/api_github_token/"
+        name={"API: Github token in progress"}
+      ></MenuLink>
+      <MenuLink
         link="api/api_public/"
         name={"API: Axios acces to puplic api"}
       ></MenuLink>
