@@ -50,7 +50,6 @@ const render = (status: Status): ReactElement => {
   if (status === Status.FAILURE) return <Error/>;
   return null;
 };
-
 // need to pass by GATSBY_XXXXX to keep the key visible in file... but now the key have a public exposition
 const env_google_id : string | undefined = process.env.GATSBY_GOOGLE_MAP_ID;
 
