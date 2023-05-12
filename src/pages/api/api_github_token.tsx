@@ -25,64 +25,39 @@ import Layout from "../../components/struct/layout"
 // OCTOKIT
 // https://docs.github.com/en/rest/guides/scripting-with-the-rest-api-and-javascript?apiVersion=2022-11-28
 
+// FILE READER
+// https://developer.mozilla.org/fr/docs/Web/API/FileReader/readAsDataURL
 export default function ApiGithubToken() {
-  // const [name, setName] = useState('');
-  const [file, set_file] = useState(null);
+  // const [file, set_file] = useState(null);
 
-  // function set_file() {
-
+  // const load = e => {
+  //   if(e.target !== null) {
+  //     let files = e.target.files;
+  //     if(files.length > 0) {
+  //       let reader = new FileReader();
+  //       reader.readAsDataURL(files[0]);
+  //       reader.onload = (e) => {
+  //         set_file(files[0]);
+  //       }
+  //       if(files[0] !== null) {
+  //         //console.log("selectedFile", file);
+  //         const git= {
+  //           owner : 'knupel',
+  //           repo: 'gatsby_react_lab',
+  //           path: `media/test/`,
+  //           token: process.env.GATSBY_TOKEN_GITHUB,
+  //         }
+  //         // console.log("git", git);
+  //         console.log("files[0]", files[0]);
+  //         console.log("reader", reader);
+  //         upload_file(git, reader);
+  //         // upload_file(git, files[0]);
+  //         // upload_file(git, file);
+  //       }
+  //     }
+  //   }
+  //   // console.log("after file", file)
   // }
-
-  // console.log("process.env.GATSBY_TOKEN_GITHUB", process.env.GATSBY_TOKEN_GITHUB);
-  // console.log("process.env.TYPEKIT_ID", process.env.TYPEKIT_ID);
-  // console.log("process.env.GATSBY_GOOGLE_MAP_ID",process.env.GATSBY_GOOGLE_MAP_ID);
-  const load = e => {
-    
-    // console.log("event.target.value", e.target.value);
-    // console.log("event.target.files", e.target.files);
-
-    if(e.target !== null) {
-      let files = e.target.files;
-      if(files.length > 0) {
-        let reader = new FileReader();
-        reader.readAsDataURL(files[0]);
-        reader.onload = (e) => {
-          set_file(files[0]);
-        }
-        // reader.onload = (e) => {
-        //   // console.log('data: ', e.target.result);
-        //   // set_file(e.target.result);
-        //   // const selectedFile = document.getElementById("input").files[0];
-        //  if(e.target !== null) {
-        //   // set_file(files[0]);
-        //   console.log("files[0]", files[0]);
-        //  }
-          
-        // };
-        // console.log("file", file);
-        // console.log("e.target", e.target);
-        // console.log("e.target.files[0]", e.target.files[0]);
-        // console.log("e.target.result", e.target.result);
-        // console.log("e.target.value", e.target.value);
-        if(files[0] !== null) {
-          //console.log("selectedFile", file);
-          const git= {
-            owner : 'knupel',
-            repo: 'gatsby_react_lab',
-            path: `media/test/`,
-            token: process.env.GATSBY_TOKEN_GITHUB,
-          }
-          // console.log("git", git);
-          console.log("files[0]", files[0]);
-          console.log("reader", reader);
-          upload_file(git, reader);
-          // upload_file(git, files[0]);
-          // upload_file(git, file);
-        }
-      }
-    }
-    // console.log("after file", file)
-  }
   return (
     <div>
       <Layout
@@ -90,24 +65,41 @@ export default function ApiGithubToken() {
         link="true"
       >
       </Layout>
-      {/* <form> */}
-      {/* <form onSubmit={load}> */}
-        <p>Sélectionner le fichier à déposer sur Github / Select your file to upload in Github</p>
-        <input type="file" name="input" onChange={load}/>
-        <br/>
-        <br/>
-        <button type="submit">CHARGEZ</button>
-      {/* </form> */}
-      {/* <div>
-        <p>Sélectionner le fichier à déposer sur Github</p>
-        <p>Select your file to upload in Github</p>
-        <input type="file" name="input" onChange={load}/>
-        <br/>
-        <br/>
-        <button type="submit">CHARGEZ</button>
-      </div> */}
+      <p>Sélectionner le fichier à déposer sur Github / Select your file to upload in Github</p>
+      <input type="file" name="input" onChange={(event) => load(event)}/>
+      <br/>
+      <br/>
+      <button type="submit">CHARGEZ</button>
     </div>
   )
+}
+
+function load(event:any) {
+  console.log("event",event);
+  console.log("event.target",event.target);
+  if(event !== undefined && event.target.type === "file") {
+    const file =  event.target.files[0];
+    console.log("file",file);
+    const reader = new FileReader();
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+
+    reader.addEventListener("load", () => {
+      const git= {
+        owner : 'knupel',
+        repo: 'gatsby_react_lab',
+        path: `media/test/`,
+        token: process.env.GATSBY_TOKEN_GITHUB,
+      }
+      // on convertit l'image en une chaîne de caractères base64
+      // console.log("reader.result",reader.result);
+      upload_file(git , reader.result);
+    }, false);
+  }
+
+  
 }
 
 // HTTP ACCES
@@ -130,8 +122,8 @@ const upload_file = async (git: { owner: string; repo: string; path: string; tok
       },
       body: JSON.stringify({
         message: "Téléversement de votre fichier",
-        // content: data,
-        content: data.split('base64,')[1]
+        content: data,
+        // content: data.split('base64,')[1]
         // content: data.content
       })
     }
@@ -139,33 +131,6 @@ const upload_file = async (git: { owner: string; repo: string; path: string; tok
   return await res.json();
 }
 
-
-
-
-
-
-// Octokit.js
-// https://github.com/octokit/core.js#readme
-/*
-const octokit = new Octokit({
-  auth: 'YOUR-TOKEN'
-})
-
-await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
-  owner: 'OWNER',
-  repo: 'REPO',
-  path: 'PATH',
-  message: 'my commit message',
-  committer: {
-    name: 'Monalisa Octocat',
-    email: 'octocat@github.com'
-  },
-  content: 'bXkgbmV3IGZpbGUgY29udGVudHM=',
-  headers: {
-    'X-GitHub-Api-Version': '2022-11-28'
-  }
-})
-*/
 
 
 
