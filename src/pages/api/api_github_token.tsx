@@ -1,12 +1,11 @@
 // REACT
 import React from "react"
-import { useState } from "react";
 // APP
 import Layout from "../../components/struct/layout"
 
 // https://levelup.gitconnected.com/how-to-upload-images-to-github-via-javascript-59163b8fff27
 
-
+// TOKEN
 // https://github.com/settings/tokens/new
 
 // https://docs.github.com/en/rest/repos/contents?apiVersion=2022-11-28#create-or-update-file-contents
@@ -27,37 +26,20 @@ import Layout from "../../components/struct/layout"
 
 // FILE READER
 // https://developer.mozilla.org/fr/docs/Web/API/FileReader/readAsDataURL
-export default function ApiGithubToken() {
-  // const [file, set_file] = useState(null);
 
-  // const load = e => {
-  //   if(e.target !== null) {
-  //     let files = e.target.files;
-  //     if(files.length > 0) {
-  //       let reader = new FileReader();
-  //       reader.readAsDataURL(files[0]);
-  //       reader.onload = (e) => {
-  //         set_file(files[0]);
-  //       }
-  //       if(files[0] !== null) {
-  //         //console.log("selectedFile", file);
-  //         const git= {
-  //           owner : 'knupel',
-  //           repo: 'gatsby_react_lab',
-  //           path: `media/test/`,
-  //           token: process.env.GATSBY_TOKEN_GITHUB,
-  //         }
-  //         // console.log("git", git);
-  //         console.log("files[0]", files[0]);
-  //         console.log("reader", reader);
-  //         upload_file(git, reader);
-  //         // upload_file(git, files[0]);
-  //         // upload_file(git, file);
-  //       }
-  //     }
-  //   }
-  //   // console.log("after file", file)
-  // }
+// GITHUB DISCUSSION
+// https://github.com/orgs/community/discussions
+// https://docs.github.com/en/rest/repos/contents?apiVersion=2022-11-28#create-or-update-file-contents
+// https://docs.github.com/fr/rest/repos/contents?apiVersion=2022-11-28#get-repository-content
+
+// HTML message
+// https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages
+
+// base64 is not valid 
+// https://github.com/orgs/community/discussions/41150
+// https://stackoverflow.com/questions/22952491/github-api-responding-with-content-is-not-valid-base64
+
+export default function ApiGithubToken() {
   return (
     <div>
       <Layout
@@ -75,11 +57,10 @@ export default function ApiGithubToken() {
 }
 
 function load(event:any) {
-  console.log("event",event);
-  console.log("event.target",event.target);
   if(event !== undefined && event.target.type === "file") {
     const file =  event.target.files[0];
     console.log("file",file);
+    console.log("file.name",file.name);
     const reader = new FileReader();
 
     if (file) {
@@ -90,29 +71,25 @@ function load(event:any) {
       const git= {
         owner : 'knupel',
         repo: 'gatsby_react_lab',
-        path: `media/test/`,
+        // path: `media/test`,
+        path: `media/test/`+file.name,
         token: process.env.GATSBY_TOKEN_GITHUB,
       }
-      // on convertit l'image en une chaîne de caractères base64
-      // console.log("reader.result",reader.result);
+      // const regex = /data:.*base64,/;
+      // let res = reader.result;
+      // upload_file(git , res.replace(regex,""));
       upload_file(git , reader.result);
     }, false);
   }
-
-  
 }
 
-// HTTP ACCES
-// interface Props {
-//   data : any;
-//   git: any;
-
-// }
 const upload_file = async (git: { owner: string; repo: string; path: string; token: string | undefined; }, data: any) => {
   let final_path = `https://api.github.com/repos/${git.owner}/${git.repo}/contents/${git.path}`;
-  // console.log("final_path", final_path);
-  // console.log("token", git.token);
-  console.log("data", data);
+  // console.log("git.path", git.path);
+  console.log("before data", data);
+  const regex = /data:.*base64,/;
+ // data.replace(regex,"");
+  // console.log("after data", data);
   const res = await fetch(final_path,
     {
       method: "PUT",
@@ -122,16 +99,16 @@ const upload_file = async (git: { owner: string; repo: string; path: string; tok
       },
       body: JSON.stringify({
         message: "Téléversement de votre fichier",
-        content: data,
-        // content: data.split('base64,')[1]
-        // content: data.content
+        // content: data.content, // Invalid request.\n\n"content" wasn't supplied.
+       // content: data.split('base64,')[1] // Invalid request."sha" wasn't supplied.
+       content: data.replace(regex,""), // Invalid request."sha" wasn't supplied.
+       // content: data // content is not valid Base64
+        
       })
     }
   );
   return await res.json();
 }
-
-
 
 
 export const Head = () => {
