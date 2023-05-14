@@ -1,7 +1,9 @@
 // REACT
 import React from "react"
+import { useState, useRef } from "react";
 // APP
 import Layout from "../../components/struct/layout"
+import "../../styles/api_github_token.css";
 
 // https://levelup.gitconnected.com/how-to-upload-images-to-github-via-javascript-59163b8fff27
 
@@ -39,6 +41,10 @@ import Layout from "../../components/struct/layout"
 // https://github.com/orgs/community/discussions/41150
 // https://stackoverflow.com/questions/22952491/github-api-responding-with-content-is-not-valid-base64
 
+
+// DRAG & DROP ZONE
+// https://www.codemzy.com/blog/react-drag-drop-file-upload
+
 export default function ApiGithubToken() {
   return (
     <div>
@@ -47,49 +53,145 @@ export default function ApiGithubToken() {
         link="true"
       >
       </Layout>
-      <p>Sélectionner le fichier à déposer sur Github / Select your file to upload in Github</p>
-      <input type="file" name="input" onChange={(event) => load(event)}/>
-      <br/>
-      <br/>
-      <button type="submit">CHARGEZ</button>
+      <FileUpload/>
+      <br/><br/>
+      <DragDropFileUpload/>
+      
     </div>
   )
 }
 
-function load(event:any) {
-  if(event !== undefined && event.target.type === "file") {
-    const file =  event.target.files[0];
-    console.log("file",file);
-    console.log("file.name",file.name);
-    const reader = new FileReader();
-
-    if (file) {
-      reader.readAsDataURL(file);
+// DRAG and DROP
+///////////////////
+const DragDropFileUpload = () => {
+  // https://www.codemzy.com/blog/react-drag-drop-file-upload
+  const [drag_active, set_drag_active] = useState(false);
+  const input_ref = useRef(null);
+  
+  // handle drag events
+  const handle_drag = function(e: { preventDefault: () => void; stopPropagation: () => void; type: string; }) {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.type === "dragenter" || e.type === "dragover") {
+      set_drag_active(true);
+    } else if (e.type === "dragleave") {
+      set_drag_active(false);
     }
+  };
 
-    reader.addEventListener("load", () => {
-      const git= {
-        owner : 'knupel',
-        repo: 'gatsby_react_lab',
-        // path: `media/test`,
-        path: `media/test/`+file.name,
-        token: process.env.GATSBY_TOKEN_GITHUB,
+  // triggers when file is dropped
+  const handle_drop = function(e : any) {
+    e.preventDefault();
+    e.stopPropagation();
+    set_drag_active(false);
+    upload_github(e);
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      // load(e);
+      // at least one file has been dropped so do something
+      // handleFiles(e.dataTransfer.files);
+    }
+  };
+
+  // triggers when file is selected with click
+  const handle_change = function(e: any) {
+    e.preventDefault();
+    upload_github(e);
+    // if (e.target.files && e.target.files[0]) {
+    //   // at least one file has been selected so do something
+    //   // handleFiles(e.target.files);
+    // }
+  };
+
+  // triggers the input when the button is clicked
+  const button_click = () => {
+    if(input_ref.current !== null) {
+      input_ref.current.click();
+    }
+    
+  };
+
+  return <>
+    <p>NEW SCHOOL STYLE to upload file inspired by Codemzy code</p>
+    <form className="form_file_upload" onDragEnter={handle_drag} onSubmit={(e) => e.preventDefault()}>
+    {/* <input ref={input_ref} type="file" id="input_file_upload" multiple={true} onChange={(event) => load(event)}/> */}
+      <input ref={input_ref} type="file" id="input_file_upload" multiple={true} onChange={handle_change}/>
+      <label id="label_file_upload" htmlFor="input_file_upload">
+        <div>
+          <p>Drag and drop your file here or</p>
+          <button className="upload_button" onClick={button_click}>Upload a file</button>
+        </div> 
+      </label>
+      { drag_active && <div id="drag_file_element" onDragEnter={handle_drag} onDragLeave={handle_drag} onDragOver={handle_drag} onDrop={handle_drop}></div> }
+    </form>
+  </>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+// UPLOAD TO... where you want if you've the permission, here we use API GITHIB with temporary token
+//////////////////////////////
+const FileUpload = () => {
+  return <>
+    <p>OLD SCHOOL STYLE</p>
+    <p>Sélectionner le fichier à déposer sur Github / Select your file to upload in Github</p>
+    <p>UPLOAD TO... where you want if you've the owner permission. Here we use API GITHUB with temporary token</p>
+    <input type="file" name="input" onChange={(event) => upload_github(event)}/>
+    {/* <br/>
+    <br/>
+    <button type="submit">CHARGEZ</button> */}
+  </>
+}
+
+function upload_github(event:any) {
+  if(event !== undefined ) {
+    console.log("event",event);
+    if(event.target !== undefined && event.target.type === "file") {
+      for(let i = 0 ; i < event.target.files.length ; i++) {
+        const file =  event.target.files[i];
+        upload_file_github(file);
       }
-      // const regex = /data:.*base64,/;
-      // let res = reader.result;
-      // upload_file(git , res.replace(regex,""));
-      upload_file(git , reader.result);
-    }, false);
+      return;
+    }
+    if(event.dataTransfer !== undefined) {
+      for(let i = 0 ; i < event.dataTransfer.files.length ; i++) {
+        const file =  event.dataTransfer.files[i];
+        upload_file_github(file);
+      }
+      return;
+    }
   }
 }
 
-const upload_file = async (git: { owner: string; repo: string; path: string; token: string | undefined; }, data: any) => {
+function upload_file_github(file : Blob) {
+  const reader = new FileReader();
+  if (file) {
+    reader.readAsDataURL(file);
+  }
+
+  reader.addEventListener("load", () => {
+    const git= {
+      owner : 'knupel',
+      repo: 'gatsby_react_lab',
+      path: `media/test/`+file.name,
+      token: process.env.GATSBY_TOKEN_GITHUB,
+    }
+    upload_file_github_impl(git , reader.result);
+  }, false);
+}
+
+const upload_file_github_impl = async (git: { owner: string; repo: string; path: string; token: string | undefined; }, data: any) => {
   let final_path = `https://api.github.com/repos/${git.owner}/${git.repo}/contents/${git.path}`;
-  // console.log("git.path", git.path);
-  console.log("before data", data);
   const regex = /data:.*base64,/;
- // data.replace(regex,"");
-  // console.log("after data", data);
+  
   const res = await fetch(final_path,
     {
       method: "PUT",
@@ -99,11 +201,8 @@ const upload_file = async (git: { owner: string; repo: string; path: string; tok
       },
       body: JSON.stringify({
         message: "Téléversement de votre fichier",
-        // content: data.content, // Invalid request.\n\n"content" wasn't supplied.
-       // content: data.split('base64,')[1] // Invalid request."sha" wasn't supplied.
-       content: data.replace(regex,""), // Invalid request."sha" wasn't supplied.
-       // content: data // content is not valid Base64
-        
+        // content: data.split('base64,')[1], // same as replace with regex
+        content: data.replace(regex,""),
       })
     }
   );
