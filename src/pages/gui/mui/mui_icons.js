@@ -1,5 +1,5 @@
 import React from "react"
-import Layout from "../../components/struct/layout"
+import Layout from "../../../components/struct/layout"
 
 import { Badge }  from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';

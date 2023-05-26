@@ -1,5 +1,5 @@
 import React from "react"
-import Layout from "../../components/struct/layout"
+import Layout from "../../../components/struct/layout"
 // GATSBY
 import { Link } from "gatsby"
 
@@ -36,13 +36,12 @@ const SuperButton = styled(Button)({
   borderRadius: 4,
   fontSize:40,
   fontFamily: "aglet-mono, mono", // font typekit project for knupel website
-
 });
 
 
 
 
-export default function MUISimple() {
+export default function MUIButtonTypekitFont() {
   return (
     <div>
       <Layout

@@ -3,21 +3,21 @@
 * based on 
 * Based on Advanced class Form
 *
-* v 0.0.1
+* v 0.0.2
 * 2022-2022
 * */
 
 import React, { useEffect } from "react";
 import {useState} from "react";
-import { useFormAdv, useFocus } from "../../components/custom_hook"
-import Layout from "../../components/struct/layout"
+import { useFormAdv, useFocus } from "../../../components/custom_hook"
+import Layout from "../../../components/struct/layout"
 import {container, title, card, form, 
         button_form, 
         text_input, text_area, 
-        label_focus, input_focus} from "./gui.module.scss";
+        label_focus, input_focus} from "./../gui.module.scss";
 
 
-export default function PageForm() {
+export default function PageFormAdvHook() {
   return (
     <div>
       <Layout title="Form advanced hook"></Layout>

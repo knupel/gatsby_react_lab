@@ -1,10 +1,10 @@
 // https://medium.com/@geeky_writer_/using-react-hooks-to-create-awesome-forms-6f846a4ce57
 
 import React from "react"
-import Layout from "../../components/struct/layout"
-import { useForm } from "../../components/custom_hook"
+import Layout from "../../../components/struct/layout"
+import { useForm } from "../../../components/custom_hook"
 
-export default function PageForm() {
+export default function PageFormSignup() {
   return (
     <div>
       <Layout title="Form signup hook"></Layout>

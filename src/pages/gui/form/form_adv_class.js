@@ -4,19 +4,19 @@
 * Based on code https://codepen.io/cojdev/pen/LMZVqj 
 * Charles Ojukwu: https://codepen.io/cojdev
 *
-* v 0.2.0
+* v 0.2.1
 * 2022-2022
 * */
 
 import React from "react";
-import Layout from "../../components/struct/layout"
+import Layout from "../../../components/struct/layout"
 import {container, title, card, form, 
         button_form, 
         text_input, text_area, 
-        label_focus, input_focus} from "./gui.module.scss";
+        label_focus, input_focus} from "./../gui.module.scss";
 
 
-export default function PageForm() {
+export default function PageFormAdvClass() {
   return (
     <div>
       <Layout title="Form advanced class"></Layout>
