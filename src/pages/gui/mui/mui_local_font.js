@@ -1,11 +1,11 @@
 import React from "react"
-import Layout from "../../components/struct/layout"
+import Layout from "../../../components/struct/layout"
 import { Link } from "gatsby"
 
 import Button from "@mui/material/Button"
 import { createTheme, ThemeProvider } from "@mui/material/styles"
 
-import JuanitaTTF from "../../../fonts/Juanita ITC.ttf"
+import JuanitaTTF from "../../../../fonts/Juanita ITC.ttf"
 
 // https://www.gatsbyjs.com/docs/using-web-fonts/
 
@@ -39,7 +39,7 @@ const theme = createTheme({
   },
 })
 
-export default function MUISimple() {
+export default function MUIButtonFont() {
   return (
     <div>
       <Layout title="MUI V5: local font" link="false"></Layout>

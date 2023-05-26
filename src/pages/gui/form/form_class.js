@@ -1,7 +1,7 @@
 import React from "react"
-import Layout from "../../components/struct/layout"
+import Layout from "../../../components/struct/layout"
 
-export default function PageForm() {
+export default function PageFormClass() {
   return (
     <div>
       <Layout title="Form basic class"></Layout>

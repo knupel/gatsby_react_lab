@@ -4,10 +4,10 @@
  * v 0.2.0
  * */
 import React from "react"
-import Layout from "../../components/struct/layout"
-import { useForm } from "../../components/custom_hook"
+import Layout from "../../../components/struct/layout"
+import { useForm } from "../../../components/custom_hook"
 
-export default function PageForm() {
+export default function PageFormHook() {
   return (
     <div>
       <Layout title="Form basic hook"></Layout>

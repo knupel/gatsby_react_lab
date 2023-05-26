@@ -45,6 +45,11 @@ import "../../styles/api_github_token.css";
 // DRAG & DROP ZONE
 // https://www.codemzy.com/blog/react-drag-drop-file-upload
 
+// get sha and other data
+// curl https://api.github.com/repos/knupel/gatsby_react_lab/contents/media/2020_8_11_contagion_6_3.jpg
+// `https://api.github.com/repos/${git.owner}/${git.repo}/contents/${git.path}${git.file_name}`;
+// return all info about the file and in it, there the famous sha
+
 export default function ApiGithubToken() {
   return (
     <div>
