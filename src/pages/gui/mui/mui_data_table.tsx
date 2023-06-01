@@ -63,8 +63,8 @@ function SimpleDataTable() {
 //////////////
 // ROW and DATA
 const rows = [
-  { id: 1, name: 'Dragon', family: 'Reptile', mythic: true, age: 250 },
-  { id: 2, name: 'Licorne', family: 'Mamifère', mythic: true, age: 60 },
+  { id: 1, name: 'Dragon', family: 'Reptile', mythic: true, age: 500 },
+  { id: 2, name: 'Licorne', family: 'Mamifère', mythic: true, age: 50 },
   { id: 3, name: 'Ours', family: 'Mamifère', mythic: false, age: 25 },
   { id: 4, name: 'Yeti', family: 'Mamifère', mythic: true, age: 35 },
   { id: 5, name: 'Tigre', family: 'Mamifère', mythic: false, age: 10 },
@@ -76,6 +76,8 @@ const rows = [
   { id: 11, name: 'Requin', family: 'Poisson', mythic: false, age: 85 },
   { id: 12, name: 'Crabe', family: 'Crustacé', mythic: false, age: 8 },
   { id: 13, name: 'Tortue', family: 'Reptile', mythic: false, age: 150 },
+  { id: 14, name: 'Cerbère', family: 'Mamifère', mythic: true, age: 70 },
+  { id: 15, name: 'Scarabée', family: 'Insecte', mythic: false, age: 2 },
 ];
 
 
@@ -84,52 +86,77 @@ const columns_simple: GridColDef[] = [
   { field: 'id', headerName: 'ID', width: 70, headerClassName: 'design_header', },
   { field: 'name', headerName: 'Nom', width: 130 , editable: true, headerClassName: 'design_header' },
   { field: 'family', headerName: 'Famille', width: 130, headerClassName: 'design_header' },
-  {
-    field: 'age',
-    headerName: 'Age',
-    type: 'number',
-    width: 90,
-    headerClassName: 'design_header'
-  },
-  {
-    field: 'fullName',
-    headerName: 'Nom complet',
-    description: 'This column has a value getter and is not sortable.',
-    sortable: false,
-    width: 160,
-    headerClassName: 'design_header',
+  { field: 'age', headerName: 'Age', type: 'number', width: 90, headerClassName: 'design_header' },
+  { field: 'fullName', headerName: 'Nom complet', description: 'This column has a value getter and is not sortable.',
+    sortable: false, width: 160, headerClassName: 'design_header',
     valueGetter: (params: GridValueGetterParams) =>
       `${params.row.name || ''} ${params.row.family || ''}`,
   },
 ];
+
+
+
+
+
 
 
 const columns_complex: GridColDef[] = [
-  { field: 'id', headerName: 'ID', width: 70, headerClassName: 'design_header', },
-  { field: 'name', headerName: 'Nom', width: 130 , editable: true, headerClassName: 'design_header' },
-  { field: 'family', headerName: 'Famille', width: 130, headerClassName: 'design_header' },
-  {
-    field: 'age',
-    headerName: 'Age',
-    type: 'number',
-    width: 90,
-    headerClassName: 'design_header'
-  },
-  {
-    field: 'fullName',
-    headerName: 'Nom complet',
-    description: 'This column has a value getter and is not sortable.',
-    sortable: false,
-    width: 160,
-    headerClassName: 'design_header',
-    valueGetter: (params: GridValueGetterParams) =>
-      `${params.row.name || ''} ${params.row.family || ''}`,
-  },
-  {
-    field:'mythic', type: 'boolean',  valueFormatter: ({value}) => `${value}`,
-  },
+  info('id', 'ID', 70, 'design_header', true),
+  info('name', 'Nom', 130, 'design_header', true, {editable: true}),
+  info('family', 'Famille', 130, 'design_header', true),
+  info('age', 'Age', 90, 'design_header', true, {type: 'number'}),
+  info('fullName', 'Nom complet', 160, 'design_header', true,
+      // find(valueGetter: (params: GridValueGetterParams) => (return `${params.row.name}`)},
+      // {valueFormatter: (truc : any) => {return truc.value.find((item: any) => item.field === 'mythic').option}},
+       { sortable: false, 
+        valueGetter: (params: GridValueGetterParams) => `${params.row.name || ''} ${params.row.family || ''}`,}),
+  info('mythic', 'Legend', 100, 'design_header', 
+      // {valueFormatter: ({value}) => {return value}}
+      {valueFormatter: (truc : any) => {return truc.value}}
+  // {valueFormatter: (params: GridValueGetterParams) => params.row.mythic,}
+      // {valueGetter: (params: GridValueGetterParams) => params.row.mythic,}
+      // {valueGetter: (params: GridValueGetterParams) => {console.log("params.row.mythic", params.row.mythic); return params.row.mythic}}, 
+      // {valueGetter: (params: GridValueGetterParams) => `${params.row.mythic}`,}
+      ),
 
 ];
+
+function find(name: string) {
+  console.log("columns_complex",rows);
+  if(rows !== undefined) {
+    rows.map(elem => {
+      console.log("name", name);
+      console.log("elem.name", elem.name);
+      if(elem.name === name) {
+        console.log("bingo", elem.name);
+        return elem.mythic;
+      }
+    })
+    return false;
+  }
+  return false;
+}
+
+
+
+
+function info(field : string, header: string, width : number, headerClassName : string, is : boolean | Object, obj? : Object) {
+  console.log("is", is);
+  if(typeof is === 'object') {
+    // console.log("je suis is", is);
+    console.log(Object.values(is));
+    // const {valueFormatter} = is;
+    // console.log("je suis", field, is, value);
+    // let buf = {valueGetter: (params: GridValueGetterParams) => {console.log(params.row.is);`${params.row.is}`}};
+    // console.log("buf", buf);
+    is = (is: GridCellParams<any, any, boolean>) => { 
+      is = is.value
+      // console.log("je suis là", is, params.value);
+      return { field: field, headerName: header, width: width, headerClassName: headerClassName, is: is.value, ...obj }
+    };
+  }
+  return { field: field, headerName: header, width: width, headerClassName: headerClassName, is: is, ...obj };
+}
 
 
 
@@ -146,7 +173,8 @@ function ComplexDataTable() {
   //   rowLength: 50,
   // });
   //  const { data } = rows;
-
+  console.log("col", columns_complex.length);
+  console.log("col 6", columns_complex[5]);
   return (
     <Box sx={{ height: 400, width: '100%', 
               '& .design_true': {
@@ -163,12 +191,16 @@ function ComplexDataTable() {
           },
         }}
         pageSizeOptions={[5, 10]}
-        getCellClassName={(params: GridCellParams<any, any, boolean>) => {
-          if (params.field === 'id' || params.value == null) {
-            return '';
-          }
-          console.log("params.value",params.field, params.value);
-          return params.value ? 'design_true' : 'design_false';
+        // getCellClassName = {() => {
+        //   // console.log("col", columns_complex);
+        //   return 'design_false'}}
+
+
+
+        // getCellClassName = {(params: GridCellParams<any, any, boolean>) => {return params.value ? 'design_true' : 'design_false' }}
+        getCellClassName={(truc: GridCellParams<any, any, boolean>) => {
+          // comment étendre ça à l'ensemble des cellules ????
+          return truc.value ? 'design_true' : 'design_false';
         }}
       />
       {/* <StyledDataGrid
