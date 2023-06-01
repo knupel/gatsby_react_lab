@@ -16,7 +16,7 @@ import Layout from "../../../components/struct/layout"
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
@@ -37,6 +37,7 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
+import { maxWidth } from "@mui/system";
 
 
 export default function MUITable() {
@@ -283,7 +284,12 @@ function CustomTable() {
         {/* <EnhancedTableToolbar numSelected={selected.length} /> */}
         <TableContainer>
           <Table
-            sx={{ minWidth: 750 }}
+            sx={{ [`& .${tableCellClasses.root}`]: {
+              borderBottom: "none",
+              minWidth : 100,
+              // background: "magenta", // take the lead on local color :(
+              // color: "yellow"
+            }}}
             aria-labelledby="tableTitle"
             size={dense ? 'small' : 'medium'}
           >
@@ -309,7 +315,7 @@ function CustomTable() {
                     tabIndex={-1}
                     key={row.name}
                     selected={select_item_is}
-                    sx={{ cursor: 'pointer' }}
+                    sx={{ cursor: 'pointer', background: row.mythic ? "magenta" : "cyan"}}
                   >
                     <TableCell padding="checkbox">
                       <Checkbox
@@ -320,12 +326,16 @@ function CustomTable() {
                         }}
                       />
                     </TableCell>
-                    <TableCell align="left">{row.id}</TableCell>
-                    {/* <TableCell component="th" id={labelId} scope="row" padding="none" >{row.id}</TableCell> */}
+                    <DesignTableCell>{row.id}</DesignTableCell>
+                    <DesignTableCell>{row.name}</DesignTableCell>
+                    <DesignTableCell>{row.family}</DesignTableCell>
+                    <DesignTableCell>{row.mythic ? "oui" : "non" }</DesignTableCell>
+                    <DesignTableCell>{row.age}</DesignTableCell>
+                    {/* <TableCell align="left">{row.id}</TableCell>
                     <TableCell align="left">{row.name}</TableCell>
                     <TableCell align="left">{row.family}</TableCell>
                     <TableCell align="left">{row.mythic}</TableCell>
-                    <TableCell align="left">{row.age}</TableCell>
+                    <TableCell align="left">{row.age}</TableCell> */}
                   </TableRow>
                 );
               })}
@@ -357,6 +367,16 @@ function CustomTable() {
       />
     </Box>
   );
+}
+
+
+function DesignTableCell({children}) {
+  return <>
+  <TableCell align="left">{children}</TableCell>
+</>
+  // return <div style={{background: 'yellow'}}>
+  //   <TableCell align="left">{children}</TableCell>
+  // </div>
 }
 
 
