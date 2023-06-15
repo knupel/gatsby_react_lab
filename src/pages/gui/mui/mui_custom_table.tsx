@@ -8,6 +8,7 @@
 // REACT
 import React, { FC } from "react";
 import {useState, useMemo} from "react";
+import { createContext, useContext } from "react";
 import {ChangeEvent, MouseEvent} from "react"
 // APP
 import Layout from "../../../components/struct/layout"
@@ -38,6 +39,14 @@ import Tooltip from '@mui/material/Tooltip';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { maxWidth } from "@mui/system";
+// to open the row icon
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+
+
+
+
+
 
 
 export default function MUITable() {
@@ -56,29 +65,30 @@ interface Data_Props {
   family: string;
   mythic: boolean;
   age: number;
+  info: Array<string>;
 }
 
-function create_data(id: number, name: string, family: string, mythic: boolean, age: number)
+function create_data(id: number, name: string, family: string, mythic: boolean, age: number, info: Array<string>)
   : Data_Props {
-  return { id, name, family, mythic, age}; 
+  return { id, name, family, mythic, age, info}; 
 }
 
 const rows = [
-  create_data(1, 'Dragon','Reptile', true, 500),
-  create_data(2, 'Licorne', 'Mamifère', true, 50),
-  create_data(3, 'Ours', 'Mamifère', false, 25),
-  create_data(4, 'Yeti', 'Mamifère', true, 35),
-  create_data(5, 'Tigre', 'Mamifère', false, 10),
-  create_data(6, 'Caméléon', 'Reptile', false, 10),
-  create_data(7, 'Chèvre', 'Mamifère', false, 8),
-  create_data(8, 'Rat', 'Mamifère', false, 5),
-  create_data(9, 'Souris', 'Mamifère', false, 4),
-  create_data(10, 'Humain', 'Mamifère', false, 85),
-  create_data(11, 'Requin', 'Poisson', false, 85),
-  create_data(12, 'Crabe', 'Crustacé', false, 8),
-  create_data(13, 'Tortue', 'Reptile', false, 150),
-  create_data(14, 'Cerbère', 'Mamifère', true, 70),
-  create_data(15, 'Scarabée', 'Insecte', false, 2),
+  create_data(1, 'Dragon','Reptile', true, 500, ["rouge", "vert", "bleu", "jaune", "polychrome"]),
+  create_data(2, 'Licorne', 'Mamifère', true, 50, ["blanche"]),
+  create_data(3, 'Ours', 'Mamifère', false, 25, ["blanc", "brun"]),
+  create_data(4, 'Yeti', 'Mamifère', true, 35, ["gris", "blanc"]),
+  create_data(5, 'Tigre', 'Mamifère', false, 10, ["blanc", "jaune"]),
+  create_data(6, 'Caméléon', 'Reptile', false, 10, ["vert", "polychrome"]),
+  create_data(7, 'Chèvre', 'Mamifère', false, 8, ["grise", "noire", "blanche"]),
+  create_data(8, 'Rat', 'Mamifère', false, 5, ["blanc", "noir", "gris"]),
+  create_data(9, 'Souris', 'Mamifère', false, 4, ["grise", "blanche"]),
+  create_data(10, 'Humain', 'Mamifère', false, 85, ["noir", "blanc", "rouge", "jaune"]),
+  create_data(11, 'Requin', 'Poisson', false, 85, ["blanc", "bleu", "gris"]),
+  create_data(12, 'Crabe', 'Crustacé', false, 8, ["rouge", "dorée", "rose"]),
+  create_data(13, 'Tortue', 'Reptile', false, 150, ["verte", "grise"]),
+  create_data(14, 'Cerbère', 'Mamifère', true, 70, ["brun"]),
+  create_data(15, 'Scarabée', 'Insecte', false, 2, ["bleu", "vert", "polychrome"]),
 ];
 
 
@@ -171,7 +181,6 @@ function CustomHeader(props: Custom_Header_Props) {
             }}
           />
         </TableCell>
-        
         {content_table.map((Content_Props) => (
             <TableCell
               key={Content_Props.id}
@@ -203,6 +212,18 @@ function CustomHeader(props: Custom_Header_Props) {
 ////////////////////
 // TABLE
 //////////////////
+
+// CONTEXT
+interface ITableContext {
+  select_is: (name: string) => boolean;
+}
+export const TableContext = createContext<ITableContext>(null);
+
+function TableContextProvider() {
+  const [selected, set_selected] = useState<readonly string[]>([]);
+  retunr <TableContext.Provider
+
+}
 
 function CustomTable() {
   const [order, set_order] = useState<Order>('asc');
@@ -302,42 +323,48 @@ function CustomTable() {
               row_count={rows.length}
             />
             <TableBody>
+            <TableContext.Provider value={{ select_is}}></TableContext.Provider>
               {visible_rows.map((row, index) => {
                 const select_item_is = select_is(row.name);
-                const labelId = `enhanced-table-checkbox-${index}`;
+                // console.log("out index", index);
+                // console.log("out select_item_is", select_item_is);
+                // console.log("out row", row);
+                // return (<Truc></Truc>);
+                return (<CustomRow select_item_is={select_item_is} row={row} index={index}/>)
+                // const labelId = `enhanced-table-checkbox-${index}`;
 
-                return (
-                  <TableRow
-                    hover
-                    onClick={(event) => handleClick(event, row.name)}
-                    role="checkbox"
-                    aria-checked={select_item_is}
-                    tabIndex={-1}
-                    key={row.name}
-                    selected={select_item_is}
-                    sx={{ cursor: 'pointer', background: row.mythic ? "magenta" : "cyan"}}
-                  >
-                    <TableCell padding="checkbox">
-                      <Checkbox
-                        color="primary"
-                        checked={select_item_is}
-                        inputProps={{
-                          'aria-labelledby': labelId,
-                        }}
-                      />
-                    </TableCell>
-                    <DesignTableCell>{row.id}</DesignTableCell>
-                    <DesignTableCell>{row.name}</DesignTableCell>
-                    <DesignTableCell>{row.family}</DesignTableCell>
-                    <DesignTableCell>{row.mythic ? "oui" : "non" }</DesignTableCell>
-                    <DesignTableCell>{row.age}</DesignTableCell>
-                    {/* <TableCell align="left">{row.id}</TableCell>
-                    <TableCell align="left">{row.name}</TableCell>
-                    <TableCell align="left">{row.family}</TableCell>
-                    <TableCell align="left">{row.mythic}</TableCell>
-                    <TableCell align="left">{row.age}</TableCell> */}
-                  </TableRow>
-                );
+                // return (
+                //   <TableRow
+                //     hover
+                //     onClick={(event) => handleClick(event, row.name)}
+                //     role="checkbox"
+                //     aria-checked={select_item_is}
+                //     tabIndex={-1}
+                //     key={row.name}
+                //     selected={select_item_is}
+                //     sx={{ cursor: 'pointer', background: row.mythic ? "magenta" : "cyan"}}
+                //   >
+                //     <TableCell padding="checkbox">
+                //       <Checkbox
+                //         color="primary"
+                //         checked={select_item_is}
+                //         inputProps={{
+                //           'aria-labelledby': labelId,
+                //         }}
+                //       />
+                //     </TableCell>
+                //     <DesignTableCell>{row.id}</DesignTableCell>
+                //     <DesignTableCell>{row.name}</DesignTableCell>
+                //     <DesignTableCell>{row.family}</DesignTableCell>
+                //     <DesignTableCell>{row.mythic ? "oui" : "non" }</DesignTableCell>
+                //     <DesignTableCell>{row.age}</DesignTableCell>
+                //     {/* <TableCell align="left">{row.id}</TableCell>
+                //     <TableCell align="left">{row.name}</TableCell>
+                //     <TableCell align="left">{row.family}</TableCell>
+                //     <TableCell align="left">{row.mythic}</TableCell>
+                //     <TableCell align="left">{row.age}</TableCell> */}
+                //   </TableRow>
+                // );
               })}
               {empty_rows > 0 && (
                 <TableRow
@@ -369,14 +396,70 @@ function CustomTable() {
   );
 }
 
+interface CustomRowProps {
+  select_item_is: boolean;
+  row: any,
+  index: number,
+}
+
+const CustomRow: FC<CustomRowProps> =({select_item_is, row, index}) => {
+  const [selected, set_selected] = useState<readonly string[]>([]);
+
+  const handleClick = (event: MouseEvent<unknown>, name: string) => {
+    const selectedIndex = selected.indexOf(name);
+    let newSelected: readonly string[] = [];
+
+    if (selectedIndex === -1) {
+      newSelected = newSelected.concat(selected, name);
+    } else if (selectedIndex === 0) {
+      newSelected = newSelected.concat(selected.slice(1));
+    } else if (selectedIndex === selected.length - 1) {
+      newSelected = newSelected.concat(selected.slice(0, -1));
+    } else if (selectedIndex > 0) {
+      newSelected = newSelected.concat(
+        selected.slice(0, selectedIndex),
+        selected.slice(selectedIndex + 1),
+      );
+    }
+    set_selected(newSelected);
+  };
+
+  // const select_item_is = select_is(row.name);
+  const labelId = `enhanced-table-checkbox-${index}`;
+  return (
+    <TableRow
+      hover
+      onClick={(event) => handleClick(event, row.name)}
+      role="checkbox"
+      aria-checked={select_item_is}
+      tabIndex={-1}
+      key={row.name}
+      selected={select_item_is}
+      sx={{ cursor: 'pointer', background: row.mythic ? "magenta" : "cyan"}}
+    >
+      <TableCell padding="checkbox">
+        <Checkbox
+          color="primary"
+          checked={select_item_is}
+          inputProps={{
+            'aria-labelledby': labelId,
+          }}
+        />
+      </TableCell>
+      <DesignTableCell>{row.id}</DesignTableCell>
+      <DesignTableCell>{row.name}</DesignTableCell>
+      <DesignTableCell>{row.family}</DesignTableCell>
+      <DesignTableCell>{row.mythic ? "oui" : "non" }</DesignTableCell>
+      <DesignTableCell>{row.age}</DesignTableCell>
+    </TableRow>
+  )
+}
+
 
 function DesignTableCell({children}) {
   return <>
   <TableCell align="left">{children}</TableCell>
 </>
-  // return <div style={{background: 'yellow'}}>
-  //   <TableCell align="left">{children}</TableCell>
-  // </div>
 }
 
 
