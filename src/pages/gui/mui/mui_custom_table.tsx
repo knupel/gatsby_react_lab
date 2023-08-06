@@ -3,12 +3,14 @@
  * v 0.0.1
  * 2023-2023
  * based on those examples https://mui.com/material-ui/react-table/
+ * https://blog.logrocket.com/how-to-use-react-context-typescript/
  * 
  * */
 // REACT
-import React, { FC } from "react";
-import {useState, useMemo} from "react";
-import {ChangeEvent, MouseEvent} from "react"
+import React, { FC, ReactNode } from "react";
+import { useState, useMemo } from "react";
+import { createContext, useContext } from "react";
+import { ChangeEvent, MouseEvent } from "react"
 // APP
 import Layout from "../../../components/struct/layout"
 // MUI
@@ -38,47 +40,62 @@ import Tooltip from '@mui/material/Tooltip';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { maxWidth } from "@mui/system";
+// to open the row icon
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+
+
+
+
+
 
 
 export default function MUITable() {
   return (
     <div>
       <Layout title="Material UI V6: Custom Table"></Layout>
-      <CustomTable/>
+      {/* <CustomTable/> */}
+      <CustomTableWithContext/>
     </div>
   )
 }
 
 
 interface Data_Props {
+  // data base
   id: number;
   name: string;
   family: string;
   mythic: boolean;
   age: number;
+  info: Array<string>;
+  // internal management
+  selected: boolean;
 }
 
-function create_data(id: number, name: string, family: string, mythic: boolean, age: number)
+function create_data(id: number, name: string, family: string, mythic: boolean, age: number, info: Array<string>)
   : Data_Props {
-  return { id, name, family, mythic, age}; 
+  // set the internal management
+  let selected = false;
+  return { id, name, family, mythic, age, info, selected}; 
 }
 
 const rows = [
-  create_data(1, 'Dragon','Reptile', true, 500),
-  create_data(2, 'Licorne', 'Mamifère', true, 50),
-  create_data(3, 'Ours', 'Mamifère', false, 25),
-  create_data(4, 'Yeti', 'Mamifère', true, 35),
-  create_data(5, 'Tigre', 'Mamifère', false, 10),
-  create_data(6, 'Caméléon', 'Reptile', false, 10),
-  create_data(7, 'Chèvre', 'Mamifère', false, 8),
-  create_data(8, 'Rat', 'Mamifère', false, 5),
-  create_data(9, 'Souris', 'Mamifère', false, 4),
-  create_data(10, 'Humain', 'Mamifère', false, 85),
-  create_data(11, 'Requin', 'Poisson', false, 85),
-  create_data(12, 'Crabe', 'Crustacé', false, 8),
-  create_data(13, 'Tortue', 'Reptile', false, 150),
-  create_data(14, 'Cerbère', 'Mamifère', true, 70),
-  create_data(15, 'Scarabée', 'Insecte', false, 2),
+  create_data(1, 'Dragon','Reptile', true, 500, ["rouge", "vert", "bleu", "jaune", "polychrome"]),
+  create_data(2, 'Licorne', 'Mamifère', true, 50, ["blanche"]),
+  create_data(3, 'Ours', 'Mamifère', false, 25, ["blanc", "brun"]),
+  create_data(4, 'Yeti', 'Mamifère', true, 35, ["gris", "blanc"]),
+  create_data(5, 'Tigre', 'Mamifère', false, 10, ["blanc", "jaune"]),
+  create_data(6, 'Caméléon', 'Reptile', false, 10, ["vert", "polychrome"]),
+  create_data(7, 'Chèvre', 'Mamifère', false, 8, ["grise", "noire", "blanche"]),
+  create_data(8, 'Rat', 'Mamifère', false, 5, ["blanc", "noir", "gris"]),
+  create_data(9, 'Souris', 'Mamifère', false, 4, ["grise", "blanche"]),
+  create_data(10, 'Humain', 'Mamifère', false, 85, ["noir", "blanc", "rouge", "jaune"]),
+  create_data(11, 'Requin', 'Poisson', false, 85, ["blanc", "bleu", "gris"]),
+  create_data(12, 'Crabe', 'Crustacé', false, 8, ["rouge", "dorée", "rose"]),
+  create_data(13, 'Tortue', 'Reptile', false, 150, ["verte", "grise"]),
+  create_data(14, 'Cerbère', 'Mamifère', true, 70, ["brun"]),
+  create_data(15, 'Scarabée', 'Insecte', false, 2, ["bleu", "vert", "polychrome"]),
 ];
 
 
@@ -171,7 +188,6 @@ function CustomHeader(props: Custom_Header_Props) {
             }}
           />
         </TableCell>
-        
         {content_table.map((Content_Props) => (
             <TableCell
               key={Content_Props.id}
@@ -199,10 +215,302 @@ function CustomHeader(props: Custom_Header_Props) {
   );
 }
 
-
-////////////////////
-// TABLE
 //////////////////
+// CONTEXT
+/////////////////
+export interface ITableContext {
+  id: number;
+  selected: boolean;
+}
+
+export type TableContextType = {
+  rows_state: ITableContext[];
+  add_row: (row: ITableContext) => void;
+  update_row: (id: number) => void;
+};
+
+
+export const TableContext = createContext<ITableContext | null >(null);
+
+
+
+const TableContextProvider: FC<ReactNode> = ({children}) => {
+  const [rows_state, set_rows_state] = useState<ITableContext[]>([]);
+
+  const add_row = (row: ITableContext) => {
+    // const new_row: ITableContext = {
+    //   id: row.id,
+    //   selected: false,
+    // }
+    set_rows_state([...rows_state, row])
+  }
+
+  const update_row = (id: number, selected: boolean) => {
+    rows_state.filter((row: ITableContext) => {
+      if (row.id === id) {
+        console.log(" update_row()", row.id, id, row.selected, ">", selected);
+        row.selected = selected;
+        // if(row.selected !== selected) {
+        //   row.selected = selected;
+        // } 
+        set_rows_state([...rows_state]);
+      }
+    });
+  };
+    
+  return <TableContext.Provider value={{ rows_state, add_row, update_row,}}>{children}</TableContext.Provider>
+}
+
+
+
+
+
+
+
+
+
+/////////////////
+// TABLE
+/////////////////
+function CustomTableWithContext() {
+  const [order, set_order] = useState<Order>('asc');
+  const [order_by, set_order_by] = useState<keyof Data_Props>('name');
+  const [selected, set_selected] = useState<readonly string[]>([]);
+  const [page, set_page] = useState(0);
+  const [dense, set_dense] = useState(false);
+  const [rows_per_page, set_rows_per_page] = useState(5);
+
+  const handleRequestSort = (
+    event: MouseEvent<unknown>,
+    property: keyof Data_Props,
+  ) => {
+    const asc_is = order_by === property && order === 'asc';
+    set_order(asc_is ? 'desc' : 'asc');
+    set_order_by(property);
+  };
+
+  const handleSelectAllClick = (event: ChangeEvent<HTMLInputElement>) => {
+    if (event.target.checked) {
+      const buf = rows.map((elem) => elem.name);
+      set_selected(buf);
+      return;
+    }
+    set_selected([]);
+  };
+
+  const select_row = (event: MouseEvent<unknown>, name: string) => {
+    const selectedIndex = selected.indexOf(name);
+    let newSelected: readonly string[] = [];
+
+    if (selectedIndex === -1) {
+      newSelected = newSelected.concat(selected, name);
+    } else if (selectedIndex === 0) {
+      newSelected = newSelected.concat(selected.slice(1));
+    } else if (selectedIndex === selected.length - 1) {
+      newSelected = newSelected.concat(selected.slice(0, -1));
+    } else if (selectedIndex > 0) {
+      newSelected = newSelected.concat(
+        selected.slice(0, selectedIndex),
+        selected.slice(selectedIndex + 1),
+      );
+    }
+    set_selected(newSelected);
+  };
+
+  const handleChangePage = (event: unknown, newPage: number) => {
+    set_page(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
+    set_rows_per_page(parseInt(event.target.value, 10));
+    set_page(0);
+  };
+
+  const handleChangeDense = (event: ChangeEvent<HTMLInputElement>) => {
+    set_dense(event.target.checked);
+  };
+
+  const select_is = (name: string) => selected.indexOf(name) !== -1;
+
+
+  // Avoid a layout jump when reaching the last page with empty rows.
+  const empty_rows =
+    page > 0 ? Math.max(0, (1 + page) * rows_per_page - rows.length) : 0;
+
+  const visible_rows = useMemo(
+    () =>
+      stableSort(rows, getComparator(order, order_by)).slice(
+        page * rows_per_page,
+        page * rows_per_page + rows_per_page,
+      ),
+    [order, order_by, page, rows_per_page],
+  );
+
+  return (
+    <Box sx={{ width: '50%' }}>
+      <Paper sx={{ width: '100%', mb: 2}}>
+        {/* <EnhancedTableToolbar numSelected={selected.length} /> */}
+        <TableContainer>
+          <Table
+            sx={{ [`& .${tableCellClasses.root}`]: {
+              borderBottom: "none",
+              minWidth : 100,
+              // background: "magenta", // take the lead on local color :(
+              // color: "yellow"
+            }}}
+            aria-labelledby="tableTitle"
+            size={dense ? 'small' : 'medium'}
+          >
+            <CustomHeader
+              num_selected={selected.length}
+              order={order}
+              order_by={order_by}
+              onSelectAllClick={handleSelectAllClick}
+              onRequestSort={handleRequestSort}
+              row_count={rows.length}
+            />
+            <TableContextProvider>
+              <TableBody>
+                {visible_rows.map((row, index) => {
+                  // console.log("OUT row", row);
+                  // console.log("OUT index", index);
+                  return <CustomRow row={row} index={index}/>
+                })}
+                {empty_rows > 0 && (
+                  <TableRow
+                    style={{
+                      height: (dense ? 33 : 53) * empty_rows,
+                    }}
+                  >
+                    <TableCell colSpan={6} />
+                  </TableRow>
+                )}
+              </TableBody>
+            </TableContextProvider>
+          </Table>
+        </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[5, 10, 25]}
+          component="div"
+          count={rows.length}
+          rowsPerPage={rows_per_page}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
+      </Paper>
+      <FormControlLabel
+        control={<Switch checked={dense} onChange={handleChangeDense} />}
+        label="Dense padding"
+      />
+    </Box>
+  );
+}
+
+interface CustomRowProps {
+  // select_item_is: boolean;
+  row: any,
+  index: number,
+}
+
+const CustomRow: FC<CustomRowProps> =({row, index}) => {
+  const { rows_state, add_row, update_row } = useContext(TableContext);
+
+  let select_item_is = false;
+  for(let elem of rows_state) {
+    if(elem.id === row.id) {
+      select_item_is = elem.selected;
+      break;
+    }
+  }
+  const select_row = (event: MouseEvent<unknown>, id: number) => {
+    let id_is: boolean = false;
+    for(let elem of rows_state) {
+      console.log("dans la boucle", elem.id, elem.selected, elem.name);
+      if(elem.id === id) {
+        if(elem.selected === true) {
+          update_row(elem.id, false);
+        } else {
+          update_row(elem.id, true);
+        }
+        id_is = true;
+        break;
+      } else {
+
+      }
+    }
+    // if ID don't match
+    console.log("id_is", id_is);
+    if(id_is === false) {
+      row.selected = true;
+      add_row(row);
+    }
+    // init the list of row
+    if(rows_state.length === 0) {
+      row.selected = true;
+      add_row(row);
+    }
+  };
+
+
+  const labelId = `enhanced-table-checkbox-${index}`;
+  return (
+    <TableRow
+      hover
+      // onClick={(event) => select_row(event, row.name)}
+      role="checkbox"
+      aria-checked={select_item_is}
+      tabIndex={-1}
+      key={row.name}
+      selected={select_item_is}
+      sx={{ cursor: 'pointer', background: row.mythic ? "magenta" : "cyan"}}
+    >
+      <TableCell padding="checkbox">
+        <Checkbox
+          onClick={(event) => select_row(event, row.id)}
+          color="primary"
+          checked={select_item_is}
+          inputProps={{
+            'aria-labelledby': labelId,
+          }}
+        />
+      </TableCell>
+      <DesignTableCell>{row.id}</DesignTableCell>
+      <DesignTableCell>{row.name}</DesignTableCell>
+      <DesignTableCell>{row.family}</DesignTableCell>
+      <DesignTableCell>{row.mythic ? "oui" : "non" }</DesignTableCell>
+      <DesignTableCell>{row.age}</DesignTableCell>
+    </TableRow>
+  )
+}
+
+
+function DesignTableCell({children}) {
+  return <>
+  <TableCell align="left">{children}</TableCell>
+  </>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////
+// CustomTable() ARCHIVE not use actually, just for remember
+/////////////////////////////////////////////////////////////
+
 
 function CustomTable() {
   const [order, set_order] = useState<Order>('asc');
@@ -230,7 +538,7 @@ function CustomTable() {
     set_selected([]);
   };
 
-  const handleClick = (event: MouseEvent<unknown>, name: string) => {
+  const select_row = (event: MouseEvent<unknown>, name: string) => {
     const selectedIndex = selected.indexOf(name);
     let newSelected: readonly string[] = [];
 
@@ -305,11 +613,10 @@ function CustomTable() {
               {visible_rows.map((row, index) => {
                 const select_item_is = select_is(row.name);
                 const labelId = `enhanced-table-checkbox-${index}`;
-
                 return (
                   <TableRow
                     hover
-                    onClick={(event) => handleClick(event, row.name)}
+                    // onClick={(event) => select_row(event, row.name)}
                     role="checkbox"
                     aria-checked={select_item_is}
                     tabIndex={-1}
@@ -319,6 +626,7 @@ function CustomTable() {
                   >
                     <TableCell padding="checkbox">
                       <Checkbox
+                        onClick={(event) => select_row(event, row.name)}
                         color="primary"
                         checked={select_item_is}
                         inputProps={{
@@ -331,11 +639,6 @@ function CustomTable() {
                     <DesignTableCell>{row.family}</DesignTableCell>
                     <DesignTableCell>{row.mythic ? "oui" : "non" }</DesignTableCell>
                     <DesignTableCell>{row.age}</DesignTableCell>
-                    {/* <TableCell align="left">{row.id}</TableCell>
-                    <TableCell align="left">{row.name}</TableCell>
-                    <TableCell align="left">{row.family}</TableCell>
-                    <TableCell align="left">{row.mythic}</TableCell>
-                    <TableCell align="left">{row.age}</TableCell> */}
                   </TableRow>
                 );
               })}
@@ -368,88 +671,6 @@ function CustomTable() {
     </Box>
   );
 }
-
-
-function DesignTableCell({children}) {
-  return <>
-  <TableCell align="left">{children}</TableCell>
-</>
-  // return <div style={{background: 'yellow'}}>
-  //   <TableCell align="left">{children}</TableCell>
-  // </div>
-}
-
-
-
-
-
-
-
-
-///////////////////
-// TOOL BAR
-////////////////////
-// interface EnhancedTableToolbarProps {
-//   numSelected: number;
-// }
-
-// function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
-//   const { numSelected } = props;
-
-//   return (
-//     <Toolbar
-//       sx={{
-//         pl: { sm: 2 },
-//         pr: { xs: 1, sm: 1 },
-//         ...(numSelected > 0 && {
-//           bgcolor: (theme) =>
-//             alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
-//         }),
-//       }}
-//     >
-//       {numSelected > 0 ? (
-//         <Typography
-//           sx={{ flex: '1 1 100%' }}
-//           color="inherit"
-//           variant="subtitle1"
-//           component="div"
-//         >
-//           {numSelected} selected
-//         </Typography>
-//       ) : (
-//         <Typography
-//           sx={{ flex: '1 1 100%' }}
-//           variant="h6"
-//           id="tableTitle"
-//           component="div"
-//         >
-//           Nutrition
-//         </Typography>
-//       )}
-//       {numSelected > 0 ? (
-//         <Tooltip title="Delete">
-//           <IconButton>
-//             <DeleteIcon />
-//           </IconButton>
-//         </Tooltip>
-//       ) : (
-//         <Tooltip title="Filter list">
-//           <IconButton>
-//             <FilterListIcon />
-//           </IconButton>
-//         </Tooltip>
-//       )}
-//     </Toolbar>
-//   );
-// }
-
-
-
-
-
-
-
-
 
 
 
