@@ -62,17 +62,22 @@ export default function MUITable() {
 
 
 interface Data_Props {
+  // data base
   id: number;
   name: string;
   family: string;
   mythic: boolean;
   age: number;
   info: Array<string>;
+  // internal management
+  selected: boolean;
 }
 
 function create_data(id: number, name: string, family: string, mythic: boolean, age: number, info: Array<string>)
   : Data_Props {
-  return { id, name, family, mythic, age, info}; 
+  // set the internal management
+  let selected = false;
+  return { id, name, family, mythic, age, info, selected}; 
 }
 
 const rows = [
@@ -215,14 +220,13 @@ function CustomHeader(props: Custom_Header_Props) {
 /////////////////
 export interface ITableContext {
   id: number;
-  is: boolean;
+  selected: boolean;
 }
 
 export type TableContextType = {
   rows_state: ITableContext[];
   add_row: (row: ITableContext) => void;
   update_row: (id: number) => void;
-  // updateTodo: (id: number) => void;
 };
 
 
@@ -231,36 +235,30 @@ export const TableContext = createContext<ITableContext | null >(null);
 
 
 const TableContextProvider: FC<ReactNode> = ({children}) => {
-  const [rows_state, set_rows_state] = useState<ITableContext[]>([
-    {
-      id: 0,
-      is: false,
-    },
-    {
-      id: 1,
-      is: true,
-    }, 
-  ]);
+  const [rows_state, set_rows_state] = useState<ITableContext[]>([]);
 
   const add_row = (row: ITableContext) => {
-    const new_row: ITableContext = {
-      id: row.id,
-      is: false,
-    }
-    set_rows_state([...rows_state, new_row])
+    // const new_row: ITableContext = {
+    //   id: row.id,
+    //   selected: false,
+    // }
+    set_rows_state([...rows_state, row])
   }
 
-  const update_row = (id: number) => {
+  const update_row = (id: number, selected: boolean) => {
     rows_state.filter((row: ITableContext) => {
       if (row.id === id) {
-        row.is = true;
+        console.log(" update_row()", row.id, id, row.selected, ">", selected);
+        row.selected = selected;
+        // if(row.selected !== selected) {
+        //   row.selected = selected;
+        // } 
         set_rows_state([...rows_state]);
       }
     });
   };
     
   return <TableContext.Provider value={{ rows_state, add_row, update_row,}}>{children}</TableContext.Provider>
-
 }
 
 
@@ -416,44 +414,45 @@ interface CustomRowProps {
 }
 
 const CustomRow: FC<CustomRowProps> =({row, index}) => {
-  const { rows_state, update_row } = useContext(TableContext);
+  const { rows_state, add_row, update_row } = useContext(TableContext);
 
   let select_item_is = false;
-  // let buf_is = rows_state.filter(elem.id === row.id)
-  // console.log("row_state", rows_state);
   for(let elem of rows_state) {
     if(elem.id === row.id) {
-      select_item_is = elem.is;
-      console.log("je suis là", elem.is, select_item_is);
+      select_item_is = elem.selected;
       break;
     }
-    console.log("elem", row.id, select_item_is);
-    
   }
-  // const [selected, set_selected] = useState<readonly string[]>([]);
+  const select_row = (event: MouseEvent<unknown>, id: number) => {
+    let id_is: boolean = false;
+    for(let elem of rows_state) {
+      console.log("dans la boucle", elem.id, elem.selected, elem.name);
+      if(elem.id === id) {
+        if(elem.selected === true) {
+          update_row(elem.id, false);
+        } else {
+          update_row(elem.id, true);
+        }
+        id_is = true;
+        break;
+      } else {
 
-  // const select_row = (event: MouseEvent<unknown>, name: string) => {
-  //   const selectedIndex = selected.indexOf(name);
-  //   let new_select: readonly string[] = [];
+      }
+    }
+    // if ID don't match
+    console.log("id_is", id_is);
+    if(id_is === false) {
+      row.selected = true;
+      add_row(row);
+    }
+    // init the list of row
+    if(rows_state.length === 0) {
+      row.selected = true;
+      add_row(row);
+    }
+  };
 
-  //   if (selectedIndex === -1) {
-  //     new_select = new_select.concat(selected, name);
-  //   } else if (selectedIndex === 0) {
-  //     new_select = new_select.concat(selected.slice(1));
-  //   } else if (selectedIndex === selected.length - 1) {
-  //     new_select = new_select.concat(selected.slice(0, -1));
-  //   } else if (selectedIndex > 0) {
-  //     new_select = new_select.concat(
-  //       selected.slice(0, selectedIndex),
-  //       selected.slice(selectedIndex + 1),
-  //     );
-  //   }
-  //   set_selected(new_select);
-  // };
 
-  // const select_item_is = select_is(row.name);
-  console.log("IN row", row);
-  console.log("IN index", index);
   const labelId = `enhanced-table-checkbox-${index}`;
   return (
     <TableRow
@@ -468,7 +467,7 @@ const CustomRow: FC<CustomRowProps> =({row, index}) => {
     >
       <TableCell padding="checkbox">
         <Checkbox
-          onClick={(event) => select_row(event, row.name)}
+          onClick={(event) => select_row(event, row.id)}
           color="primary"
           checked={select_item_is}
           inputProps={{
@@ -508,9 +507,9 @@ function DesignTableCell({children}) {
 
 
 
-////////////////
-// CustomTable() ARCHIVE
-/////////////////
+/////////////////////////////////////////////////////////////
+// CustomTable() ARCHIVE not use actually, just for remember
+/////////////////////////////////////////////////////////////
 
 
 function CustomTable() {
