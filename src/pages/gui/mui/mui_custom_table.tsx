@@ -372,8 +372,6 @@ function CustomTableWithContext() {
             <TableContextProvider>
               <TableBody>
                 {visible_rows.map((row, index) => {
-                  // console.log("OUT row", row);
-                  // console.log("OUT index", index);
                   return <CustomRow row={row} index={index}/>
                 })}
                 {empty_rows > 0 && (
@@ -426,7 +424,6 @@ const CustomRow: FC<CustomRowProps> =({row, index}) => {
   const select_row = (event: MouseEvent<unknown>, id: number) => {
     let id_is: boolean = false;
     for(let elem of rows_state) {
-      console.log("dans la boucle", elem.id, elem.selected, elem.name);
       if(elem.id === id) {
         if(elem.selected === true) {
           update_row(elem.id, false);
@@ -435,8 +432,6 @@ const CustomRow: FC<CustomRowProps> =({row, index}) => {
         }
         id_is = true;
         break;
-      } else {
-
       }
     }
     // if ID don't match
