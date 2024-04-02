@@ -1,6 +1,6 @@
 /**
- * Materiel UI custom table
- * v 0.0.1
+ * Materiel UI custom table with context management
+ * v 0.0.2
  * 2023-2023
  * based on those examples https://mui.com/material-ui/react-table/
  * https://blog.logrocket.com/how-to-use-react-context-typescript/
@@ -15,6 +15,7 @@ import { ChangeEvent, MouseEvent } from "react"
 import Layout from "../../../components/struct/layout"
 // MUI
 
+// Table
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -30,38 +31,18 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import { visuallyHidden } from '@mui/utils';
 
-// toolbar
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import { alpha } from '@mui/material/styles';
-// tool gui
-import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
-import DeleteIcon from '@mui/icons-material/Delete';
-import FilterListIcon from '@mui/icons-material/FilterList';
-import { maxWidth } from "@mui/system";
-// to open the row icon
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+// select
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
 
 
 
-
-
-
-
-export default function MUITable() {
-  return (
-    <div>
-      <Layout title="Material UI V6: Custom Table"></Layout>
-      {/* <CustomTable/> */}
-      <CustomTableWithContext/>
-    </div>
-  )
-}
-
-
-interface Data_Props {
+///////////////////
+// INTERFACE
+////////////////////
+export interface Row_Props {
   // data base
   id: number;
   name: string;
@@ -72,9 +53,76 @@ interface Data_Props {
   // internal management
   selected: boolean;
 }
+///////////////////
+// END INTERFACE
+////////////////////
 
+
+
+///////////////////
+// SELECT
+////////////////////
+function BasicSelect() {
+  const [family, set_family] = useState('');
+  const [menu, set_menu] = useState<string[]>([]);
+
+  const handle_selection = (event: SelectChangeEvent) => {
+    set_family(event.target.value as string);
+  };
+
+  const init_menu = (data : Row_Props[]) => {
+    let buf: string[] = ["Toute les familles"];
+    data.map(elem_data => {
+      let is = false;
+      let add_data= "";
+      for(let i = 0 ; i < buf.length ; i++) {
+        if(buf[i] === elem_data.family) {
+          is = true;
+          break;
+        }
+      }
+      if(is === false) {
+        buf.push(elem_data.family);
+      }
+    })
+    set_menu(buf);
+  }
+
+  return (
+    <Box sx={{ width: '50%' }}>
+  
+    {/* <Box sx={{ minWidth: 120 }}> */}
+      {menu.length === 0 ? init_menu(rows) : null}
+      <FormControl fullWidth>
+        <InputLabel id="demo-simple-select-label">Famille</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={family}
+          label="Famille"
+          onChange={handle_selection}
+        >
+          {menu.map(elem => <MenuItem value={elem}>{elem}</MenuItem>)}
+          {/* <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem> */}
+        </Select>
+      </FormControl>
+    </Box>
+  );
+}
+///////////////////
+// SELECT
+////////////////////
+
+
+
+
+///////////////////
+// DATA
+////////////////////
 function create_data(id: number, name: string, family: string, mythic: boolean, age: number, info: Array<string>)
-  : Data_Props {
+  : Row_Props {
   // set the internal management
   let selected = false;
   return { id, name, family, mythic, age, info, selected}; 
@@ -97,48 +145,146 @@ const rows = [
   create_data(14, 'Cerbère', 'Mamifère', true, 70, ["brun"]),
   create_data(15, 'Scarabée', 'Insecte', false, 2, ["bleu", "vert", "polychrome"]),
 ];
+//////////////////////////////
+// END DATA
+///////////////////////////
 
 
 
 
-function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
-  if (b[orderBy] < a[orderBy]) {
-    return -1;
-  }
-  if (b[orderBy] > a[orderBy]) {
-    return 1;
-  }
-  return 0;
+
+export default function MUITable() {
+  return (
+    <div>
+      <Layout title="Material UI V6: Custom Table"></Layout>
+      <TableContextProvider>
+        <BasicSelect/>
+        <CustomTableContext/>
+      </TableContextProvider>
+    </div>
+  )
 }
 
 
-type Order = 'asc' | 'desc';
 
 
-function getComparator<Key extends keyof any>(
-  order: Order,
-  order_by: Key,
-): (
-  a: { [key in Key]: number | string | boolean },
-  b: { [key in Key]: number | string | boolean },
-) => number {
-  return order === 'desc'
-    ? (a, b) => descendingComparator(a, b, order_by)
-    : (a, b) => -descendingComparator(a, b, order_by);
+
+
+
+
+/////////////////
+// RENDER
+/////////////////
+function CustomTableContext() {
+  const [order, set_order] = useState<Order>('asc');
+  const [order_by, set_order_by] = useState<keyof Row_Props>('name');
+  const [page, set_page] = useState(0);
+  const [dense, set_dense] = useState(false);
+  const [rows_per_page, set_rows_per_page] = useState(5);
+
+  const handleRequestSort = (
+    event: MouseEvent<unknown>,
+    property: keyof Row_Props,
+  ) => {
+    const asc_is = order_by === property && order === 'asc';
+    set_order(asc_is ? 'desc' : 'asc');
+    set_order_by(property);
+  };
+
+  const handleChangePage = (event: unknown, newPage: number) => {
+    set_page(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
+    set_rows_per_page(parseInt(event.target.value, 10));
+    set_page(0);
+  };
+
+  const handleChangeDense = (event: ChangeEvent<HTMLInputElement>) => {
+    set_dense(event.target.checked);
+  };
+
+
+  // Avoid a layout jump when reaching the last page with empty rows.
+  const empty_rows =
+    page > 0 ? Math.max(0, (1 + page) * rows_per_page - rows.length) : 0;
+
+  const visible_rows = useMemo(
+    () =>
+      stableSort(rows, getComparator(order, order_by)).slice(
+        page * rows_per_page,
+        page * rows_per_page + rows_per_page,
+      ),
+    [order, order_by, page, rows_per_page],
+  );
+
+  return (
+    <Box sx={{ width: '50%' }}>
+      <Paper sx={{ width: '100%', mb: 2}}>
+        {/* <EnhancedTableToolbar numSelected={selected.length} /> */}
+        <TableContainer>
+          <Table
+            sx={{ [`& .${tableCellClasses.root}`]: {
+              borderBottom: "none",
+              minWidth : 100,
+              // background: "magenta", // take the lead on local color :(
+              // color: "yellow"
+            }}}
+            aria-labelledby="tableTitle"
+            size={dense ? 'small' : 'medium'}
+          >
+              {/* HEADER TABLE */}
+              <CustomHeader
+                order={order}
+                order_by={order_by}
+                onRequestSort={handleRequestSort}
+                row_count={rows.length}
+              />
+              {/* BODY TABLE */}
+              <TableBody>
+                {visible_rows.map((row, index) => {
+                  return <CustomRow row={row} index={index}/>
+                })}
+                {empty_rows > 0 && (
+                  <TableRow
+                    style={{
+                      height: (dense ? 33 : 53) * empty_rows,
+                    }}
+                  >
+                    <TableCell colSpan={6} />
+                  </TableRow>
+                )}
+              </TableBody>
+          </Table>
+        </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[5, 10, 25]}
+          component="div"
+          count={rows.length}
+          rowsPerPage={rows_per_page}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
+      </Paper>
+      <FormControlLabel
+        control={<Switch checked={dense} onChange={handleChangeDense} />}
+        label="Dense padding"
+      />
+    </Box>
+  );
 }
+////////////////
+// END RENDERING
+///////////////
 
 
-function stableSort<T>(array: readonly T[], comparator: (a: T, b: T) => number) {
-  const stabilizedThis = array.map((elem, index) => [elem, index] as [T, number]);
-  stabilizedThis.sort((a, b) => {
-    const order = comparator(a[0], b[0]);
-    if (order !== 0) {
-      return order;
-    }
-    return a[1] - b[1];
-  });
-  return stabilizedThis.map((elem) => elem[0]);
-}
+
+
+
+
+
+
 
 //////////////////
 // HEADER
@@ -146,7 +292,7 @@ function stableSort<T>(array: readonly T[], comparator: (a: T, b: T) => number) 
 
 interface Content_Props {
   disablePadding: boolean;
-  id: keyof Data_Props;
+  id: keyof Row_Props;
   label: string;
 }
 
@@ -161,31 +307,44 @@ const content_table: readonly Content_Props[] = [
 
 interface Custom_Header_Props {
   num_selected: number;
-  onRequestSort: (event: MouseEvent<unknown>, property: keyof Data_Props) => void;
-  onSelectAllClick: (event: ChangeEvent<HTMLInputElement>) => void;
+  onRequestSort: (event: MouseEvent<unknown>, property: keyof Row_Props) => void;
   order: Order;
   order_by: string;
   row_count: number;
 }
 
 function CustomHeader(props: Custom_Header_Props) {
-  const { onSelectAllClick, order, order_by, num_selected, row_count, onRequestSort } = props;
-  const createSortHandler = (property: keyof Data_Props) => (event: MouseEvent<unknown>) => {
+  const {select_all, rows_state, init_rows, set_row_select_all} = useContext(TableContext);
+
+  const { order, order_by, num_selected, row_count, onRequestSort } = props;
+  const createSortHandler = (property: keyof Row_Props) => (event: MouseEvent<unknown>) => {
     onRequestSort(event, property);
   };
 
+  const select_all_rows = (event: MouseEvent<unknown>) => {
+    if (event.target) {
+      set_row_select_all();
+      for(let elem of rows_state) {
+        elem.selected = !select_all;
+      }
+      
+    }
+  }
+
   return (
     <TableHead>
+      {rows_state.length === 0 ? init_rows(rows) : null }
       <TableRow>
         <TableCell padding="checkbox">
           <Checkbox
             color="primary"
-            indeterminate={num_selected > 0 && num_selected < row_count}
-            checked={row_count > 0 && num_selected === row_count}
-            onChange={onSelectAllClick}
-            inputProps={{
-              'aria-label': 'select all desserts',
-            }}
+            // indeterminate={num_selected > 0 && num_selected < row_count}
+            // checked={row_count > 0 && num_selected === row_count}
+            // onChange={select_all_rows}
+            onClick={(event) => select_all_rows(event)}
+            // inputProps={{
+            //   'aria-label': 'select all desserts',
+            // }}
           />
         </TableCell>
         {content_table.map((Content_Props) => (
@@ -214,206 +373,38 @@ function CustomHeader(props: Custom_Header_Props) {
     </TableHead>
   );
 }
+//////////////////////
+// END HEADER
+/////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //////////////////
-// CONTEXT
+// BODY / ROWS
 /////////////////
-export interface ITableContext {
-  id: number;
-  selected: boolean;
-}
-
-export type TableContextType = {
-  rows_state: ITableContext[];
-  add_row: (row: ITableContext) => void;
-  update_row: (id: number) => void;
-};
-
-
-export const TableContext = createContext<ITableContext | null >(null);
-
-
-
-const TableContextProvider: FC<ReactNode> = ({children}) => {
-  const [rows_state, set_rows_state] = useState<ITableContext[]>([]);
-
-  const add_row = (row: ITableContext) => {
-    // const new_row: ITableContext = {
-    //   id: row.id,
-    //   selected: false,
-    // }
-    set_rows_state([...rows_state, row])
-  }
-
-  const update_row = (id: number, selected: boolean) => {
-    rows_state.filter((row: ITableContext) => {
-      if (row.id === id) {
-        console.log(" update_row()", row.id, id, row.selected, ">", selected);
-        row.selected = selected;
-        // if(row.selected !== selected) {
-        //   row.selected = selected;
-        // } 
-        set_rows_state([...rows_state]);
-      }
-    });
-  };
-    
-  return <TableContext.Provider value={{ rows_state, add_row, update_row,}}>{children}</TableContext.Provider>
-}
-
-
-
-
-
-
-
-
-
-/////////////////
-// TABLE
-/////////////////
-function CustomTableWithContext() {
-  const [order, set_order] = useState<Order>('asc');
-  const [order_by, set_order_by] = useState<keyof Data_Props>('name');
-  const [selected, set_selected] = useState<readonly string[]>([]);
-  const [page, set_page] = useState(0);
-  const [dense, set_dense] = useState(false);
-  const [rows_per_page, set_rows_per_page] = useState(5);
-
-  const handleRequestSort = (
-    event: MouseEvent<unknown>,
-    property: keyof Data_Props,
-  ) => {
-    const asc_is = order_by === property && order === 'asc';
-    set_order(asc_is ? 'desc' : 'asc');
-    set_order_by(property);
-  };
-
-  const handleSelectAllClick = (event: ChangeEvent<HTMLInputElement>) => {
-    if (event.target.checked) {
-      const buf = rows.map((elem) => elem.name);
-      set_selected(buf);
-      return;
-    }
-    set_selected([]);
-  };
-
-  const select_row = (event: MouseEvent<unknown>, name: string) => {
-    const selectedIndex = selected.indexOf(name);
-    let newSelected: readonly string[] = [];
-
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1),
-      );
-    }
-    set_selected(newSelected);
-  };
-
-  const handleChangePage = (event: unknown, newPage: number) => {
-    set_page(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
-    set_rows_per_page(parseInt(event.target.value, 10));
-    set_page(0);
-  };
-
-  const handleChangeDense = (event: ChangeEvent<HTMLInputElement>) => {
-    set_dense(event.target.checked);
-  };
-
-  const select_is = (name: string) => selected.indexOf(name) !== -1;
-
-
-  // Avoid a layout jump when reaching the last page with empty rows.
-  const empty_rows =
-    page > 0 ? Math.max(0, (1 + page) * rows_per_page - rows.length) : 0;
-
-  const visible_rows = useMemo(
-    () =>
-      stableSort(rows, getComparator(order, order_by)).slice(
-        page * rows_per_page,
-        page * rows_per_page + rows_per_page,
-      ),
-    [order, order_by, page, rows_per_page],
-  );
-
-  return (
-    <Box sx={{ width: '50%' }}>
-      <Paper sx={{ width: '100%', mb: 2}}>
-        {/* <EnhancedTableToolbar numSelected={selected.length} /> */}
-        <TableContainer>
-          <Table
-            sx={{ [`& .${tableCellClasses.root}`]: {
-              borderBottom: "none",
-              minWidth : 100,
-              // background: "magenta", // take the lead on local color :(
-              // color: "yellow"
-            }}}
-            aria-labelledby="tableTitle"
-            size={dense ? 'small' : 'medium'}
-          >
-            <CustomHeader
-              num_selected={selected.length}
-              order={order}
-              order_by={order_by}
-              onSelectAllClick={handleSelectAllClick}
-              onRequestSort={handleRequestSort}
-              row_count={rows.length}
-            />
-            <TableContextProvider>
-              <TableBody>
-                {visible_rows.map((row, index) => {
-                  return <CustomRow row={row} index={index}/>
-                })}
-                {empty_rows > 0 && (
-                  <TableRow
-                    style={{
-                      height: (dense ? 33 : 53) * empty_rows,
-                    }}
-                  >
-                    <TableCell colSpan={6} />
-                  </TableRow>
-                )}
-              </TableBody>
-            </TableContextProvider>
-          </Table>
-        </TableContainer>
-        <TablePagination
-          rowsPerPageOptions={[5, 10, 25]}
-          component="div"
-          count={rows.length}
-          rowsPerPage={rows_per_page}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
-      </Paper>
-      <FormControlLabel
-        control={<Switch checked={dense} onChange={handleChangeDense} />}
-        label="Dense padding"
-      />
-    </Box>
-  );
-}
 
 interface CustomRowProps {
-  // select_item_is: boolean;
+  // selected_global: readonly string[],
   row: any,
   index: number,
 }
 
 const CustomRow: FC<CustomRowProps> =({row, index}) => {
-  const { rows_state, add_row, update_row } = useContext(TableContext);
-
+  const {rows_state, add_row, update_row} = useContext(TableContext);
   let select_item_is = false;
   for(let elem of rows_state) {
     if(elem.id === row.id) {
@@ -435,7 +426,6 @@ const CustomRow: FC<CustomRowProps> =({row, index}) => {
       }
     }
     // if ID don't match
-    console.log("id_is", id_is);
     if(id_is === false) {
       row.selected = true;
       add_row(row);
@@ -452,7 +442,6 @@ const CustomRow: FC<CustomRowProps> =({row, index}) => {
   return (
     <TableRow
       hover
-      // onClick={(event) => select_row(event, row.name)}
       role="checkbox"
       aria-checked={select_item_is}
       tabIndex={-1}
@@ -479,10 +468,9 @@ const CustomRow: FC<CustomRowProps> =({row, index}) => {
   )
 }
 
-
 function DesignTableCell({children}) {
   return <>
-  <TableCell align="left">{children}</TableCell>
+    <TableCell align="left">{children}</TableCell>
   </>
 }
 
@@ -492,180 +480,124 @@ function DesignTableCell({children}) {
 
 
 
+//////////////////
+// CONTEXT
+/////////////////
+export type TableContextType = {
+  // maybe `rows_state` can change to just `rows` ????
+  rows_state: Row_Props[];
+  select_all: boolean;
+  set_row_select_all:(is: boolean)=> void;
+  add_row: (row: Row_Props) => void;
+  update_row: (id: number, selected: boolean) => void;
+  init_rows: (rows: Row_Props[]) => void;
+};
 
+export const TableContext = createContext<TableContextType | null >(null);
 
+const TableContextProvider: FC<ReactNode> = ({children}) => {
+  const [rows_state, set_rows_state] = useState<Row_Props[]>([]);
+  const [select_all, set_select_all] = useState<boolean>(false);
 
+  const set_row_select_all = () => {
+    select_all === false ? set_select_all(true) : set_select_all(false);
+  }
 
+  const add_row = (row: Row_Props) => {
+    set_rows_state([...rows_state, row])
+  }
 
+  const init_rows = (rows: Row_Props[]) => {
+    set_rows_state(rows);
+  }
 
-
-
-
-
-/////////////////////////////////////////////////////////////
-// CustomTable() ARCHIVE not use actually, just for remember
-/////////////////////////////////////////////////////////////
-
-
-function CustomTable() {
-  const [order, set_order] = useState<Order>('asc');
-  const [order_by, set_order_by] = useState<keyof Data_Props>('name');
-  const [selected, set_selected] = useState<readonly string[]>([]);
-  const [page, set_page] = useState(0);
-  const [dense, set_dense] = useState(false);
-  const [rows_per_page, set_rows_per_page] = useState(5);
-
-  const handleRequestSort = (
-    event: MouseEvent<unknown>,
-    property: keyof Data_Props,
-  ) => {
-    const asc_is = order_by === property && order === 'asc';
-    set_order(asc_is ? 'desc' : 'asc');
-    set_order_by(property);
+  const update_row = (id: number, selected: boolean) => {
+    rows_state.filter((row: Row_Props) => {
+      if (row.id === id) {
+        row.selected = selected;
+        set_rows_state([...rows_state]);
+      }
+    });
   };
-
-  const handleSelectAllClick = (event: ChangeEvent<HTMLInputElement>) => {
-    if (event.target.checked) {
-      const buf = rows.map((elem) => elem.name);
-      set_selected(buf);
-      return;
-    }
-    set_selected([]);
-  };
-
-  const select_row = (event: MouseEvent<unknown>, name: string) => {
-    const selectedIndex = selected.indexOf(name);
-    let newSelected: readonly string[] = [];
-
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1),
-      );
-    }
-    set_selected(newSelected);
-  };
-
-  const handleChangePage = (event: unknown, newPage: number) => {
-    set_page(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
-    set_rows_per_page(parseInt(event.target.value, 10));
-    set_page(0);
-  };
-
-  const handleChangeDense = (event: ChangeEvent<HTMLInputElement>) => {
-    set_dense(event.target.checked);
-  };
-
-  const select_is = (name: string) => selected.indexOf(name) !== -1;
-
-
-  // Avoid a layout jump when reaching the last page with empty rows.
-  const empty_rows =
-    page > 0 ? Math.max(0, (1 + page) * rows_per_page - rows.length) : 0;
-
-  const visible_rows = useMemo(
-    () =>
-      stableSort(rows, getComparator(order, order_by)).slice(
-        page * rows_per_page,
-        page * rows_per_page + rows_per_page,
-      ),
-    [order, order_by, page, rows_per_page],
-  );
-
-  return (
-    <Box sx={{ width: '50%' }}>
-      <Paper sx={{ width: '100%', mb: 2}}>
-        {/* <EnhancedTableToolbar numSelected={selected.length} /> */}
-        <TableContainer>
-          <Table
-            sx={{ [`& .${tableCellClasses.root}`]: {
-              borderBottom: "none",
-              minWidth : 100,
-              // background: "magenta", // take the lead on local color :(
-              // color: "yellow"
-            }}}
-            aria-labelledby="tableTitle"
-            size={dense ? 'small' : 'medium'}
-          >
-            <CustomHeader
-              num_selected={selected.length}
-              order={order}
-              order_by={order_by}
-              onSelectAllClick={handleSelectAllClick}
-              onRequestSort={handleRequestSort}
-              row_count={rows.length}
-            />
-            <TableBody>
-              {visible_rows.map((row, index) => {
-                const select_item_is = select_is(row.name);
-                const labelId = `enhanced-table-checkbox-${index}`;
-                return (
-                  <TableRow
-                    hover
-                    // onClick={(event) => select_row(event, row.name)}
-                    role="checkbox"
-                    aria-checked={select_item_is}
-                    tabIndex={-1}
-                    key={row.name}
-                    selected={select_item_is}
-                    sx={{ cursor: 'pointer', background: row.mythic ? "magenta" : "cyan"}}
-                  >
-                    <TableCell padding="checkbox">
-                      <Checkbox
-                        onClick={(event) => select_row(event, row.name)}
-                        color="primary"
-                        checked={select_item_is}
-                        inputProps={{
-                          'aria-labelledby': labelId,
-                        }}
-                      />
-                    </TableCell>
-                    <DesignTableCell>{row.id}</DesignTableCell>
-                    <DesignTableCell>{row.name}</DesignTableCell>
-                    <DesignTableCell>{row.family}</DesignTableCell>
-                    <DesignTableCell>{row.mythic ? "oui" : "non" }</DesignTableCell>
-                    <DesignTableCell>{row.age}</DesignTableCell>
-                  </TableRow>
-                );
-              })}
-              {empty_rows > 0 && (
-                <TableRow
-                  style={{
-                    height: (dense ? 33 : 53) * empty_rows,
-                  }}
-                >
-                  <TableCell colSpan={6} />
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <TablePagination
-          rowsPerPageOptions={[5, 10, 25]}
-          component="div"
-          count={rows.length}
-          rowsPerPage={rows_per_page}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
-      </Paper>
-      <FormControlLabel
-        control={<Switch checked={dense} onChange={handleChangeDense} />}
-        label="Dense padding"
-      />
-    </Box>
-  );
+    
+  return <TableContext.Provider value={{rows_state, select_all, add_row, init_rows, update_row, set_row_select_all,}}>{children}</TableContext.Provider>
 }
+
+//////////////////
+// END CONTEXT
+/////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+////////////////////
+// SORT
+/////////////////////
+function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
+  if (b[orderBy] < a[orderBy]) {
+    return -1;
+  }
+  if (b[orderBy] > a[orderBy]) {
+    return 1;
+  }
+  return 0;
+}
+
+type Order = 'asc' | 'desc';
+
+function getComparator<Key extends keyof any>(
+  order: Order,
+  order_by: Key,
+): (
+  a: { [key in Key]: number | string | boolean },
+  b: { [key in Key]: number | string | boolean },
+) => number {
+  return order === 'desc'
+    ? (a, b) => descendingComparator(a, b, order_by)
+    : (a, b) => -descendingComparator(a, b, order_by);
+}
+
+
+function stableSort<T>(array: readonly T[], comparator: (a: T, b: T) => number) {
+  const stabilizedThis = array.map((elem, index) => [elem, index] as [T, number]);
+  stabilizedThis.sort((a, b) => {
+    const order = comparator(a[0], b[0]);
+    if (order !== 0) {
+      return order;
+    }
+    return a[1] - b[1];
+  });
+  return stabilizedThis.map((elem) => elem[0]);
+}
+////////////////////
+// END SORT
+/////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
