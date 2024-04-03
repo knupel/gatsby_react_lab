@@ -1,9 +1,14 @@
-import React from "react"
+import React, { FC } from 'react';
 import { Link } from "gatsby"
 import Header from "./header"
 import "./layout.css"
 
-const Layout = (props, { children }) => {
+interface LayoutProps {
+  [props: string]: any;
+}
+
+
+const Layout: FC<LayoutProps> = (props, { children }) => {
   // export default function Layout(props, { children }) {
   if (props.link === "false") {
     return (
