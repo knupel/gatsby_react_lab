@@ -29,6 +29,8 @@ function Deploy() {
       <MenuLink link="gui/mui/mui_icons/" name={"GUI: MUI icons"}></MenuLink>
       <MenuLink link="gui/mui/mui_data_table/" name={"GUI: MUI Data table"}></MenuLink>
       <MenuLink link="gui/mui/mui_custom_table/" name={"GUI: MUI Custom table"}></MenuLink>
+
+      <MenuLink link="gui/shadcn/dropdowns/" name={"GUI: SHAD CN Dropdowns"}></MenuLink>
       
       <MenuLink link="gui/contact/" name={"GUI: send me an email"}></MenuLink>
       <MenuLink link="gui/button_radio/button_radio" name={"GUI: radio button"}></MenuLink>

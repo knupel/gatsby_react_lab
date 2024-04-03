@@ -19,7 +19,7 @@ export const onCreateWebpackConfig = ({ stage , loaders, actions }) => {
       resolve: {
         alias: {
           "@/components": path.resolve(__dirname, "src/components"),
-          "@/lib/utils": path.resolve(__dirname, "src/lib/utils"),
+          "@/lib/utils": path.resolve(__dirname, "src/utils"),
         },
       },
     })

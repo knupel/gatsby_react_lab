@@ -17,6 +17,8 @@ module.exports = {
     author: `Knupel`,
   },
   plugins: [
+    // POSTCSS
+    'gatsby-plugin-postcss',
     // SCSS
     `gatsby-plugin-sass`,
     // FONT

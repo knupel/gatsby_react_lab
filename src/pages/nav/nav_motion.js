@@ -26,7 +26,8 @@ const useRandomColor = () => {
 
   /**
    * 
-   * This code wotk but only from the the bottom and from the top, but from the top is not relally nice
+   * This code wotk but only from the the bottom and from the top, but from the top is not really nice
+   * see it's totaly broken
    */
 const useIntersection = (ref, marge) => {
   const [visible, set_visible] = useState(false);
