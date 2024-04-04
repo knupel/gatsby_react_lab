@@ -62,20 +62,30 @@ const Dropdowns = () => {
     <div>
       <Layout title="Menu déroulant de ShadCN"></Layout>
       {/* <h1>Hello world!</h1>
-      <h1 className="text-rouge underline ">
+      <h1 className="tw-text-3xl tw-font-bold tw-underline tw-text-tahiti tw-border-solid">
         Hello world!
-      </h1> */}
-      {/* <div className="h-56 grid grid-cols-3 gap-4 content-between ...">
+      </h1>
+      <div className="tw-box-border tw-bg-tahiti tw-h-32 tw-w-32 p-4 tw-border-4 ...">
+        truc
+      </div> */}
+      {/* <div className="content-between"> */}
+
+      {/* <div className="tw-h-56 tw-grid tw-grid-cols-3 tw-gap-4 ctw-ontent-between ...">
         <div>01</div>
         <div>02</div>
         <div>03</div>
         <div>04</div>
         <div>05</div>
       </div> */}
-      <div className="content-between">
-        <Dropdown title="Sésame"/>
-        <Dropdown title="ouvre"/>
-        <Dropdown title="toi"/>
+
+      <div className="tw-content-between">
+        <Dropdown title="mon_"/>
+        <Dropdown title="labo_"/>
+        <Dropdown title="marche_"/>
+        <Dropdown title="pas_"/>
+        <Dropdown title="avec_"/>
+        <Dropdown title="tailmind_"/>
+        <Dropdown title="dommage_"/>
       </div>
     </div>
   )
